@@ -10,18 +10,36 @@
 
     <ul class="menu-inner py-1 ps ps--active-y">
         <!-- Dashboard -->
-
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Vendedor</span>
-        </li>
-
         <li class="menu-item">
-            <a href="index.html" class="menu-link">
+            <a href="<?= Helpers\generateUrl("Access","Access","HomeView");?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Inicio</div>
             </a>
         </li>
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Vendedor</span>
+        </li>
 
+        <?php if ($_SESSION['RolUser'] == '1'): ?>
+        <li class="menu-item" style="">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class='menu-icon tf-icons bx bxs-user-detail'></i>
+                <div data-i18n="Layouts">Clientes</div>
+            </a>
+
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="<?= Helpers\generateUrl("Clients","Clients","ViewClientPortal");?>" class="menu-link">
+                        <div data-i18n="Without menu">Ver clientes portal</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <?php endif; ?>
+
+
+        <!-- COMPANY -->
+        <?php if ($_SESSION['RolUser'] == '2'  AND $_SESSION['StatusUser'] == '1'): ?>
         <li class="menu-item" style="">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bx-cube-alt'></i>
@@ -30,13 +48,63 @@
 
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="<?= Helpers\generateUrl("Clients","Clients","ViewClientPortal");?>" class="menu-link">
-                        <div data-i18n="Without menu">Crear</div>
+                    <a href="<?= Helpers\generateUrl("CRM","CRM","consultViewDate");?>" class="menu-link">
+                        <div data-i18n="Without menu">Crear reunion</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="<?= Helpers\generateUrl("CRM","CRM","ViewClientPortal");?>" class="menu-link">
+                        <div data-i18n="Without menu">Cota</div>
                     </a>
                 </li>
             </ul>
         </li>
-        <!-- Layouts -->
+        <!-- <li class="menu-item" style="">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class='menu-icon tf-icons bx bxs-user-detail'></i>
+                <div data-i18n="Layouts">Clientes</div>
+            </a>
+
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="<?= Helpers\generateUrl("Clients","Clients","sendEmailClientsOfClients");?>"
+                        class="menu-link">
+                        <div data-i18n="Without menu">Enviar
+                            registro</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="<?= Helpers\generateUrl("Company","Company","consultCompanies");?>" class="menu-link">
+                        <div data-i18n="Without navbar">Ver clientes</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="<?= Helpers\generateUrl("Clients","Clients","CreateSellers");?>" class="menu-link">
+                        <div data-i18n="Container">Crear vendedores</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="<?= Helpers\generateUrl("Clients","Clients","LimitCredit");?>" class="menu-link">
+                        <div data-i18n="Fluid">Crear limite
+                            crediticio</div>
+                    </a>
+                </li>
+            </ul>
+        </li> -->
+
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bxs-user-check"></i>
+                <div data-i18n="Misc">Peticiones</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="<?= Helpers\generateUrl("Inbox","Inbox","viewInbox");?>" class="menu-link">
+                        <div data-i18n="Error">Crear</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
         <li class="menu-item" style="">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bxs-user-detail'></i>
@@ -69,23 +137,59 @@
                 </li>
             </ul>
         </li>
-        <li class="menu-item" style="">
+        <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class='menu-icon tf-icons bx bxs-user-detail'></i>
-                <div data-i18n="Layouts">Clientes</div>
+                <i class="menu-icon tf-icons bx bx-dollar"></i>
+                <div data-i18n="Misc">Cotizaciones</div>
             </a>
-
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="<?= Helpers\generateUrl("Clients","Clients","ViewClientPortal");?>" class="menu-link">
-                        <div data-i18n="Without menu">Ver clientes portal</div>
+                    <a href="<?= Helpers\generateUrl("Quote","Quote","quotesCompanies");?>" class="menu-link">
+                        <div data-i18n="Under Maintenance">Ver</div>
                     </a>
                 </li>
             </ul>
         </li>
-
-
-
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bxs-truck"></i>
+                <div data-i18n="Misc">Pedidos</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="<?= Helpers\generateUrl("Order","Order","ordersCompanies");?>" class="menu-link">
+                        <div data-i18n="Under Maintenance">Ver</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-list-ol"></i>
+                <div data-i18n="Misc">Listas de precios</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="<?= Helpers\generateUrl("Groups","Groups","viewCreateGroups");?>" class="menu-link">
+                        <div data-i18n="Error">Crear</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-box"></i>
+                <div data-i18n="Misc">Bodegas</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="<?= Helpers\generateUrl("Warehouse","Warehouse","ViewCreateWarehouse");?>"
+                        class="menu-link">
+                        <div data-i18n="Error">Crear</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bxs-package"></i>
@@ -93,13 +197,18 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="pages-account-settings-account.html" class="menu-link">
+                    <a href="<?= Helpers\generateUrl("Stock","Stock","ViewCreateStock");?>" class="menu-link">
                         <div data-i18n="Account">Crear artículo</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="pages-account-settings-notifications.html" class="menu-link">
+                    <a href="<?= Helpers\generateUrl("Articles","Articles","consult");?>" class="menu-link">
                         <div data-i18n="Notifications">Ver artículos</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="<?= Helpers\generateUrl("Category","Category","consultCateogries");?>" class="menu-link">
+                        <div data-i18n="Notifications">Crear categorias</div>
                     </a>
                 </li>
             </ul>
@@ -111,17 +220,21 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="auth-login-basic.html" class="menu-link" target="_blank">
+                    <a href="<?= Helpers\generateUrl("Data","Data","ImportView");?>" class="menu-link" target="_blank">
                         <div data-i18n="Basic">Importar información</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="auth-register-basic.html" class="menu-link" target="_blank">
+                    <a href="<?= Helpers\generateUrl("Data","Data","ImportView");?>" class="menu-link" target="_blank">
                         <div data-i18n="Basic">Exportar información</div>
                     </a>
                 </li>
             </ul>
         </li>
+        <?php endif; ?>
+
+        <?php if ($_SESSION['RolUser'] == '3' AND $_SESSION['StatusUser'] =='1' || $_SESSION['RolUser'] == '4' AND $_SESSION['StatusUser'] =='1'): ?>
+
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dollar"></i>
@@ -135,19 +248,6 @@
                 </li>
                 <li class="menu-item">
                     <a href="<?= Helpers\generateUrl("Quote","Quote","ViewQuotes");?>" class="menu-link">
-                        <div data-i18n="Under Maintenance">Ver</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-dollar"></i>
-                <div data-i18n="Misc">Cotizaciones</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="<?= Helpers\generateUrl("Quote","Quote","quotesCompanies");?>" class="menu-link">
                         <div data-i18n="Under Maintenance">Ver</div>
                     </a>
                 </li>
@@ -171,59 +271,38 @@
                 </li>
             </ul>
         </li>
+        <?php endif; ?>
+
+        <?php if ($_SESSION['RolUser'] == '3' AND $_SESSION['StatusUser'] == '3' ): ?>
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bxs-truck"></i>
-                <div data-i18n="Misc">Pedidos</div>
+            <a href="<?= Helpers\generateUrl("Company","Company","UpdateDocumentsClientsImporteds");?>" target="_blank"
+                class="menu-link">
+                <i class="menu-icon tf-icons bx bx-file"></i>
+                <div data-i18n="Documentation">Documentation</div>
             </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="<?= Helpers\generateUrl("Order","Order","ordersCompanies");?>" class="menu-link">
-                        <div data-i18n="Under Maintenance">Ver</div>
-                    </a>
-                </li>
-            </ul>
         </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-box"></i>
-                <div data-i18n="Misc">Bodegas</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="<?= Helpers\generateUrl("Warehouse","Warehouse","ViewCreateWarehouse");?>"
-                        class="menu-link">
-                        <div data-i18n="Error">Crear</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bxs-user-check"></i>
-                <div data-i18n="Misc">Peticiones</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="<?= Helpers\generateUrl("Inbox","Inbox","viewInbox");?>" class="menu-link">
-                        <div data-i18n="Error">Crear</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-list-ol"></i>
-                <div data-i18n="Misc">Listas de precios</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="<?= Helpers\generateUrl("Groups","Groups","viewCreateGroups");?>" class="menu-link">
-                        <div data-i18n="Error">Crear</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
+        <?php endif; ?>
+
+        <!-- ROL CLIENT PORTAL INACTIVO -->
+        <?php if ($_SESSION['RolUser'] == '2' AND $_SESSION['StatusUser'] == '2' ): ?>
+
+        <?php endif; ?>
+
+
+        <!-- Layouts -->
+       
+
+
+
+
+
+
+
+
+
+
+
+
         <!-- Misc -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
         <li class="menu-item">
@@ -233,13 +312,7 @@
                 <div data-i18n="Support">Support</div>
             </a>
         </li>
-        <li class="menu-item">
-            <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/" target="_blank"
-                class="menu-link">
-                <i class="menu-icon tf-icons bx bx-file"></i>
-                <div data-i18n="Documentation">Documentation</div>
-            </a>
-        </li>
+
         <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
             <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
         </div>

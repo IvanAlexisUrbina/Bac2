@@ -1,6 +1,6 @@
 <?php
     include_once '../config/helpers.php';
-    // include_once '../config/Auth.php';
+    include_once '../config/Auth.php';
     include_once '../config/global.php';
 
     // // Evitar caché en el navegador
@@ -34,9 +34,8 @@
                 <?php include_once '../app/Views/partials/navbar.php';?>
                 <div class="content-wrapper">
                     <div class="container-xxl flex-grow-1 container-p-y">
-
-
-                            <?php
+                    
+                    <?php
                     if (isset($_GET['module'])) {
                         Helpers\resolve();
                     } else {
@@ -44,11 +43,17 @@
                     }
                     ?>
 
+
+
+                 
                         </div>
                         <?php 
                 include_once '../app/Views/partials/footer.php'; 
                 include_once '../app/Views/partials/modal.php';
-        
+                include_once '../app/Views/partials/modalFullScreen.php';
+                include_once '../app/Views/partials/modalHigh.php';
+                include_once '../app/Views/partials/modalStatic.php';
+                
                 ?>
                 </div>
             </div>

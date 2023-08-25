@@ -1,0 +1,12 @@
+/* container pages */
+#containerpages{
+    margin-top: 8%;
+    padding-bottom: 3%;
+}
+
+@media (max-width: 767px) {
+    #containerpages{
+        margin-top: 28%;
+        padding-bottom: 3%;
+    }
+}

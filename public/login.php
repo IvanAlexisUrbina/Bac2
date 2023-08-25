@@ -35,7 +35,8 @@ use function Helpers\generateUrl;
     <meta name="description" content="">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico">
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,6 +75,9 @@ use function Helpers\generateUrl;
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="../assets/js/config.js"></script>
+
+    <link href="css/login.css" rel="stylesheet">
+
 </head>
 
 
@@ -88,47 +92,62 @@ use function Helpers\generateUrl;
                         <div class="app-brand justify-content-center">
                             <a href="index.html" class="app-brand-link gap-2">
                                 <span class="app-brand-logo demo">
-                                <img style="width:250px;" id="logoSideBar" src="img/Logo-Portal.png" alt="" srcset="">
+                                    <img style="width:250px;" id="logoSideBar" src="img/Logo-Portal.png" alt=""
+                                        srcset="">
                                 </span>
                             </a>
                         </div>
                         <!-- /Logo -->
-                       
 
-                        <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email or Username</label>
-                                <input type="text" class="form-control" id="email" name="email-username"
-                                    placeholder="Enter your email or username" autofocus="">
-                            </div>
-                            <div class="mb-3 form-password-toggle">
-                                <div class="d-flex justify-content-between">
-                                    <label class="form-label" for="password">Password</label>
-                                    <a href="auth-forgot-password-basic.html">
-                                        <small>Forgot Password?</small>
-                                    </a>
+                        <h1 class="codediv">Codigo de validación</h1>
+
+                        <form action="<?= generateUrl("Access","Access","UserAccess",[],"ajax"); ?>" method="post"
+                            id="loginForm">
+
+                            <div class="hide">
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Correo electrónico</label>
+                                    <input type="text" class="form-control" name="u_email" id="u_email"
+                                        placeholder="Ingresa tu correo electronico" autofocus="">
+                                        <span class="error-message"></span>
                                 </div>
-                                <div class="input-group input-group-merge">
-                                    <input type="password" id="password" class="form-control" name="password"
-                                        placeholder="············" aria-describedby="password">
-                                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                <div class="mb-3 form-password-toggle">
+                                    <div class="d-flex justify-content-between">
+                                        <label class="form-label" for="password">Contraseña</label>
+                                        <a href="auth-forgot-password-basic.html">
+                                            <small>Olvidaste contraseña?</small>
+                                        </a>
+                                    </div>
+                                    <div class="input-group input-group-merge">
+                                        <input type="password" name="u_pass" id="u_pass" class="form-control"
+                                            placeholder="············" aria-describedby="password">
+                                            
+                                        <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                        <span class="error-message"></span>
+                                    </div>
+                                   
                                 </div>
                             </div>
-                            <div class="mb-3">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="remember-me">
-                                    <label class="form-check-label" for="remember-me"> Remember Me </label>
-                                </div>
+                            <div class="mb-3 hide">
+                                <button id="emailCode" data-url="<?= generateUrl("Access","Access","EmailCode",[],"ajax"); ?>" class="btn btn-primary d-grid w-100 " type="button">Enviar</button>
                             </div>
-                            <div class="mb-3">
-                                <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+
+                            <!-- form 2 -->
+                            <div class="mb-3 codediv">
+                                <label for="email" class="form-label">Codigo de verificación</label>
+                                <input name="u_code" id="u_code" type="password" 
+                                class="form-control" placeholder="Ingresa tu codigo de verificación">
                             </div>
+                            <div class="mb-3 codediv">
+                                <button class="btn btn-primary d-grid w-100 " type="submit">Ingresar</button>
+                            </div>
+                            
                         </form>
 
                         <p class="text-center">
-                            <span>New on our platform?</span>
-                            <a href="auth-register-basic.html">
-                                <span>Create an account</span>
+                            <span>¿No tienes cuenta?</span>
+                            <a href="<?= generateUrl("Access","Access","RegisterView",[],"ajax"); ?>">
+                                <span>Crear cuenta</span>
                             </a>
                         </p>
                     </div>
@@ -138,7 +157,7 @@ use function Helpers\generateUrl;
         </div>
     </div>
 
-
+    
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <script src="../assets/vendor/libs/jquery/jquery.js"></script>
@@ -158,6 +177,12 @@ use function Helpers\generateUrl;
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <!-- VALIDACION -->
+    <script src="../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script src="../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/validation/validationLogin.js"></script>
 </body>
 
 </html>
