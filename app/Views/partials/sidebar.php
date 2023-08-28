@@ -53,8 +53,8 @@
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="<?= Helpers\generateUrl("CRM","CRM","ViewClientPortal");?>" class="menu-link">
-                        <div data-i18n="Without menu">Cota</div>
+                    <a href="<?= Helpers\generateUrl("CRM","CRM","ConsutlDiaryView");?>" class="menu-link">
+                        <div data-i18n="Without menu">Agenda</div>
                     </a>
                 </li>
             </ul>
@@ -124,6 +124,7 @@
                         <div data-i18n="Without navbar">Ver clientes</div>
                     </a>
                 </li>
+                
                 <li class="menu-item">
                     <a href="<?= Helpers\generateUrl("Clients","Clients","CreateSellers");?>" class="menu-link">
                         <div data-i18n="Container">Crear vendedores</div>
@@ -135,6 +136,7 @@
                             crediticio</div>
                     </a>
                 </li>
+               
             </ul>
         </li>
         <li class="menu-item">

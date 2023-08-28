@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-08-2023 a las 00:44:47
+-- Tiempo de generación: 28-08-2023 a las 18:17:01
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.1.12
 
@@ -203,7 +203,8 @@ CREATE TABLE `customer_discounts` (
 --
 
 INSERT INTO `customer_discounts` (`cd_id`, `c_id`, `cat_id`, `sbcat_id`, `ar_id`, `gp_id`, `price_discount`) VALUES
-(13, 1, 2, 4, 1, 42, 1200);
+(13, 1, 2, 4, 1, 42, 1200),
+(14, 54, 1, 2, 2, 43, NULL);
 
 -- --------------------------------------------------------
 
@@ -286,7 +287,8 @@ CREATE TABLE `group_discounts` (
 --
 
 INSERT INTO `group_discounts` (`gp_id`, `gp_name`, `gp_discount_percentage`, `gp_coupon`, `gp_date_end_discount`) VALUES
-(42, 'GRUPO PRUEBA', NULL, 'cupon', '2023-07-06 11:24:00');
+(42, 'GRUPO PRUEBA', NULL, 'cupon', '2023-07-06 11:24:00'),
+(43, 'GRUPO PRUEBA2', 12, 'cupon', '2023-08-23 23:07:00');
 
 -- --------------------------------------------------------
 
@@ -313,6 +315,48 @@ INSERT INTO `measurement_type` (`mt_id`, `mt_name`, `mt_meas`) VALUES
 (6, 'pulgadas', 'in'),
 (7, 'yardas', 'yd'),
 (8, 'Unidad', 'Unit');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `meeting`
+--
+
+CREATE TABLE `meeting` (
+  `meeting_id` int(11) NOT NULL,
+  `meeting_date` date DEFAULT NULL,
+  `meeting_time` time DEFAULT NULL,
+  `meeting_type` varchar(255) DEFAULT NULL,
+  `meeting_link` varchar(255) DEFAULT NULL,
+  `comments` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `meeting`
+--
+
+INSERT INTO `meeting` (`meeting_id`, `meeting_date`, `meeting_time`, `meeting_type`, `meeting_link`, `comments`) VALUES
+(1, '2023-08-25', '19:34:30', 'asdfasdf', 'asdfasdf', 'asdfasdfasd');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `meeting_attendees`
+--
+
+CREATE TABLE `meeting_attendees` (
+  `meet_att_id` int(11) NOT NULL,
+  `meeting_id` int(11) DEFAULT NULL,
+  `u_id` int(11) DEFAULT NULL,
+  `c_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `meeting_attendees`
+--
+
+INSERT INTO `meeting_attendees` (`meet_att_id`, `meeting_id`, `u_id`, `c_id`) VALUES
+(1, 1, 9, 54);
 
 -- --------------------------------------------------------
 
@@ -1960,9 +2004,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`u_id`, `u_name`, `u_lastname`, `u_phone`, `u_email`, `u_document`, `u_type_document`, `u_country`, `u_city`, `u_pass`, `u_code`, `rol_id`, `c_id`, `status_id`) VALUES
-(9, 'Ivan Alexis', 'Urbina Melo', 2147483647, 'iurbina@businessandconnection.com', 12341234, 'Cedula de ciudadanía', 'Colombia', 'Cali', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', '1eaaba5a77b2efe7', 1, 1, 1),
-(86, 'Edwin valencia', 'prueba', 2147483647, 'evaniche@hotmail.com', 1144108604, 'Cedula de ciudadanía', 'Colombia', 'RIOSUCIO', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', '04c738558d711444', 2, 54, 1),
-(87, 'Andres Muete', 'Muete', 1144108604, 'amuete@businessandconnection.com', 1144108606, 'Cedula de ciudadanía', 'Colombia', 'PUERTO RONDÓN', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', '1746fbe15a61cfaa', 3, 55, 1);
+(9, 'Ivan Alexis', 'Urbina Melo', 2147483647, 'iurbina@businessandconnection.com', 12341234, 'Cedula de ciudadanía', 'Colombia', 'Cali', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', 'bba99382a3e445b3', 1, 1, 1),
+(86, 'Edwin valencia', 'prueba', 2147483647, 'alexis-crokis@hotmail.com', 1144108604, 'Cedula de ciudadanía', 'Colombia', 'RIOSUCIO', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', '68e45f459c1eac98', 2, 54, 1),
+(87, 'Andres Muete', 'Muete', 1144108604, 'iurbina@businessandconnection.com', 1144108606, 'Cedula de ciudadanía', 'Colombia', 'PUERTO RONDÓN', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', '21439534b062262c', 3, 55, 1);
 
 -- --------------------------------------------------------
 
@@ -1990,7 +2034,8 @@ CREATE TABLE `warehouse` (
 
 INSERT INTO `warehouse` (`wh_id`, `wh_name`, `wh_desc`, `wh_code`, `wh_address`, `wh_departament`, `wh_city`, `wh_date`, `wh_responsible`, `wh_phone`, `c_id`) VALUES
 (14, 'BODEGA PRUEBA', 'awsdfasdfasd', 'asdfasf', 'CALLE 1 C #76 A 25\r\nAPARTAMENTO E 202', 'AMAZONAS', 'EL', '2023-07-11 02:38:29', 'Ivan Alexis Urbina', '3007264043', 1),
-(21, 'Bodega prueba', 'Articulos', 'ASDFASD', 'CL 1C#76A-25', 'AMAZONAS', 'EL ENCANTO', '2023-07-17 20:03:57', 'Ivan Alexis', '3007264043', 54);
+(21, 'Bodega prueba', 'Articulos', 'ASDFASD', 'CL 1C#76A-25', 'AMAZONAS', 'EL ENCANTO', '2023-07-17 20:03:57', 'Ivan Alexis', '3007264043', 54),
+(22, '760035', 'adasdasd', '760035', 'CALLE 1 C #76 A 25\r\nAPARTAMENTO E 202', 'CUNDINAMARCA', 'CHOCONTÁ', '2023-08-24 21:40:00', 'asdfasdfasdf', '3007264043', 54);
 
 --
 -- Índices para tablas volcadas
@@ -2101,6 +2146,21 @@ ALTER TABLE `group_discounts`
 --
 ALTER TABLE `measurement_type`
   ADD PRIMARY KEY (`mt_id`);
+
+--
+-- Indices de la tabla `meeting`
+--
+ALTER TABLE `meeting`
+  ADD PRIMARY KEY (`meeting_id`);
+
+--
+-- Indices de la tabla `meeting_attendees`
+--
+ALTER TABLE `meeting_attendees`
+  ADD PRIMARY KEY (`meet_att_id`),
+  ADD KEY `meeting_id` (`meeting_id`,`u_id`,`c_id`),
+  ADD KEY `meeting_company_ibfk_1` (`c_id`),
+  ADD KEY `meeting_users_ibfk_1` (`u_id`);
 
 --
 -- Indices de la tabla `messages`
@@ -2299,7 +2359,7 @@ ALTER TABLE `creditlimits`
 -- AUTO_INCREMENT de la tabla `customer_discounts`
 --
 ALTER TABLE `customer_discounts`
-  MODIFY `cd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `cd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `customer_payment_method`
@@ -2329,13 +2389,25 @@ ALTER TABLE `extra_attributes_quotes`
 -- AUTO_INCREMENT de la tabla `group_discounts`
 --
 ALTER TABLE `group_discounts`
-  MODIFY `gp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `gp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT de la tabla `measurement_type`
 --
 ALTER TABLE `measurement_type`
   MODIFY `mt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `meeting`
+--
+ALTER TABLE `meeting`
+  MODIFY `meeting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `meeting_attendees`
+--
+ALTER TABLE `meeting_attendees`
+  MODIFY `meet_att_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `messages`
@@ -2461,7 +2533,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `warehouse`
 --
 ALTER TABLE `warehouse`
-  MODIFY `wh_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `wh_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Restricciones para tablas volcadas
@@ -2533,6 +2605,14 @@ ALTER TABLE `extra_attributes_order`
 --
 ALTER TABLE `extra_attributes_quotes`
   ADD CONSTRAINT `extra_attributes_quotes_ibfk_1` FOREIGN KEY (`quo_id`) REFERENCES `quotes` (`quo_id`);
+
+--
+-- Filtros para la tabla `meeting_attendees`
+--
+ALTER TABLE `meeting_attendees`
+  ADD CONSTRAINT `meeting_attendees_ibfk_1` FOREIGN KEY (`meeting_id`) REFERENCES `meeting` (`meeting_id`),
+  ADD CONSTRAINT `meeting_company_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `company` (`c_id`),
+  ADD CONSTRAINT `meeting_users_ibfk_1` FOREIGN KEY (`u_id`) REFERENCES `users` (`u_id`);
 
 --
 -- Filtros para la tabla `order`

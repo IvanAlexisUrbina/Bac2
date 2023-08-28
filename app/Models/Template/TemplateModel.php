@@ -72,6 +72,75 @@ Class TemplateModel extends MasterModel
     </html>";
     return $html;
   }
+  static function TemplateMeetingScheduledNotification(string $userName, string $meetingDate, string $meetingTime, string $meetingLink,string $comments) {
+    $host = $_SERVER['HTTP_HOST'];
+    $html = "<!DOCTYPE html>
+    <html lang='en'>
+      <head>
+        <meta charset='UTF-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <meta http-equiv='X-UA-Compatible' content='ie=edge' />
+        <title>Notificación de Reunión Asignada</title>
+        <style>
+          body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+          }
+  
+          h1 {
+            font-size: 24px;
+            margin-top: 0;
+            margin-bottom: 20px;
+          }
+  
+          p {
+            margin-top: 0;
+            margin-bottom: 20px;
+          }
+  
+          .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+          }
+  
+          .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+          }
+  
+          .footer {
+            margin-top: 40px;
+            text-align: center;
+          }
+        </style>
+      </head>
+      <body>
+        <div class='container'>
+          <h1>Reunión Asignada</h1>
+          <p>Hola " . $userName . ",</p>
+          <p>Tienes una reunión asignada para el siguiente horario:</p>
+          <p><strong>Fecha:</strong> " . $meetingDate . "</p>
+          <p><strong>Hora:</strong> " . $meetingTime . "</p>
+          <p>No olvides estar preparado y puntual para la reunión.</p>
+          <p>Comentarios: ".$comments."</p>
+          <p>Puedes acceder a la reunión a través de este enlace: <a href='" . $meetingLink . "'>" . $meetingLink . "</a></p>
+          <div class='footer'>
+            <p><a href='http://" . $host . "/PortalUsuarios/public/index.php'>Ingresa aquí</a> para más detalles</p>
+            <p>© " . date('Y') . " Business And Connection. Todos los derechos reservados.</p>
+          </div>
+        </div>
+      </body>
+    </html>";
+    return $html;
+  }
+  
   static function TemplateNotificationDocumentRequest(string $userName, string $userEmail, string $password) {
     $host = $_SERVER['HTTP_HOST'];
     $html = "<!DOCTYPE html>

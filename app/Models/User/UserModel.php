@@ -19,7 +19,7 @@ Class UserModel extends MasterModel
     public function consultEmailsOfTheCompany($id_company)
     {
         
-        $sql = "SELECT u_email FROM users 
+        $sql = "SELECT u_name,u_email FROM users 
         WHERE c_id = :company";
         $params = [':company' => $id_company]; 
         $results = $this->select($sql, $params); 
@@ -29,6 +29,15 @@ Class UserModel extends MasterModel
         }
 
         return $emails;
+    }
+    public function consultEmailsAndNameOfTheCompany($id_company)
+    {
+        
+        $sql = "SELECT u_name,u_email FROM users 
+        WHERE c_id = :company";
+        $params = [':company' => $id_company]; 
+        $results = $this->select($sql, $params); 
+        return $results;
     }
 
     public function UpdateRepresentantCompanyRolCompanyAndProgrammer($u_id,$u_name,$u_lastname,$u_document,$u_email,$u_type_document){
