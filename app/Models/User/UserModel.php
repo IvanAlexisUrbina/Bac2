@@ -71,9 +71,9 @@ Class UserModel extends MasterModel
         $user = $this->select($sql, $params);
         return $user[0];
     }
-    public function insertUser($email, $password, $code,$c_id,$rol_id=3,$status_id=2,$name=null, $lastname=null, $phone=null,  $document=null, $type_document=null, $country=null, $city=null) {
-        $sql = "INSERT INTO users (u_id, u_name, u_lastname, u_phone, u_email, u_document, u_type_document, u_country, u_city, u_pass, u_code, rol_id, c_id, status_id)
-                VALUES (:u_id, :u_name, :u_lastname, :u_phone, :u_email, :u_document, :u_type_document, :u_country, :u_city, :u_pass, :u_code, :rol_id, :c_id, :status_id)";
+    public function insertUser($email, $password, $code,$c_id,$rol_id=3,$status_id=2,$name=null, $lastname=null, $phone=null,  $document=null, $type_document=null, $country=null, $city=null,$u_codeSeller=null) {
+        $sql = "INSERT INTO users (u_id, u_name, u_lastname, u_phone, u_email, u_document, u_type_document, u_country, u_city, u_pass, u_code, rol_id, c_id, status_id,u_codeSeller)
+                VALUES (:u_id, :u_name, :u_lastname, :u_phone, :u_email, :u_document, :u_type_document, :u_country, :u_city, :u_pass, :u_code, :rol_id, :c_id, :status_id,:u_codeSeller)";
         $params = [
             'u_id' => null,
             'u_name' => $name,
@@ -88,7 +88,8 @@ Class UserModel extends MasterModel
             'u_code' => $code,
             'rol_id' => $rol_id,
             'c_id' => $c_id,
-            'status_id' => $status_id
+            'status_id' => $status_id,
+            'u_codeSeller' => $u_codeSeller
         ];
     
         $this->insert($sql, $params);

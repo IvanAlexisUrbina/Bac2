@@ -94,7 +94,7 @@ Class AccessModel extends MasterModel
         }
         }
 
-        private function dataUser($u_email,$u_pass){
+        private function dataUser($u_email,$u_id){
         
             $sql="SELECT users.u_id, users.u_name, users.u_lastname, users.u_email,users.u_document,
                   users.u_phone,users.u_city,users.u_country,users.rol_id,
@@ -106,9 +106,9 @@ Class AccessModel extends MasterModel
             ON users.c_id=company.c_id
             INNER JOIN status
             ON status.status_id=users.status_id
-            WHERE u_email= :email 
-            AND u_id=:id";
-            $params = [':email' => $u_email,':id'=> $u_pass];
+            WHERE users.u_email= :email 
+            AND users.u_id=:id";
+            $params = [':email' => $u_email,':id'=> $u_id];
             $result = $this->select($sql, $params);
             return $result;
         }

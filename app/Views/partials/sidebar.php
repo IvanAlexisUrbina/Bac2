@@ -17,7 +17,7 @@
             </a>
         </li>
         <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Vendedor</span>
+            <span class="menu-header-text">Panel de control</span>
         </li>
 
         <?php if ($_SESSION['RolUser'] == '1'): ?>
@@ -39,7 +39,7 @@
 
 
         <!-- COMPANY -->
-        <?php if ($_SESSION['RolUser'] == '2'  AND $_SESSION['StatusUser'] == '1'): ?>
+        <?php if ($_SESSION['RolUser'] == '2' OR  $_SESSION['RolUser'] == '3'  AND $_SESSION['StatusUser'] == '1'): ?>
         <li class="menu-item" style="">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bx-cube-alt'></i>
@@ -59,38 +59,7 @@
                 </li>
             </ul>
         </li>
-        <!-- <li class="menu-item" style="">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class='menu-icon tf-icons bx bxs-user-detail'></i>
-                <div data-i18n="Layouts">Clientes</div>
-            </a>
-
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="<?= Helpers\generateUrl("Clients","Clients","sendEmailClientsOfClients");?>"
-                        class="menu-link">
-                        <div data-i18n="Without menu">Enviar
-                            registro</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="<?= Helpers\generateUrl("Company","Company","consultCompanies");?>" class="menu-link">
-                        <div data-i18n="Without navbar">Ver clientes</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="<?= Helpers\generateUrl("Clients","Clients","CreateSellers");?>" class="menu-link">
-                        <div data-i18n="Container">Crear vendedores</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="<?= Helpers\generateUrl("Clients","Clients","LimitCredit");?>" class="menu-link">
-                        <div data-i18n="Fluid">Crear limite
-                            crediticio</div>
-                    </a>
-                </li>
-            </ul>
-        </li> -->
+        <?php if ($_SESSION['RolUser'] == '2' AND $_SESSION['StatusUser'] == '1'): ?>
 
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -100,11 +69,13 @@
             <ul class="menu-sub">
                 <li class="menu-item">
                     <a href="<?= Helpers\generateUrl("Inbox","Inbox","viewInbox");?>" class="menu-link">
-                        <div data-i18n="Error">Crear</div>
+                        <div data-i18n="Error">Peticiones clientes</div>
                     </a>
                 </li>
             </ul>
         </li>
+        <?php endif; ?>
+
         <li class="menu-item" style="">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bxs-user-detail'></i>
@@ -113,8 +84,7 @@
 
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="<?= Helpers\generateUrl("Clients","Clients","sendEmailClientsOfClients");?>"
-                        class="menu-link">
+                    <a href="<?= Helpers\generateUrl("Access","Access","RegisterView");?>" class="menu-link">
                         <div data-i18n="Without menu">Enviar
                             registro</div>
                     </a>
@@ -124,19 +94,21 @@
                         <div data-i18n="Without navbar">Ver clientes</div>
                     </a>
                 </li>
-                
+                <?php if ($_SESSION['RolUser'] == '2' AND $_SESSION['StatusUser'] == '1'): ?>
                 <li class="menu-item">
                     <a href="<?= Helpers\generateUrl("Clients","Clients","CreateSellers");?>" class="menu-link">
                         <div data-i18n="Container">Crear vendedores</div>
                     </a>
                 </li>
+                <?php endif; ?>
+
                 <li class="menu-item">
                     <a href="<?= Helpers\generateUrl("Clients","Clients","LimitCredit");?>" class="menu-link">
                         <div data-i18n="Fluid">Crear limite
                             crediticio</div>
                     </a>
                 </li>
-               
+
             </ul>
         </li>
         <li class="menu-item">
@@ -147,6 +119,16 @@
             <ul class="menu-sub">
                 <li class="menu-item">
                     <a href="<?= Helpers\generateUrl("Quote","Quote","quotesCompanies");?>" class="menu-link">
+                        <div data-i18n="Under Maintenance">Ver</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="<?= Helpers\generateUrl("Quote","Quote","ViewCreateQuote");?>" class="menu-link">
+                        <div data-i18n="Error">Crear</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="<?= Helpers\generateUrl("Quote","Quote","ViewQuotes");?>" class="menu-link">
                         <div data-i18n="Under Maintenance">Ver</div>
                     </a>
                 </li>
@@ -161,6 +143,16 @@
                 <li class="menu-item">
                     <a href="<?= Helpers\generateUrl("Order","Order","ordersCompanies");?>" class="menu-link">
                         <div data-i18n="Under Maintenance">Ver</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="<?= Helpers\generateUrl("Order","Order","ViewCreateOrder");?>" class="menu-link">
+                        <div data-i18n="Error">Crear</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="<?= Helpers\generateUrl("Order","Order","ViewOrders");?>" class="menu-link">
+                        <div data-i18n="Under Maintenance">Ver2</div>
                     </a>
                 </li>
             </ul>
@@ -235,64 +227,23 @@
         </li>
         <?php endif; ?>
 
-        <?php if ($_SESSION['RolUser'] == '3' AND $_SESSION['StatusUser'] =='1' || $_SESSION['RolUser'] == '4' AND $_SESSION['StatusUser'] =='1'): ?>
 
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-dollar"></i>
-                <div data-i18n="Misc">Cotizaciones</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="<?= Helpers\generateUrl("Quote","Quote","ViewCreateQuote");?>" class="menu-link">
-                        <div data-i18n="Error">Crear</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="<?= Helpers\generateUrl("Quote","Quote","ViewQuotes");?>" class="menu-link">
-                        <div data-i18n="Under Maintenance">Ver</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bxs-truck"></i>
-                <div data-i18n="Misc">Pedidos</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="<?= Helpers\generateUrl("Order","Order","ViewCreateOrder");?>" class="menu-link">
-                        <div data-i18n="Error">Crear</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="<?= Helpers\generateUrl("Order","Order","ViewOrders");?>" class="menu-link">
-                        <div data-i18n="Under Maintenance">Ver</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <?php endif; ?>
-
-        <?php if ($_SESSION['RolUser'] == '3' AND $_SESSION['StatusUser'] == '3' ): ?>
-        <li class="menu-item">
-            <a href="<?= Helpers\generateUrl("Company","Company","UpdateDocumentsClientsImporteds");?>" target="_blank"
-                class="menu-link">
-                <i class="menu-icon tf-icons bx bx-file"></i>
-                <div data-i18n="Documentation">Documentation</div>
-            </a>
-        </li>
-        <?php endif; ?>
 
         <!-- ROL CLIENT PORTAL INACTIVO -->
         <?php if ($_SESSION['RolUser'] == '2' AND $_SESSION['StatusUser'] == '2' ): ?>
 
+        <li class="menu-item">
+            <i class="menu-icon tf-icons bx bx-file"></i>
+            <a href="<?= Helpers\generateUrl("Company","Company","RegisterUpdateView");?>" class="menu-link"
+                aria-current="page"> <i class="fa-solid fa-file-lines"></i> Registro</a>
+
+
+        </li>
         <?php endif; ?>
 
 
         <!-- Layouts -->
-       
+
 
 
 

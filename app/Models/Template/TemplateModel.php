@@ -823,12 +823,8 @@ static function TemplateNotificationOrderStatus(string $companyName, int $orderI
               <div class='container'>
                 <div class='logo'></div>
                 <p>Hola " . $name . ",</p>
-                <p>Gracias por registrar su empresa. Pronto recibirá un correo con su usuario y contraseña una vez que sus datos hayan sido validados.</p>
-                <div class='footer'>
-                <p ><a href='http://" . $host . "/PortalUsuarios/public/index.php'>Ingresa aquí</a> para iniciar sesión</p>
-                  <p>© 2023 Business And Connection. Todos los derechos reservados.</p>
-                </div>
-
+                <p>Gracias por registrar su empresa. 
+                Lo invitamos que conozca nuestro catalogo con nuestros vendedores, para poderle ofrecerle el mejor servicio.</p>
               </div>
             </body>
           </html>";
@@ -993,12 +989,12 @@ static function TemplateNotificationOrderStatus(string $companyName, int $orderI
               <div class='container'>
                 <div class='logo'></div>
                 <p>Hola,</p>
-                <p>Se ha recibido una solicitud de registro de un nuevo usuario en el portal.</p>
+                <p>Se ha recibido una solicitud de registro de un nuevo cliente.</p>
                 <p>El nombre de usuario que ha enviado la solicitud es: <strong>" . $userName . "</strong></p>
                 <p>El nombre de la empresa es: <strong>" . $companyName . "</strong></p>
                 <p>Por favor, revise la solicitud y tome las acciones necesarias.</p>
                 <div class='footer'>
-                <p ><a href='http://" . $host . "/PortalUsuarios/public/index.php'>Ingresa aquí</a> para iniciar sesión</p>
+                <p ><a href='http://" . $host . "/Bac2/public/index.php'>Ingresa aquí</a> para iniciar sesión</p>
                   <p>© 2023 Business And Connection. Todos los derechos reservados.</p>
                 </div>
 
@@ -1208,13 +1204,13 @@ static function TemplateNotificationOrderStatus(string $companyName, int $orderI
                     <p>Te damos la bienvenida a nuestra aplicación.</p>
                     <p>Tus credenciales de inicio de sesión son:</p>
                     <ul>
-                        <li>Usuario: '.$email.'</li>
+                        <li>Email: '.$email.'</li>
                         <li>Contraseña: '.$password.'</li>
                     </ul>
-                    <p>Por favor, cambia tu contraseña lo antes posible para mejorar la seguridad de tu cuenta.</p>
-                    <p>Gracias por confiar en nosotros.</p>
+        
+                    <p>Ingresa a la plataforma con estas credenciales para poder hacer uso de esta.</p>
                     <div class="footer">
-                    <p><a href="http://' . $host . '/PortalUsuarios/public/index.php">Ingresa aquí</a> para iniciar sesión</p>
+                    <p><a href="http://' . $host . '/Bac2/public/index.php">Ingresa aquí</a> para iniciar sesión</p>
                         <p>© 2023 Business And Connection. Todos los derechos reservados.</p>
                     </div>
 

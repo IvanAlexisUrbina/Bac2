@@ -12,7 +12,7 @@
     <h1 class="tracking-in-expand">Listas <i class="fa-solid fa-list"></i></h1>
     <div class="container table-responsive">
         <table id="myTable" class="DataTable  text-center table-dark align-middle slide-in-top table-hover table-responsive table-striped">
-            <thead class="table">
+            <thead class="table-light">
                 <tr>
                     <th>Nombre</th>
                     <th>Empresa/s</th>
@@ -23,7 +23,7 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="table-light">
                 <?php
                 foreach ($groups as $gps) {
 

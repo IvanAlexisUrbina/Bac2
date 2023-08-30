@@ -1,42 +1,32 @@
-<div class="container table-responsive">
-    <h1>Agenda</h1>
-    <div class="p-2">
-        <a class="btn btn-outline-primary" 
-            href="<?= Helpers\generateUrl("CRM","CRM","consultViewDate")?>">Crear reunión</a>
+<div class="container mt-5">
+        <div class="activity-form">
+            <h2 class="mb-4">Registro de Actividades - CRM</h2>
+            <form>
+                <div class="form-group col-md-6">
+                    <label for="activity-date">Fecha y Hora de la Actividad:</label>
+                    <div class="input-group date" id="datetimepicker" data-target-input="nearest">
+                    <input class="form-control" type="datetime-local" value="2021-06-18T12:30:00" id="html5-datetime-local-input">
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="activity-type">Tipo de Actividad:</label>
+                    <select class="form-select" id="activity-type" required>
+                        <option value="" disabled selected>Seleccione un tipo</option>
+                        <option value="llamada">Llamada</option>
+                        <option value="reunion">Reunión</option>
+                        <option value="tarea">Tarea</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="activity-description">Descripción:</label>
+                    <textarea class="form-control" id="activity-description" rows="3" required></textarea>
+                </div>
+                <div class="row mt-2  ">
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-primary">Guardar Actividad</button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="table-responsive">
-
-        <table class="table DataTable text-center slide-in-top align-middle table-hover table-responsive">
-            <thead class="table-dark">
-                <tr>
-                    <th>Clientes</th>
-                    <th>Fecha reunion</th>
-                    <th>Hora reunion</th>
-                    <th>Asunto</th>
-                    <th>Comentarios</th>
-                    <th>Link</th>
-                    <th>Estado</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-    foreach ($meeting as $meet) { 
-    ?>
-                <tr>
-                    <td><?= $meet['d_clients']?></td>
-                    <td><?= $meet['meeting_date']?></td>
-                    <td><?= $meet['meeting_time']?></td>
-                    <td><?= $meet['meeting_type']?></td>
-                    <td><?= $meet['comments']?></td>
-                    <td><?= $meet['meeting_link']?></td>
-                    <td><?= $meet['d_status']?></td>
-                </tr>
-                <?php
-    }
-    ?>
-            </tbody>
-
-        </table>
-    </div>
-
-</div>

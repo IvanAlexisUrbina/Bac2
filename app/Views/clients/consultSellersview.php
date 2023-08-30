@@ -20,14 +20,14 @@
             <?php
 				foreach ($sellers as $s) {
 					echo '<tr>
-					<td>'.$s['s_id'].'</td>
-					<td>'.$s['s_name'].'</td>
-					<td>'.$s['s_email'].'</td>
-					<td>'.$s['s_phone'].'</td>
-					<td>'.$s['s_code'].'</td>
+					<td>'.$s['u_id'].'</td>
+					<td>'.$s['u_name'].'</td>
+					<td>'.$s['u_email'].'</td>
+					<td>'.$s['u_phone'].'</td>
+					<td>'.$s['u_codeSeller'].'</td>
 					<td class="text-center">
-					<button title="Asignar cliente" class="btn btn-outline-dark" data-id='.$s['s_id'].' id="CompanyAndSeller" data-url='.Helpers\generateUrl("Clients","Clients","SellerAndCompanyModal",[],"ajax").'><i class="fa-solid fa-building"></i></button>
-					<button class="btn btn-outline-warning" data-id='.$s['s_id'].' id="UpdateSeller" data-url='.Helpers\generateUrl("Clients","Clients","SellerUpdateModal",[],"ajax").'><i class="fa-solid fa-pencil"></i></button>
+					<button title="Asignar cliente" class="btn btn-outline-dark" data-id='.$s['u_id'].' id="CompanyAndSeller" data-url='.Helpers\generateUrl("Clients","Clients","SellerAndCompanyModal",[],"ajax").'><i class="fa-solid fa-building"></i></button>
+					<button class="btn btn-outline-warning" data-id='.$s['u_id'].' id="UpdateSeller" data-url='.Helpers\generateUrl("Clients","Clients","SellerUpdateModal",[],"ajax").'><i class="fa-solid fa-pencil"></i></button>
 					</td>
 					</tr>';
 				}

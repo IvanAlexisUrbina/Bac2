@@ -4,6 +4,7 @@ require '../vendor/autoload.php';
 use Models\Company\CompanyModel;
 use Models\Inbox\InboxModel;
 use Models\Mail\MailModel;
+use Models\Sellers_customers\Sellers_customersModel;
 use Models\Template\TemplateModel;
 use Models\Types_industry\Types_industryModel;
 use Models\User\UserModel;
@@ -23,18 +24,9 @@ class InboxController
         $companies = $objCompany->selectById('company', 'status_id', 2);        
         // status inactive  
         foreach ($companies as $c => $value) {
-            $users = $objUser->getUsersByRoleCompanyAndStatus('3', $value['c_id'], '2');
+            $users = $objUser->getUsersByRoleCompanyAndStatus('4', $value['c_id'], '2');
             $companies[$c]['representant'] = $users; // Almacenar los usuarios en la posición correspondiente de la compañía
         } 
-
-        //status pending
-        $companiesPendig = $objCompany->selectById('company', 'status_id', 3);  
-        //status pending
-        foreach ($companiesPendig as $key => $value) {
-            $users = $objUser->getUsersByRoleCompanyAndStatus('3', $value['c_id'], '3');
-            $companiesPendig[$key]['representant'] = $users; // Almacenar los usuarios en la posición correspondiente de la compañía
-        }  
-
         include_once '../app/Views/inbox/viewInboxClients.php';
     }
     
@@ -46,7 +38,7 @@ class InboxController
        
         $company=$objCompany->consultCompany($id_company);
         foreach ($company as $c => $value) {
-            $user = $objUser->getUsersByRoleCompanyAndStatus('3', $value['c_id'], '2');
+            $user = $objUser->getUsersByRoleCompanyAndStatus('4', $value['c_id'], '2');
             $company[$c]['representant'] = $user; // Almacenar los usuarios en la posición correspondiente de la compañía
             $company[$c]['Industry']=$objIndustry->consultTypes_industryById($value['tpi_id']);
         }  
@@ -54,6 +46,8 @@ class InboxController
         include_once '../app/Views/inbox/modalViewRequest.php';
     }
 
+
+    // falta agregar el vendedor
     public function processRegistrationRequest(){
         $c_id=$_POST['c_id'];
         $u_id=$_POST['u_id'];
@@ -75,9 +69,12 @@ class InboxController
             $objUser->deleteUser($u_id);
             $objCompany= new CompanyModel();
             $objCompany->deleteCompany($c_id);
+            $objSellers_customer= new Sellers_customersModel();
+            $objSellers_customer->DeleteSellerWithCustomer($c_id); 
             $mail= new MailModel();
             $mail->DataEmail($template,$user['u_email'],'Notificacion de registro');
         }
+        
         redirect(generateUrl("Inbox","Inbox","viewInbox"));
     }
 

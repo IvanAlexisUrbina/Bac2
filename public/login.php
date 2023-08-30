@@ -30,7 +30,7 @@ use function Helpers\generateUrl;
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
-    <title>Login Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>Login</title>
 
     <meta name="description" content="">
 
@@ -144,12 +144,12 @@ use function Helpers\generateUrl;
                             
                         </form>
 
-                        <p class="text-center">
+                        <!-- <p class="text-center">
                             <span>¿No tienes cuenta?</span>
                             <a href="<?= generateUrl("Access","Access","RegisterView",[],"ajax"); ?>">
                                 <span>Crear cuenta</span>
                             </a>
-                        </p>
+                        </p> -->
                     </div>
                 </div>
                 <!-- /Register -->

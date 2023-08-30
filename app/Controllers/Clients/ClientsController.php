@@ -108,21 +108,21 @@ class ClientsController
 
 
 
-    public function sendEmails(){
+    // public function sendEmails(){
 
-        $subject =$_POST['subject'];
-        $messages=$_POST['message'];
-        $addressee =$_POST['addressee'];
-        $addresseeArray = explode(", ", $addressee);
-        $mail = new MailModel();
-        foreach ($addresseeArray as $a) {
-            $template= TemplateModel::TemplateRegistrationLink($a,$messages);
-            $mail->DataEmail($template,$a,$subject);
-        }
-        $Objmessages= new MessagesModel();
-        $Objmessages->insertMessage($addressee,date('Y-m-d H:i:s'),$subject,$messages);
-        redirect(generateUrl("Clients","Clients","sendEmailClientsOfClients"));
-    }
+    //     $subject =$_POST['subject'];
+    //     $messages=$_POST['message'];
+    //     $addressee =$_POST['addressee'];
+    //     $addresseeArray = explode(", ", $addressee);
+    //     $mail = new MailModel();
+    //     foreach ($addresseeArray as $a) {
+    //         $template= TemplateModel::TemplateRegistrationLink($a,$messages);
+    //         $mail->DataEmail($template,$a,$subject);
+    //     }
+    //     $Objmessages= new MessagesModel();
+    //     $Objmessages->insertMessage($addressee,date('Y-m-d H:i:s'),$subject,$messages);
+    //     redirect(generateUrl("Clients","Clients","sendEmailClientsOfClients"));
+    // }
 
 
     public function UpdateStatusCompanyActive(){
@@ -137,13 +137,13 @@ class ClientsController
     }
 
     public function SellerUpdate(){
-        $s_id=$_POST['s_id'];
-        $s_name=$_POST['s_name'];
-        $s_email=$_POST['s_email'];
-        $s_phone=$_POST['s_phone'];
-        $s_code=$_POST['s_code'];
+        $u_id=$_POST['u_id'];
+        $u_name=$_POST['u_name'];
+        $u_email=$_POST['u_email'];
+        $u_phone=$_POST['u_phone'];
+        $u_codeSeller=$_POST['u_codeSeller'];
         $objSeller= new SellersModel();
-        $objSeller->updateSeller($s_id,$s_name,$s_email,$s_phone,$s_code);
+        $objSeller->updateSeller($u_id,$u_name,$u_email,$u_phone,$u_codeSeller);
         redirect(generateUrl("Clients","Clients","CreateSellers"));
     }
 
@@ -174,16 +174,31 @@ class ClientsController
         include_once '../app/Views/clients/consultSellersview.php';  
     }
     public function CreateSeller(){
+
         include_once '../app/Views/clients/modalSellersview.php';  
     }
     public function insertSeller(){
         $objS= new SellersModel();
-        $s_name=$_POST['s_name'];
-        $s_email=$_POST['s_email'];
-        $s_phone=$_POST['s_phone'];
-        $s_code=$_POST['s_code'];
-        $objS->insertSeller($s_name,$s_email,$s_phone,$s_code);
+        $u_name=$_POST['u_name'];
+        $u_email=$_POST['u_email'];
+        $u_phone=$_POST['u_phone'];
+        $u_codeSeller=$_POST['u_codeSeller'];
+
+
+        // password seller
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $password = substr(str_shuffle($characters), 0, 12);
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        //template user and password
+        $template=TemplateModel::TemplateRegister($u_name,$u_email,$password);
+        //MAIL
+        $mail= new MailModel();
+        $mail->DataEmail($template,$u_email,'Credenciales de inicio de sesion');
+
+        
+        $objS->insertSeller($u_name,$u_email,$u_phone,$hashedPassword,'3',$_SESSION['IdCompany'],'1',$u_codeSeller);
         redirect(generateUrl("Clients","Clients","CreateSellers"));
+
     }
     public function SellerAndCompanyModal(){
         $s_id=$_POST['id'];

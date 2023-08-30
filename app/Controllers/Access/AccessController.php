@@ -8,6 +8,7 @@ use Models\Template\TemplateModel;
 use Models\Types_industry\Types_industryModel;
 use Models\User\UserModel;
 use Models\Company\CompanyModel;
+use Models\Sellers_customers\Sellers_customersModel;
 use Models\Town\TownModel;
 
 use function Helpers\dd;
@@ -135,14 +136,20 @@ class AccessController
             }
             
             
-            $name=$_POST['representative_name'];
-            $lastname=$_POST['representative_lastname'];
-            $document=$_POST['representative_document'];
-            $type_document=$_POST['representative_document_type'];
+                $name=$_POST['representative_name'];
+                $lastname=$_POST['representative_lastname'];
+                $document=$_POST['representative_document'];
+                $type_document=$_POST['representative_document_type'];
             
-            $phone=$_POST['phone'];
-            $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-            $objUser->insertUser($email,$password,null,$c_id,3,2,$name,$lastname,$phone,$document,$type_document,$country,$city);
+                $phone=$_POST['phone'];
+
+                $objUser->insertUser($email,null,null,$c_id,4,2,$name,$lastname,$phone,$document,$type_document,$country,$city);
+
+                // INSERT SELLER WITH COMPANY
+                $ObjSeller_customer= new Sellers_customersModel();
+                $ObjSeller_customer->InsertSellerWithCustomer($_SESSION['idUser'],$c_id);
+
+
                 //   SEND EMAILS OF NOTIFICATION
                 //TEMPLATES EMAILS
                 $templateUserCompany=TemplateModel::TemplateRegisterCompany($name.' '.$lastname);
@@ -158,7 +165,7 @@ class AccessController
         }else {
             echo "<script>alert('Este correo ya esta registrado en la base de datos, porfavor utiliza otro.')</script>";
         }
-            redirect(generateUrl("Access","Access","UserDestroy"));
+        redirect(generateUrl("Access","Access","RegisterView"));
     }
 
     //views

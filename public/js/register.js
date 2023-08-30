@@ -17,9 +17,6 @@ $(document).ready(function() {
 
 
 
-
-
-
     $(document).ready(function() {
         // Función para validar un campo de archivo específico
         function validateFile(field, maxSize, allowedTypes) {
