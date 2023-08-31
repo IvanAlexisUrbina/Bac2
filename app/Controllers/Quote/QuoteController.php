@@ -22,19 +22,10 @@ class QuoteController{
         $obj= new CompanyModel();
         $shipping_address=$obj->ConsultCompany($_SESSION['IdCompany']);
 
-        $objCustomerPaymentMethods = new Customer_payment_methodModel();
-        $payment_methods = $objCustomerPaymentMethods->getPaymentMethodsByCustomerId($_SESSION['IdCompany']);
-        $objMethods = new MethodsPayModel();
         
-        if (!empty($payment_methods)) {
-            $methods = array();
-            foreach ($payment_methods as $p) {
-                $methods[] = $objMethods->consultMethodsById($p['payment_method_id']);
-            }
-            // Aquí puedes realizar acciones adicionales con los métodos de pago
-        } else {
-            $methods[]="No tiene métodos de pago asignados todavía";
-        }
+      
+
+       
         
 
         $quoteAddress = '';
@@ -46,6 +37,26 @@ class QuoteController{
 
         include_once "../app/Views/quote/quoteCreate.php";
     }
+
+    public function paymentMethodsAjax(){
+        $companyId=$_POST['c_id'];
+        $objCustomerPaymentMethods = new Customer_payment_methodModel();
+        $payment_methods = $objCustomerPaymentMethods->getPaymentMethodsByCustomerId($companyId);
+        $objMethods = new MethodsPayModel();
+        
+        if (!empty($payment_methods)) {
+            $methods = array();
+            foreach ($payment_methods as $p) {
+                $methods[] = $objMethods->consultMethodsById($p['payment_method_id']);
+            }
+            // Aquí puedes realizar acciones adicionales con los métodos de pago
+        } else {
+            $methods[]="No tiene métodos de pago asignados todavía";
+        }
+    } 
+
+
+
 
     public function quotesCompanies(){
         $obj= new QuoteModel();

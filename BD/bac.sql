@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-08-2023 a las 18:17:01
+-- Tiempo de generación: 31-08-2023 a las 17:49:05
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.1.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `bac`
+-- Base de datos: `bac2`
 --
 
 -- --------------------------------------------------------
@@ -56,15 +56,6 @@ CREATE TABLE `articles` (
   `sbcat_id` int(11) DEFAULT NULL,
   `status_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `articles`
---
-
-INSERT INTO `articles` (`ar_id`, `ar_name`, `ar_desc`, `ar_code`, `ar_characteristics`, `color_id`, `ar_measurement_value`, `ar_img_url`, `ar_data_url`, `mt_id`, `cat_id`, `sbcat_id`, `status_id`) VALUES
-(1, 'Pala', 'Esta es una pala importada', 'PALA_031234', 'Mango de madera', 2, 2, 'uploads/articles/img/1/pala.jpeg', 'uploads/articles/dataSheet/1/uploads_quotes_2_COD_2-Cotizacion-23-05-18.pdf', 2, 1, 1, 1),
-(2, 'Martillo', 'Este es un martillo importado', 'Martillo_20', 'Pala grande e importada', 2, 2, 'uploads/articles/img/2/R.jpeg', 'uploads/articles/dataSheet/2/Capturas de pantalla Portal de Clientes.pdf', 2, 2, NULL, 1),
-(3, 'Clavos', 'Estos son clavos importados', 'Clavo0239', 'Clavo importado y gris', 2, 22, 'uploads/articles/img/3/clavo.jpeg', 'uploads/articles/dataSheet/3/Capturas de pantalla Portal de Clientes.pdf', 3, 1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -145,17 +136,17 @@ CREATE TABLE `company` (
   `id_subs` int(11) DEFAULT NULL,
   `tpi_id` int(11) DEFAULT NULL,
   `status_id` int(11) NOT NULL,
-  `s_id` int(11) DEFAULT NULL
+  `u_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `company`
 --
 
-INSERT INTO `company` (`c_id`, `c_name`, `c_desc`, `c_num_nit`, `c_route_rut`, `c_route_cc_representant`, `c_chamber_commerce`, `c_form_inscription`, `c_certificate_bank`, `c_street`, `c_apartament`, `c_country`, `c_city`, `c_state`, `c_postal_code`, `c_shippingStreet`, `c_shippingApartament`, `c_shippingCountry`, `c_shippingCity`, `c_shippingState`, `c_shippingPostalcode`, `created_at`, `id_subs`, `tpi_id`, `status_id`, `s_id`) VALUES
+INSERT INTO `company` (`c_id`, `c_name`, `c_desc`, `c_num_nit`, `c_route_rut`, `c_route_cc_representant`, `c_chamber_commerce`, `c_form_inscription`, `c_certificate_bank`, `c_street`, `c_apartament`, `c_country`, `c_city`, `c_state`, `c_postal_code`, `c_shippingStreet`, `c_shippingApartament`, `c_shippingCountry`, `c_shippingCity`, `c_shippingState`, `c_shippingPostalcode`, `created_at`, `id_subs`, `tpi_id`, `status_id`, `u_id`) VALUES
 (1, 'Business And Connection', 'solutions technology', '3423421-323', NULL, NULL, NULL, NULL, NULL, 'CALLE 1 C #76 A 25', 'APARTAMENTO E 202', 'Colombia', 'CALI', 'Valle del Cauca', 760035, 'CALLE 1 C #76 A 25', 'APARTAMENTO E 202', 'Colombia', 'CALI', 'Valle del Cauca', 760035, '2023-06-20 19:30:42', NULL, 2, 1, NULL),
 (54, 'Comercializadora Valencia', 'descripcion empresa', '81293819283-9', 'uploads/companies/company_54/rut/Capturas de pantalla Portal de Clientes.pdf', 'uploads/companies/company_54/chamber_of_commerce/Capturas de pantalla Portal de Clientes.pdf', 'uploads/companies/company_54/representative_cedula/Capturas de pantalla Portal de Clientes.pdf', 'uploads/companies/company_54/form_inscription/Capturas de pantalla Portal de Clientes.pdf', 'uploads/companies/company_54/certificate_bank/Capturas de pantalla Portal de Clientes.pdf', NULL, NULL, 'Colombia', 'RIOSUCIO', 'CHOCO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-08-02 17:35:07', 13, 3, 1, NULL),
-(55, 'Ferreteria Muete', 'a', '3423421-323', 'uploads/companies/company_55/rut/uploads_quotes_2_COD_2-Cotizacion-23-05-18.pdf', 'uploads/companies/company_55/chamber_of_commerce/uploads_quotes_2_COD_2-Cotizacion-23-05-18.pdf', 'uploads/companies/company_55/representative_cedula/uploads_quotes_2_COD_2-Cotizacion-23-05-18.pdf', 'uploads/companies/company_55/form_inscription/uploads_quotes_2_COD_2-Cotizacion-23-05-18.pdf', 'uploads/companies/company_55/certificate_bank/uploads_quotes_2_COD_2-Cotizacion-23-05-18.pdf', 'CALL2', '232|', 'Colombia', 'PUERTO RONDÓN', 'ARAUCA', 2032, 'CALL2', '232|', 'Colombia', 'PUERTO RONDÓN', 'ARAUCA', 2032, '2023-08-02 20:02:47', NULL, 2, 1, 2);
+(67, 'LA MUELA', 'desc', '3423421-3', 'uploads/companies/company_67/rut/Diseño sin título.pdf', 'uploads/companies/company_67/chamber_of_commerce/Diseño sin título.pdf', 'uploads/companies/company_67/representative_cedula/Diseño sin título.pdf', 'uploads/companies/company_67/form_inscription/Diseño sin título.pdf', 'uploads/companies/company_67/certificate_bank/Diseño sin título.pdf', NULL, NULL, 'Colombia', 'PROVIDENCIA Y SANTA CATALINA', 'ARCHIPIELAGO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-08-30 18:50:53', NULL, 1, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -198,14 +189,6 @@ CREATE TABLE `customer_discounts` (
   `price_discount` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `customer_discounts`
---
-
-INSERT INTO `customer_discounts` (`cd_id`, `c_id`, `cat_id`, `sbcat_id`, `ar_id`, `gp_id`, `price_discount`) VALUES
-(13, 1, 2, 4, 1, 42, 1200),
-(14, 54, 1, 2, 2, 43, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -217,14 +200,6 @@ CREATE TABLE `customer_payment_method` (
   `c_id` int(11) DEFAULT NULL,
   `payment_method_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `customer_payment_method`
---
-
-INSERT INTO `customer_payment_method` (`customer_payment_id`, `c_id`, `payment_method_id`) VALUES
-(34, 55, 1),
-(35, 55, 5);
 
 -- --------------------------------------------------------
 
@@ -331,13 +306,6 @@ CREATE TABLE `meeting` (
   `comments` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `meeting`
---
-
-INSERT INTO `meeting` (`meeting_id`, `meeting_date`, `meeting_time`, `meeting_type`, `meeting_link`, `comments`) VALUES
-(1, '2023-08-25', '19:34:30', 'asdfasdf', 'asdfasdf', 'asdfasdfasd');
-
 -- --------------------------------------------------------
 
 --
@@ -350,13 +318,6 @@ CREATE TABLE `meeting_attendees` (
   `u_id` int(11) DEFAULT NULL,
   `c_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `meeting_attendees`
---
-
-INSERT INTO `meeting_attendees` (`meet_att_id`, `meeting_id`, `u_id`, `c_id`) VALUES
-(1, 1, 9, 54);
 
 -- --------------------------------------------------------
 
@@ -371,13 +332,6 @@ CREATE TABLE `messages` (
   `subject` varchar(255) NOT NULL,
   `message` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `messages`
---
-
-INSERT INTO `messages` (`id`, `recipients`, `send_date`, `subject`, `message`) VALUES
-(17, 'alexisreyking@gmail.com', '2023-07-17 21:57:29', 'Registro portal', 'Hola');
 
 -- --------------------------------------------------------
 
@@ -430,15 +384,6 @@ CREATE TABLE `order` (
   `order_state_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `order`
---
-
-INSERT INTO `order` (`order_id`, `order_name`, `order_desc`, `order_date`, `order_payment_method`, `order_company`, `order_shipping_address`, `order_email`, `order_phone`, `order_comments`, `order_cedula_nit`, `order_subtotal`, `order_iva`, `order_total`, `order_url_document`, `u_id`, `order_state_id`) VALUES
-(15, 'Andres Muete Muete', 'a', '2023-08-02 19:04:11', 'efectivo', 'Ferreteria Muete', 'CL 1C#76A-25', 'alexisreyking@gmail.com', '1144108604', 'asdfas', '1144108606', '2800.00', '532.00', '3332.00', 'uploads/orders/15/Document_orders_15_20230717222523.pdf', 87, 6),
-(16, 'Andres Muete Muete', 'a', '2023-08-02 20:08:13', '1', 'Ferreteria Muete', 'CALL2, 232|, Colombia, PUERTO RONDÓN, ARAUCA, 2032', 'amuete@businessandconnection.c', '1144108604', 'Hola', '1144108606', '3600.00', '684.00', '4284.00', 'uploads/orders/16/Document_orders_16_20230802220813.pdf', 87, 1),
-(17, 'Andres Muete Muete', 'a', '2023-08-14 16:56:04', '1', 'Ferreteria Muete', 'CALL2, 232|, Colombia, PUERTO RONDÓN, ARAUCA, 2032', 'amuete@businessandconnection.c', '1144108604', '                        Dejar en porteria                   ', '1144108606', '42400.00', '8056.00', '50456.00', 'uploads/orders/17/Document_orders_17_20230814185604.pdf', 87, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -454,17 +399,6 @@ CREATE TABLE `order_articles` (
   `orderart_discountPercentajeOrPrice` varchar(255) NOT NULL,
   `orderart_discountPrice` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `order_articles`
---
-
-INSERT INTO `order_articles` (`orderart_id`, `order_id`, `ar_id`, `orderart_quantity`, `orderart_pricenormal`, `orderart_discountPercentajeOrPrice`, `orderart_discountPrice`) VALUES
-(12, 15, 2, 1, 1000, 'No', 1000),
-(13, 15, 1, 1, 1800, 'No', 1800),
-(14, 16, 1, 2, 1800, 'No', 1800),
-(15, 17, 2, 1, 1000, 'No', 1000),
-(16, 17, 1, 23, 1800, 'No', 1800);
 
 -- --------------------------------------------------------
 
@@ -554,15 +488,6 @@ CREATE TABLE `prices` (
   `p_value` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `prices`
---
-
-INSERT INTO `prices` (`p_id`, `ar_id`, `wh_id`, `p_value`) VALUES
-(30, 1, 21, 1800),
-(31, 2, 21, 1000),
-(32, 3, 21, 2000);
-
 -- --------------------------------------------------------
 
 --
@@ -588,14 +513,6 @@ CREATE TABLE `quotes` (
   `u_id` int(11) NOT NULL,
   `quote_state_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `quotes`
---
-
-INSERT INTO `quotes` (`quo_id`, `quo_name`, `quo_desc`, `quo_date`, `quo_payment_method`, `quo_company`, `quo_shipping_address`, `quo_email`, `quo_phone`, `quo_comments`, `quo_cedula_nit`, `quo_subtotal`, `quo_iva`, `quo_total`, `quo_url_document`, `u_id`, `quote_state_id`) VALUES
-(77, 'Andres Muete Muete', 'a', '2023-08-14 20:57:52', '1', 'Ferreteria Muete', 'CL 1C#76A-25', 'alexisreyking@gmail.com', 1144108604, 'Dejar en porteria', '1144108606', '40600.00', '7714.00', '48314.00', 'uploads/quotes/77/Document_quotes_77_20230717221632.pdf', 87, 1),
-(78, 'Andres Muete Muete', 'a', '2023-08-14 21:56:13', '1', 'Ferreteria Muete', 'CALL2, 232|, Colombia, PUERTO RONDÓN, ARAUCA, 2032', 'amuete@businessandconnection.c', 1144108604, '', '1144108606', '3600.00', '684.00', '4284.00', 'uploads/quotes/78/Document_quotes_78_20230808191858.pdf', 87, 1);
 
 -- --------------------------------------------------------
 
@@ -632,15 +549,6 @@ CREATE TABLE `quote_articles` (
   `quoart_discountPrice` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `quote_articles`
---
-
-INSERT INTO `quote_articles` (`quoart_id`, `quo_id`, `ar_id`, `quoart_quantity`, `quoart_pricenormal`, `quoart_discountPercentajeOrPrice`, `quoart_discountPrice`) VALUES
-(82, 77, 1, 22, 1800, 'No', 1800),
-(83, 77, 2, 1, 1000, 'No', 1000),
-(84, 78, 1, 2, 1800, 'No', 1800);
-
 -- --------------------------------------------------------
 
 --
@@ -659,32 +567,28 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`rol_id`, `rol_name`, `rol_desc`) VALUES
 (1, 'Programmer', 'Administer modules, common users and Admins'),
-(2, 'Company', 'Administer modules and common users '),
-(3, 'Admin', 'Admin of application client'),
-(4, 'User', 'User common\r\n');
+(2, 'Commercial Director', 'Commercial Director'),
+(3, 'Sellers', 'Sellers of application'),
+(4, 'User', 'User Common client');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `sellers`
+-- Estructura de tabla para la tabla `sellers_customers`
 --
 
-CREATE TABLE `sellers` (
-  `s_id` int(11) NOT NULL,
-  `s_name` varchar(50) DEFAULT NULL,
-  `s_email` varchar(100) DEFAULT NULL,
-  `s_phone` varchar(30) DEFAULT NULL,
-  `s_code` varchar(100) DEFAULT NULL
+CREATE TABLE `sellers_customers` (
+  `sc_id` int(11) NOT NULL,
+  `u_id` int(11) NOT NULL,
+  `c_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `sellers`
+-- Volcado de datos para la tabla `sellers_customers`
 --
 
-INSERT INTO `sellers` (`s_id`, `s_name`, `s_email`, `s_phone`, `s_code`) VALUES
-(1, 'alex', 'iaurbina04@misena.edu.co', '3007264043', 'CODI_20'),
-(2, 'ale', 'iaurbina04@misena.edu.co', '3007264043', 'COD_123'),
-(3, 'ale', 'alexis-crokis@hotmail.com', '3007264043', 'COD_123DA');
+INSERT INTO `sellers_customers` (`sc_id`, `u_id`, `c_id`) VALUES
+(3, 86, 67);
 
 -- --------------------------------------------------------
 
@@ -737,15 +641,6 @@ CREATE TABLE `stock` (
   `ar_id` int(11) NOT NULL,
   `wh_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `stock`
---
-
-INSERT INTO `stock` (`stock_id`, `stock_name`, `stock_date`, `stock_Quantity`, `stock_lote`, `stock_date_entry`, `stock_expiration_date`, `ar_id`, `wh_id`) VALUES
-(36, 'Stock 2023-07-17', '0000-00-00 00:00:00', 22, 'L0324239', '2023-07-19', NULL, 1, 21),
-(37, 'Stock 2023-07-17', '0000-00-00 00:00:00', 55, 'L324', '2023-07-19', NULL, 2, 21),
-(38, 'Stock 2023-07-17', '0000-00-00 00:00:00', 44, 'L0324239', '2023-07-20', '2023-08-03', 3, 21);
 
 -- --------------------------------------------------------
 
@@ -1992,21 +1887,23 @@ CREATE TABLE `users` (
   `u_type_document` varchar(30) DEFAULT NULL,
   `u_country` varchar(60) DEFAULT NULL,
   `u_city` varchar(30) DEFAULT NULL,
-  `u_pass` varchar(200) NOT NULL,
+  `u_pass` varchar(200) DEFAULT NULL,
   `u_code` varchar(30) DEFAULT NULL,
   `rol_id` int(11) NOT NULL,
   `c_id` int(11) NOT NULL,
-  `status_id` int(11) NOT NULL
+  `status_id` int(11) NOT NULL,
+  `u_codeSeller` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`u_id`, `u_name`, `u_lastname`, `u_phone`, `u_email`, `u_document`, `u_type_document`, `u_country`, `u_city`, `u_pass`, `u_code`, `rol_id`, `c_id`, `status_id`) VALUES
-(9, 'Ivan Alexis', 'Urbina Melo', 2147483647, 'iurbina@businessandconnection.com', 12341234, 'Cedula de ciudadanía', 'Colombia', 'Cali', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', 'bba99382a3e445b3', 1, 1, 1),
-(86, 'Edwin valencia', 'prueba', 2147483647, 'alexis-crokis@hotmail.com', 1144108604, 'Cedula de ciudadanía', 'Colombia', 'RIOSUCIO', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', '68e45f459c1eac98', 2, 54, 1),
-(87, 'Andres Muete', 'Muete', 1144108604, 'iurbina@businessandconnection.com', 1144108606, 'Cedula de ciudadanía', 'Colombia', 'PUERTO RONDÓN', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', '21439534b062262c', 3, 55, 1);
+INSERT INTO `users` (`u_id`, `u_name`, `u_lastname`, `u_phone`, `u_email`, `u_document`, `u_type_document`, `u_country`, `u_city`, `u_pass`, `u_code`, `rol_id`, `c_id`, `status_id`, `u_codeSeller`) VALUES
+(9, 'Ivan Alexis', 'Urbina Melo', 2147483647, 'iurbina@businessandconnection.com', 12341234, 'Cedula de ciudadanía', 'Colombia', 'Cali', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', 'bba99382a3e445b3', 1, 1, 1, NULL),
+(86, 'Edwin valencia', 'prueba', 2147483647, 'alexis-crokis@hotmail.com', 1144108604, 'Cedula de ciudadanía', 'Colombia', 'RIOSUCIO', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', 'c1e7e75f62936243', 2, 54, 1, NULL),
+(87, 'Andres Muete', 'Muete', 1144108604, 'iurbina@businessandconnection.com', 1144108606, 'Cedula de ciudadanía', 'Colombia', 'PUERTO RONDÓN', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', '21439534b062262c', 3, 54, 1, 'CodePrueba'),
+(98, 'IVAN ALEXIS', 'URBINA MELO', 2147483647, 'iaurbina04@misena.edu.co', 2147483647, 'Cedula de ciudadanía', 'Colombia', 'PROVIDENCIA Y SANTA CATALINA', NULL, NULL, 4, 67, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -2080,7 +1977,7 @@ ALTER TABLE `company`
   ADD KEY `id_subs` (`id_subs`),
   ADD KEY `tpi_id` (`tpi_id`),
   ADD KEY `status_id` (`status_id`),
-  ADD KEY `s_id` (`s_id`);
+  ADD KEY `s_id` (`u_id`);
 
 --
 -- Indices de la tabla `creditlimits`
@@ -2253,10 +2150,12 @@ ALTER TABLE `roles`
   ADD PRIMARY KEY (`rol_id`);
 
 --
--- Indices de la tabla `sellers`
+-- Indices de la tabla `sellers_customers`
 --
-ALTER TABLE `sellers`
-  ADD PRIMARY KEY (`s_id`);
+ALTER TABLE `sellers_customers`
+  ADD PRIMARY KEY (`sc_id`),
+  ADD KEY `u_id` (`u_id`),
+  ADD KEY `c_id` (`c_id`);
 
 --
 -- Indices de la tabla `settings`
@@ -2347,7 +2246,7 @@ ALTER TABLE `colors`
 -- AUTO_INCREMENT de la tabla `company`
 --
 ALTER TABLE `company`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT de la tabla `creditlimits`
@@ -2482,10 +2381,10 @@ ALTER TABLE `roles`
   MODIFY `rol_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `sellers`
+-- AUTO_INCREMENT de la tabla `sellers_customers`
 --
-ALTER TABLE `sellers`
-  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `sellers_customers`
+  MODIFY `sc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `settings`
@@ -2527,7 +2426,7 @@ ALTER TABLE `types_industry`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT de la tabla `warehouse`
@@ -2562,8 +2461,7 @@ ALTER TABLE `articles`
 ALTER TABLE `company`
   ADD CONSTRAINT `company_ibfk_1` FOREIGN KEY (`id_subs`) REFERENCES `subscription` (`id_subs`),
   ADD CONSTRAINT `company_ibfk_2` FOREIGN KEY (`tpi_id`) REFERENCES `types_industry` (`tpi_id`),
-  ADD CONSTRAINT `company_ibfk_3` FOREIGN KEY (`status_id`) REFERENCES `status` (`status_id`),
-  ADD CONSTRAINT `company_ibfk_4` FOREIGN KEY (`s_id`) REFERENCES `sellers` (`s_id`);
+  ADD CONSTRAINT `company_ibfk_3` FOREIGN KEY (`status_id`) REFERENCES `status` (`status_id`);
 
 --
 -- Filtros para la tabla `creditlimits`
@@ -2649,6 +2547,13 @@ ALTER TABLE `quote_articles`
   ADD CONSTRAINT `quote_articles_ibfk_1` FOREIGN KEY (`quo_id`) REFERENCES `quotes` (`quo_id`);
 
 --
+-- Filtros para la tabla `sellers_customers`
+--
+ALTER TABLE `sellers_customers`
+  ADD CONSTRAINT `sellers_customers_ibfk_1` FOREIGN KEY (`u_id`) REFERENCES `users` (`u_id`),
+  ADD CONSTRAINT `sellers_customers_ibfk_2` FOREIGN KEY (`c_id`) REFERENCES `company` (`c_id`);
+
+--
 -- Filtros para la tabla `settings`
 --
 ALTER TABLE `settings`
@@ -2680,18 +2585,6 @@ ALTER TABLE `users`
 --
 ALTER TABLE `warehouse`
   ADD CONSTRAINT `warehouse_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `company` (`c_id`);
-
-DELIMITER $$
---
--- Eventos
---
-CREATE DEFINER=`root`@`localhost` EVENT `UpdateQuoteStateEvent` ON SCHEDULE EVERY 1 DAY STARTS '2023-08-14 16:34:57' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
-    UPDATE quotes
-    SET quote_state_id = 2
-    WHERE quo_date + INTERVAL 3 DAY <= NOW();
-END$$
-
-DELIMITER ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

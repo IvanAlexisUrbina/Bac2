@@ -10,11 +10,11 @@ use Models\MasterModel;
 class Sellers_customersModel extends MasterModel
 {
 
-    public function ConsultSellerById(int $u_id){
-        $sql="SELECT * FROM users WHERE u_id=:u_id";
-        $params=[':u_id'=>$u_id];
+    public function ConsultSellerByIdOfCustomer(int $c_id){
+        $sql="SELECT * FROM sellers_customers WHERE c_id=:c_id";
+        $params=[':c_id'=>$c_id];
         $seller=$this->select($sql,$params);
-        return $seller;
+        return $seller[0];
     }
 
     public function InsertSellerWithCustomer(int $u_id,int $c_id){

@@ -17,11 +17,22 @@ class CRMController {
  
 
     public function consultViewDate(){
+        // ITEM1
         $objCompanies= new CompanyModel();
         $users= new UserModel();
         $companies=$objCompanies->consultCompanies();        
         $usersCompany=$users->consultUsersWithRol(2);  
-        include_once '../app/Views/crm/createDate.php';
+        // ITEM2
+        $meet= new MeetModel();
+        $meeting=$meet->getMeeting();
+        foreach ($meeting as $m) {
+            $attendees=$meet->getMeetingAttendees($m['meeting_id']);
+        }
+        $users= new UserModel();
+        foreach ($attendees as $att) {
+           
+        }
+        include_once '../app/Views/crm/createCRMview.php';
     }
 
     public function sendNotificationEmail(){
@@ -64,15 +75,6 @@ class CRMController {
     }
 
     public function ConsutlDiaryView(){
-        $meet= new MeetModel();
-        $meeting=$meet->getMeeting();
-        foreach ($meeting as $m) {
-            $attendees=$meet->getMeetingAttendees($m['meeting_id']);
-        }
-        $users= new UserModel();
-        foreach ($attendees as $att) {
-           
-        }
 
         include_once '../app/Views/crm/consultDiaryView.php';
     }

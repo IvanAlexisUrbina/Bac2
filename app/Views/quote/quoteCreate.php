@@ -10,7 +10,15 @@
                 <label for="">Empresa:</label>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-building"></i></span>
-                    <label for="" class="form form-control"><?=  $_SESSION['CompanyName']?></label>
+                        <input class="form-control" list="datalistOptions" id="exampleDataList"
+                            placeholder="Type to search...">
+                        <datalist id="datalistOptions">
+                            <option value="San Francisco"></option>
+                            <option value="New York"></option>
+                            <option value="Seattle"></option>
+                            <option value="Los Angeles"></option>
+                            <option value="Chicago"></option>
+                        </datalist>
 
                     <input type="hidden" value="<?= $_SESSION['CompanyName']?>" aria-label="Username" name="company"
                         aria-describedby="basic-addon1">
@@ -42,15 +50,15 @@
                 </div>
             </div>
             <div class="col-md-6">
-            <label for="telefono">Fecha válida de la cotización:</label>
-            <div class="input-group mb-3">
-                <label for="" class="form form-control"><?= date('Y-m-d', strtotime('+3 days')) ?></label>
-                <div class="col-md-12">
+                <label for="telefono">Fecha válida de la cotización:</label>
+                <div class="input-group mb-3">
+                    <label for="" class="form form-control"><?= date('Y-m-d', strtotime('+3 days')) ?></label>
+                    <div class="col-md-12">
 
-                    <span class="text-muted">*La cotización es válida por 3 días desde hoy.</span>
+                        <span class="text-muted">*La cotización es válida por 3 días desde hoy.</span>
+                    </div>
                 </div>
-            </div>
-            
+
 
                 <h3 class="tracking-in-expand">Información de pago <i class="fa-solid fa-money-bill"></i></h3>
                 <div class="form-group">

@@ -39,6 +39,24 @@
 
 
         <!-- COMPANY -->
+        <?php if ($_SESSION['RolUser'] == '2' AND $_SESSION['StatusUser'] == '1'): ?>
+
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bxs-user-check"></i>
+                <div data-i18n="Misc">Autorizaciones de registro</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="<?= Helpers\generateUrl("Inbox","Inbox","viewInbox");?>" class="menu-link">
+                        <div data-i18n="Error">Ver</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <?php endif; ?>
+
+
         <?php if ($_SESSION['RolUser'] == '2' OR  $_SESSION['RolUser'] == '3'  AND $_SESSION['StatusUser'] == '1'): ?>
         <li class="menu-item" style="">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -49,32 +67,12 @@
             <ul class="menu-sub">
                 <li class="menu-item">
                     <a href="<?= Helpers\generateUrl("CRM","CRM","consultViewDate");?>" class="menu-link">
-                        <div data-i18n="Without menu">Crear reunion</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="<?= Helpers\generateUrl("CRM","CRM","ConsutlDiaryView");?>" class="menu-link">
-                        <div data-i18n="Without menu">Agenda</div>
+                        <div data-i18n="Without menu">Ver</div>
                     </a>
                 </li>
             </ul>
         </li>
-        <?php if ($_SESSION['RolUser'] == '2' AND $_SESSION['StatusUser'] == '1'): ?>
 
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bxs-user-check"></i>
-                <div data-i18n="Misc">Peticiones</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="<?= Helpers\generateUrl("Inbox","Inbox","viewInbox");?>" class="menu-link">
-                        <div data-i18n="Error">Peticiones clientes</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <?php endif; ?>
 
         <li class="menu-item" style="">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -111,6 +109,29 @@
 
             </ul>
         </li>
+
+        <li class="menu-item" style="">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class='menu-icon tf-icons bx bx-mail-send' ></i>
+                <div data-i18n="Layouts">Solicitudes de compra</div>
+            </a>
+
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="<?= Helpers\generateUrl("Clients","Clients","ViewClientPortal");?>" class="menu-link">
+                        <div data-i18n="Without menu">Ver</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="<?= Helpers\generateUrl("Clients","Clients","ViewClientPortal");?>" class="menu-link">
+                        <div data-i18n="Without menu">Crear</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+
+
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dollar"></i>

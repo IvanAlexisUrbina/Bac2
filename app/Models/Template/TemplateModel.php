@@ -1152,6 +1152,69 @@ static function TemplateNotificationOrderStatus(string $companyName, int $orderI
     return $html;
     }
 
+   
+
+    public static function TemplateClientApproved($vendedorName, $clientName) {
+      $html = '
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <title>Cliente Aprobado</title>
+              <style>
+                  body {
+                      font-family: Arial, sans-serif;
+                      font-size: 14px;
+                      color: #333;
+                  }
+                  .container {
+                      max-width: 600px;
+                      margin: 0 auto;
+                      padding: 20px;
+                      border: 1px solid #ccc;
+                      border-radius: 5px;
+                  }
+                  .logo {
+                      display: inline-block;
+                      width: 150px;
+                      height: 150px;
+                      border-radius: 50%;
+                      margin-bottom: 20px;
+                      background-image: url("https://i.postimg.cc/L8qD1Dy7/apple-touch-icon.png");
+                      background-size: cover;
+                      background-position: center;
+                      border: 1px solid black;
+                  }
+                  .header {
+                      display: flex;
+                      align-items: center;
+                      justify-content: space-between;
+                      margin-bottom: 20px;
+                  }
+                  .footer {
+                      margin-top: 40px;
+                      text-align: center;
+                  }
+              </style>
+          </head>
+          <body>
+              <div class="container">
+                  <div class="logo"></div>
+                  <p>Estimado/a ' . $vendedorName . ',</p>
+                  <p>Queremos informarte que uno de tus clientes, ' . $clientName . ', ha sido aprobado y ahora tiene acceso completo a nuestros servicios.</p>
+                  <p>Este es un paso emocionante y esperamos que encuentres nuevas oportunidades para ofrecer tus productos o servicios a ' . $clientName . '.</p>
+                  <div class="footer">
+                      <p>© 2023 Business And Connection. Todos los derechos reservados.</p>
+                  </div>
+              </div>
+          </body>
+          </html>
+      ';
+  
+      return $html;
+  }
+  
+
     public static function TemplateRegister($name,$email,$password){
     $host = $_SERVER['HTTP_HOST'];
 

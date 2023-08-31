@@ -54,23 +54,39 @@ class InboxController
         $rejectOrAccept=$_POST['rejectOrAccept'];
         // dd($_POST);
         if ($rejectOrAccept == 'accept') {
+            $objSellers_customer= new Sellers_customersModel();
+            $sellerId=$objSellers_customer->ConsultSellerByIdOfCustomer($c_id);
+
             $objCompany= new CompanyModel();
             $objCompany->updateStatusCompany('1',$c_id);
+            $company=$objCompany->ConsultCompany($c_id);
+
             $objUser=new UserModel();
             $objUser->updateStatusUser('1',$u_id);
+
+            $user=$objUser->getUserInfoById($sellerId['u_id']);
+
+
+
             $mail= new MailModel();
-            $user=$objUser->getUserInfoById($u_id);
-            $template=TemplateModel::TemplateRegister($user['u_name'].' '.$user['u_lastname'],$user['u_email'],'Utilizada en el registro');   
-            $mail->DataEmail($template,$user['u_email'],'Notificacion de registro');   
+
+            $template=TemplateModel::TemplateClientApproved($user['u_name'].' '.$user['u_lastname'],$company[0]['c_name']);   
+
+            $mail->DataEmail($template,$user['u_email'],'Notificacion de registro de cliente');   
+
         }elseif ($rejectOrAccept == 'reject') {
+            $objSellers_customer= new Sellers_customersModel();
+            $sellerId=$objSellers_customer->ConsultSellerByIdOfCustomer($c_id);
+
             $objUser=new UserModel();
-            $user=$objUser->getUserInfoById($u_id);
+            $user=$objUser->getUserInfoById($sellerId['u_id']);
+
             $template=TemplateModel::TemplateRejectRegistration($user['u_name'].' '.$user['u_lastname'],'Lo sentimos, pero no hemos podido procesar su solicitud de registro debido a que Los documentos proporcionados no están completos o contienen información errónea.');   
             $objUser->deleteUser($u_id);
+           
+            $objSellers_customer->DeleteSellerWithCustomer($c_id); 
             $objCompany= new CompanyModel();
             $objCompany->deleteCompany($c_id);
-            $objSellers_customer= new Sellers_customersModel();
-            $objSellers_customer->DeleteSellerWithCustomer($c_id); 
             $mail= new MailModel();
             $mail->DataEmail($template,$user['u_email'],'Notificacion de registro');
         }

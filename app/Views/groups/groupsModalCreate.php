@@ -1,4 +1,4 @@
-<div class="card-header slide-in-top  bg-dark text-center text-white">
+<div class="card-header slide-in-top  bg-light text-center">
     <h3 class="mb-0">Crear lista</h3>
 </div>
 <form id="createGroupsDicountsForm" action="<?= Helpers\generateUrl("Groups","Groups","InsertGroups")?>" method="post">

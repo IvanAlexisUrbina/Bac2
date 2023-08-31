@@ -293,7 +293,7 @@ class CompanyController
         $company=$objCompany->ConsultCompany($c_id);
         // Clients ADMIN
         foreach ($company as $c => $value) {
-            $user = $objUser->getUsersByRoleCompanyAndStatus('3', $value['c_id'], '1');
+            $user = $objUser->getUsersByRoleCompanyAndStatus('4', $value['c_id'], '1');
             $company[$c]['representant'] = $user; // Almacenar los usuarios en la posición correspondiente de la compañía
         }
         // dd($company);
