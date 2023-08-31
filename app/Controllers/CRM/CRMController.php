@@ -23,15 +23,15 @@ class CRMController {
         $companies=$objCompanies->consultCompanies();        
         $usersCompany=$users->consultUsersWithRol(2);  
         // ITEM2
-        $meet= new MeetModel();
-        $meeting=$meet->getMeeting();
-        foreach ($meeting as $m) {
-            $attendees=$meet->getMeetingAttendees($m['meeting_id']);
-        }
-        $users= new UserModel();
-        foreach ($attendees as $att) {
+        // $meet= new MeetModel();
+        // $meeting=$meet->getMeeting();
+        // foreach ($meeting as $m) {
+        //     $attendees=$meet->getMeetingAttendees($m['meeting_id']);
+        // }
+        // $users= new UserModel();
+        // foreach ($attendees as $att) {
            
-        }
+        // }
         include_once '../app/Views/crm/createCRMview.php';
     }
 
