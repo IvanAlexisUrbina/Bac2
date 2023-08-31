@@ -225,5 +225,51 @@ if ($("#formOrderSinceQuote").length > 0) {
     });
   });
 
+
+// change select order
+  $(document).on('change', '#SelectOrder', function () {
+
+    let url = $(this).attr('data-url');
+    let id = $(this).val();
+
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: { c_id: id },
+        dataType: "json", // Indica que esperas una respuesta JSON
+        success: function (response) {
+            console.log(response); // Mostrar la respuesta completa
+            // name
+            let representantName=response.representant[0].u_name+" "+response.representant[0].u_lastname;
+            // phone
+            let representantPhone=response.representant[0].u_phone;
+            // email
+            let representantEmail=response.representant[0].u_email;
+            //
+            let address_shipping=response.orderAddress;
+                     
+            $('#clientOrder').prop('disabled', false).val(representantName);            
+            $('#phoneOrder').prop('disabled', false).val(representantPhone);            
+            $('#emailOrder').prop('disabled', false).val(representantEmail);            
+            $('#address_shipping').val(address_shipping);
+            
+           // Crear un elemento <select> con las opciones de métodos de pago
+           let optionsMethods = $("<select class='form-select' name='payment_method' id='methodspayOrder'></select>");
+           optionsMethods.append("<option value='' selected disabled>Selecciona una opcion</option>");
+           
+           // Agregar opciones de métodos de pago al <select>
+           response.methods.forEach(method => {
+               optionsMethods.append(`<option value='${method.value}'>${method.name}</option>`);
+           });
+           
+           // Insertar el <select> en el contenedor deseado
+           $('#methodspayOrder').replaceWith(optionsMethods);
+           
+        }
+    });
+});
+
+
+
   // Resto del código...
 });

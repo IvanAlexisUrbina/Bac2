@@ -12,6 +12,7 @@ use Models\Customer_discounts\Customer_discountsModel;
 use Models\Customer_payment_method\Customer_payment_methodModel;
 use Models\MethodsPay\MethodsPayModel;
 use Models\Sellers\SellersModel;
+use Models\User\UserModel;
 
 use function Helpers\dd;
 use function Helpers\generateUrl;
@@ -19,41 +20,74 @@ use function Helpers\redirect;
 
 class QuoteController{
     public function ViewCreateQuote(){
-        $obj= new CompanyModel();
-        $shipping_address=$obj->ConsultCompany($_SESSION['IdCompany']);
-
-        
-      
-
-       
-        
-
-        $quoteAddress = '';
-        foreach ($shipping_address as $key) {
-            $quoteAddress .= $key['c_shippingStreet'] . ', ' . $key['c_shippingApartament'] . ', ' . $key['c_shippingCountry'] . ', ' . $key['c_shippingCity'] . ', ' . $key['c_shippingState'] . ', ' . $key['c_shippingPostalcode'];
-        }   
-        $obj= new SellersModel();
-        $seller=$obj->ConsultSellerByIdOfCompany($_SESSION['IdCompany']);
-
+        $objUser= new UserModel();
+        //users clients
+        $usersClients=$objUser->consultUsersWithRolAndStatus('4','1');         
+        $objCompany= new CompanyModel();
+        foreach ($usersClients as $u) {
+            //companies clients
+            $companies=$objCompany->ConsultCompany($u['c_id']);
+        }
+    
         include_once "../app/Views/quote/quoteCreate.php";
     }
 
-    public function paymentMethodsAjax(){
-        $companyId=$_POST['c_id'];
+    public function attrsByAjax(){
+
+        $companyId = $_POST['c_id'];
+
+        // METHODS PAY --------------------------------------------------
         $objCustomerPaymentMethods = new Customer_payment_methodModel();
         $payment_methods = $objCustomerPaymentMethods->getPaymentMethodsByCustomerId($companyId);
         $objMethods = new MethodsPayModel();
-        
+        $response = array(); // Crear un array para la respuesta    
         if (!empty($payment_methods)) {
             $methods = array();
             foreach ($payment_methods as $p) {
                 $methods[] = $objMethods->consultMethodsById($p['payment_method_id']);
             }
-            // Aquí puedes realizar acciones adicionales con los métodos de pago
+            
+            $options = array(); // Inicializar un array para almacenar las opciones
+        
+            foreach ($methods as $method) {
+                $payment_method_id = $method[0]['payment_method_id'];
+                $name = $method[0]['name'];
+                $options[] = array('value' => $payment_method_id, 'name' => $name);
+            }
+        
+            $response['methods'] = $options; // Agregar las opciones al array de respuesta
         } else {
-            $methods[]="No tiene métodos de pago asignados todavía";
+            $response['methods'] = array(array('value' => '', 'name' => 'No tiene metodos de pago asignados todavia'));
         }
-    } 
+         // ADDRESS SHIPPING OF COMPANY-----------------------------------------------------
+         $objCompany = new CompanyModel();
+         $shipping_address = $objCompany->ConsultCompany($_SESSION['IdCompany']);
+         $quoteAddressParts = array(); // Array para almacenar las partes de la dirección
+         // Verificar si al menos un campo está lleno en la dirección de envío
+         foreach ($shipping_address as $key) {
+             if (!empty($key['c_shippingStreet']) AND !empty($key['c_shippingApartament']) AND !empty($key['c_shippingCountry']) AND !empty($key['c_shippingCity']) AND !empty($key['c_shippingState']) AND !empty($key['c_shippingPostalcode'])) {
+                 $quoteAddressParts[] = $key['c_shippingStreet'] . ', ' . $key['c_shippingApartament'] . ', ' . $key['c_shippingCountry'] . ', ' . $key['c_shippingCity'] . ', ' . $key['c_shippingState'] . ', ' . $key['c_shippingPostalcode'];
+             }
+         }
+         
+         if (!empty($quoteAddressParts)) {
+             // Agregar la dirección de envío al array de respuesta
+             $response['quoteAddress'] = implode(' ', $quoteAddressParts);
+         } else {
+             // Agregar un mensaje indicando que no hay dirección de envío
+             $response['quoteAddress'] = 'No hay dirección de envío registrada - Ingresa una direccion en este campo';
+         }
+        //REPRESENTANT OF COMPANY
+        $objUser= new UserModel();
+        $user=$objUser->getUsersByRoleCompanyAndStatus('4',$companyId,'1');
+        $response['representant']= $user;
+
+         
+        // Enviar la respuesta como JSON
+        echo json_encode($response);
+    }
+    
+    
 
 
 
@@ -352,26 +386,26 @@ class QuoteController{
                     echo '<div class="row mt-3">';
                 }
                 ?>
-        <div class="col-md-<?php echo 12 / $articlesForRows?> roll-in-blurred-left cardsDiv">
-            <div class="card">
-                <img src="<?= $art['ar_img_url'] ?>" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title"><?= $art['ar_name'] ?></h5>
-                    <p class="card-text"><b>Descripción: </b><?= $art['ar_desc'] ?></p>
-                    <p class="card-text"><b>Peso: </b><?= $art['ar_measurement_value'] ?>kg</p>
-                    <?php foreach ($art['color'] as $color): ?>
-                    <p class="card-text"><b>Color: </b><?= $color['color_name'] ?></p>
-                    <?php endforeach; ?>
-                    <p><b>Cantidad:</b>
-                        <input type="number" class="mt-2 mb-2 quantityinput form form-control" name="quantity" min="1" id="">
-                        <button data-url="<?= Helpers\generateUrl("Quote","Quote","AddArticlesAjax",[],"ajax");?>"
-                            value="<?= $art['ar_id']?>" id="addArticles" class="btn btn-outline-primary">Añadir
-                            articulo</button>
-                    </p>
-                </div>
-            </div>
+<div class="col-md-<?php echo 12 / $articlesForRows?> roll-in-blurred-left cardsDiv">
+    <div class="card">
+        <img src="<?= $art['ar_img_url'] ?>" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title"><?= $art['ar_name'] ?></h5>
+            <p class="card-text"><b>Descripción: </b><?= $art['ar_desc'] ?></p>
+            <p class="card-text"><b>Peso: </b><?= $art['ar_measurement_value'] ?>kg</p>
+            <?php foreach ($art['color'] as $color): ?>
+            <p class="card-text"><b>Color: </b><?= $color['color_name'] ?></p>
+            <?php endforeach; ?>
+            <p><b>Cantidad:</b>
+                <input type="number" class="mt-2 mb-2 quantityinput form form-control" name="quantity" min="1" id="">
+                <button data-url="<?= Helpers\generateUrl("Quote","Quote","AddArticlesAjax",[],"ajax");?>"
+                    value="<?= $art['ar_id']?>" id="addArticles" class="btn btn-outline-primary">Añadir
+                    articulo</button>
+            </p>
         </div>
-        <?php
+    </div>
+</div>
+<?php
                                 $count++;
                                 if ($count % $articlesForRows== 0) {
                                     echo '</div>';

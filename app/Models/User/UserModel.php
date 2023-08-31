@@ -30,6 +30,7 @@ Class UserModel extends MasterModel
 
         return $emails;
     }
+    
     public function consultEmailsAndNameOfTheCompany($id_company)
     {
         
@@ -39,6 +40,8 @@ Class UserModel extends MasterModel
         $results = $this->select($sql, $params); 
         return $results;
     }
+
+
 
     public function UpdateRepresentantCompanyRolCompanyAndProgrammer($u_id,$u_name,$u_lastname,$u_document,$u_email,$u_type_document){
         $sql = "UPDATE users SET
@@ -121,7 +124,7 @@ Class UserModel extends MasterModel
     
 
     public function getUsersByRoleCompanyAndStatus($rol_id, $c_id, $status_id) {
-        $sql = "SELECT u_id,u_name,u_lastname,u_email,u_document,u_type_document
+        $sql = "SELECT u_id,u_name,u_lastname,u_email,u_document,u_type_document,u_phone
         FROM users
         WHERE rol_id = :rol_id 
         AND c_id = :c_id 

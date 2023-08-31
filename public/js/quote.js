@@ -11,7 +11,6 @@ $(document).ready(function () {
             }
         });
   })
-
   // add articles table quote
   cont = 0;
 
@@ -153,6 +152,53 @@ $(document).ready(function () {
       }
     });
   })
+
+
+
+  $(document).on('change', '#SelectQuote', function () {
+
+    let url = $(this).attr('data-url');
+    let id = $(this).val();
+
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: { c_id: id },
+        dataType: "json", // Indica que esperas una respuesta JSON
+        success: function (response) {
+            console.log(response); // Mostrar la respuesta completa
+            // name
+            let representantName=response.representant[0].u_name+" "+response.representant[0].u_lastname;
+            // phone
+            let representantPhone=response.representant[0].u_phone;
+            // email
+            let representantEmail=response.representant[0].u_email;
+            //
+            let address_shipping=response.quoteAddress;
+                     
+            $('#clientQuote').prop('disabled', false).val(representantName);            
+            $('#phoneQuote').prop('disabled', false).val(representantPhone);            
+            $('#emailQuote').prop('disabled', false).val(representantEmail);            
+            $('#address_shipping').val(address_shipping);
+            
+           // Crear un elemento <select> con las opciones de métodos de pago
+           let optionsMethods = $("<select class='form-select' name='payment_method' id='methodspayQuote'></select>");
+           optionsMethods.append("<option value='' selected disabled>Selecciona una opcion</option>");
+           
+           // Agregar opciones de métodos de pago al <select>
+           response.methods.forEach(method => {
+               optionsMethods.append(`<option value='${method.value}'>${method.name}</option>`);
+           });
+           
+           // Insertar el <select> en el contenedor deseado
+           $('#methodspayQuote').replaceWith(optionsMethods);
+           
+        }
+    });
+});
+
+
+
   // delete input
   $(document).on('click', '.delete-btn', function() {
     $(this).closest('.col-md-6').remove();
@@ -211,6 +257,7 @@ function mostrarAlerta(camposFaltantes) {
 }
 
 $(document).ready(function() {
+  $('.js-example-basic-single').select2();
   // Llamar a la función de validación al cargar la página para inicializar el estado del botón de submit
   validarCampos();
 

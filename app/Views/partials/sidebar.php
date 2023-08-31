@@ -118,12 +118,12 @@
 
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="<?= Helpers\generateUrl("Clients","Clients","ViewClientPortal");?>" class="menu-link">
+                    <a href="<?= Helpers\generateUrl("Access","Access","error404");?>" class="menu-link">
                         <div data-i18n="Without menu">Ver</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="<?= Helpers\generateUrl("Clients","Clients","ViewClientPortal");?>" class="menu-link">
+                    <a href="<?= Helpers\generateUrl("Access","Access","error404");?>" class="menu-link">
                         <div data-i18n="Without menu">Crear</div>
                     </a>
                 </li>
@@ -148,11 +148,11 @@
                         <div data-i18n="Error">Crear</div>
                     </a>
                 </li>
-                <li class="menu-item">
+                <!-- <li class="menu-item">
                     <a href="<?= Helpers\generateUrl("Quote","Quote","ViewQuotes");?>" class="menu-link">
                         <div data-i18n="Under Maintenance">Ver</div>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </li>
         <li class="menu-item">
@@ -171,11 +171,11 @@
                         <div data-i18n="Error">Crear</div>
                     </a>
                 </li>
-                <li class="menu-item">
+                <!-- <li class="menu-item">
                     <a href="<?= Helpers\generateUrl("Order","Order","ViewOrders");?>" class="menu-link">
                         <div data-i18n="Under Maintenance">Ver2</div>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </li>
         <li class="menu-item">

@@ -2,47 +2,38 @@
     enctype="multipart/form-data">
     <div class="container">
         <h1 class="tracking-in-expand">Pedido <i class="fa-solid fa-pen-to-square"></i></h1>
-
-        <!-- <div class="ml-auto col-md-3 p-4">
-            <button id="addFieldsForm" type="button"
-                data-url="<?=Helpers\generateUrl("Order","Order","ViewModalAddFields",[],"ajax");?>"
-                class="btn btn-outline-primary">Agregar campos</button>
-        </div> -->
         <hr>
         <div class="row d-flex">
 
             <div class="col-md-6 ">
                 <h3 class="tracking-in-expand">Información del cliente <i class="fa-solid fa-user"></i></h3>
-                <div class="form-group">
-                    <label for="nombre">Nombre:</label>
-                    <label for=""
-                        class="form form-control"><?=  $_SESSION['nameUser']." ".$_SESSION['LastNameUser']?></label>
-                    <input type="hidden" value="<?= $_SESSION['nameUser']." ".$_SESSION['LastNameUser']?>" id="name"
-                        name="name">
-                </div>
+
                 <label for="">Empresa:</label>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-building"></i></span>
-                    <label for="" class="form form-control"><?=  $_SESSION['CompanyName']?></label>
-
-                    <input type="hidden" value="<?= $_SESSION['CompanyName']?>" aria-label="Username" name="company"
-                        aria-describedby="basic-addon1">
+                    <select data-url="<?= Helpers\generateUrl("Order","Order","attrsByAjax",[],"ajax")?>"
+                        id="SelectOrder" name="company" class="form-control js-example-basic-single">
+                        <option value="" disabled selected>Seleccione una opcion</option>
+                        <?php foreach ($companies as $c) {?>
+                        <option value="<?=$c['c_id']?>"><?=$c['c_name']?></option>
+                        <?php } ?>
+                    </select>
                 </div>
+                <div class="form-group">
+                    <label for="nombre">Cliente:</label>
+                    <input type="text" id="clientOrder" disabled class="form-control" name="name">
+                </div>
+
                 <div class="form-group">
                     <label for="email">Email:</label>
                     <div class="input-group mb-3">
-                        <label for="" class="form form-control"><?= $_SESSION['EmailUser']?></label>
-                        <input type="hidden" value="<?= $_SESSION['EmailUser']?>" name="email"
-                            aria-describedby="basic-addon2">
+                        <input type="text" id="emailOrder" disabled class="form-control" name="email">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="telefono">Teléfono:</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-phone"></i></span>
-                        <label for="" class="form form-control"><?= $_SESSION['PhoneUser']?></label>
-                        <input type="hidden" value="<?= $_SESSION['PhoneUser']?>" class="form-control" name="phone"
-                            aria-label="Username" aria-describedby="basic-addon1">
+                        <input type="text" disabled class="form-control" id="phoneOrder" name="phone">
                     </div>
                 </div>
             </div>
@@ -50,16 +41,9 @@
                 <h3 class="tracking-in-expand">Información de pago <i class="fa-solid fa-money-bill"></i></h3>
                 <div class="form-group">
                     <label for="metodo_pago">Método de pago:</label>
-                    <select class="form-select form-field" id="payment_method" name="payment_method">
-                        <option selected disabled> Seleccione una opcion</option>
-                        <?php
-                        foreach ($methods as $method) {
-                            $payment_method_id = $method[0]['payment_method_id'];
-                            $name = $method[0]['name'];
-                            echo "<option value='$payment_method_id'>$name</option>";
-                        }
-                        ?>
-                    </select>
+                    <div id="methodspayOrder" arial="payment_method">
+                        <input type="text" disabled class="form-control">
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="direccion"></label>
@@ -67,7 +51,7 @@
                     <div class="input-group">
                         <span class="input-group-text">Dirección de envío:</span>
                         <textarea class="form-control form-field" aria-label="With textarea"
-                            name="address_shipping"><?= $orderAddress?></textarea>
+                          id="address_shipping"  name="address_shipping"></textarea>
                     </div>
                 </div>
                 <div class="form-group">

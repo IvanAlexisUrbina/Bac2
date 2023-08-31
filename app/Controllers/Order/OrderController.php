@@ -62,31 +62,78 @@ class OrderController
         redirect(generateUrl("Order","Order","ordersCompanies"));
     }
     public function ViewCreateOrder(){
-        $obj= new CompanyModel();
-        $shipping_address=$obj->ConsultCompany($_SESSION['IdCompany']);
-        
-        $objCustomerPaymentMethods = new Customer_payment_methodModel();
-        $payment_methods = $objCustomerPaymentMethods->getPaymentMethodsByCustomerId($_SESSION['IdCompany']);
-        $objMethods = new MethodsPayModel();
 
+        $objUser= new UserModel();
+        //users clients
+        $usersClients=$objUser->consultUsersWithRolAndStatus('4','1');         
+        $objCompany= new CompanyModel();
+        foreach ($usersClients as $u) {
+            //companies clients
+            $companies=$objCompany->ConsultCompany($u['c_id']);
+        }
+        
+        include_once "../app/Views/order/orderCreate.php";
+    }
+
+    public function attrsByAjax(){
+
+        $companyId = $_POST['c_id'];
+
+        // METHODS PAY --------------------------------------------------
+        $objCustomerPaymentMethods = new Customer_payment_methodModel();
+        $payment_methods = $objCustomerPaymentMethods->getPaymentMethodsByCustomerId($companyId);
+        $objMethods = new MethodsPayModel();
+        $response = array(); // Crear un array para la respuesta    
         if (!empty($payment_methods)) {
             $methods = array();
             foreach ($payment_methods as $p) {
                 $methods[] = $objMethods->consultMethodsById($p['payment_method_id']);
             }
-            // Aquí puedes realizar acciones adicionales con los métodos de pago
-        } else {
-            $methods[]="No tiene métodos de pago asignados todavía";
-        }
+            
+            $options = array(); // Inicializar un array para almacenar las opciones
         
-        $orderAddress = '';
-        foreach ($shipping_address as $key) {
-            $orderAddress .= $key['c_shippingStreet'] . ', ' . $key['c_shippingApartament'] . ', ' . $key['c_shippingCountry'] . ', ' . $key['c_shippingCity'] . ', ' . $key['c_shippingState'] . ', ' . $key['c_shippingPostalcode'];
-        }   
-        $obj= new SellersModel();
-        $seller=$obj->ConsultSellerByIdOfCompany($_SESSION['IdCompany']);
-        include_once "../app/Views/order/orderCreate.php";
+            foreach ($methods as $method) {
+                $payment_method_id = $method[0]['payment_method_id'];
+                $name = $method[0]['name'];
+                $options[] = array('value' => $payment_method_id, 'name' => $name);
+            }
+        
+            $response['methods'] = $options; // Agregar las opciones al array de respuesta
+        } else {
+            $response['methods'] = array(array('value' => '', 'name' => 'No tiene metodos de pago asignados todavia'));
+        }
+         // ADDRESS SHIPPING OF COMPANY-----------------------------------------------------
+         $objCompany = new CompanyModel();
+         $shipping_address = $objCompany->ConsultCompany($_SESSION['IdCompany']);
+         $orderAddressParts = array(); // Array para almacenar las partes de la dirección
+         // Verificar si al menos un campo está lleno en la dirección de envío
+         foreach ($shipping_address as $key) {
+             if (!empty($key['c_shippingStreet']) AND !empty($key['c_shippingApartament']) AND !empty($key['c_shippingCountry']) AND !empty($key['c_shippingCity']) AND !empty($key['c_shippingState']) AND !empty($key['c_shippingPostalcode'])) {
+                 $orderAddressParts[] = $key['c_shippingStreet'] . ', ' . $key['c_shippingApartament'] . ', ' . $key['c_shippingCountry'] . ', ' . $key['c_shippingCity'] . ', ' . $key['c_shippingState'] . ', ' . $key['c_shippingPostalcode'];
+             }
+         }
+         
+         if (!empty($orderAddressParts)) {
+             // Agregar la dirección de envío al array de respuesta
+             $response['orderAddress'] = implode(' ', $orderAddressParts);
+         } else {
+             // Agregar un mensaje indicando que no hay dirección de envío
+             $response['orderAddress'] = 'No hay dirección de envío registrada - Ingresa una direccion en este campo';
+         }
+        //REPRESENTANT OF COMPANY
+        $objUser= new UserModel();
+        $user=$objUser->getUsersByRoleCompanyAndStatus('4',$companyId,'1');
+        $response['representant']= $user;
+
+         
+        // Enviar la respuesta como JSON
+        echo json_encode($response);
     }
+
+
+
+
+
 
     public function GenerateOrderSinceQuote(){
 

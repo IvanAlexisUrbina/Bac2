@@ -203,6 +203,10 @@ class AccessController
         session_destroy();
         redirect('login.php');
     }
+    public function error404(){
+        include_once '../app/Views/partials/page404.php';
+
+    }
 }
 
 
