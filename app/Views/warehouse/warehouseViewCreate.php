@@ -28,7 +28,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="depto">Departamentos:</label>
+                                    <label for="depto">Departamento:</label>
                                     <select name="depto"
                                         data-url="<?php echo Helpers\generateUrl("Access","Access","TownsWithDepto",[],"ajax") ?>"
                                         class="form-select" id="departmentWarehouse">

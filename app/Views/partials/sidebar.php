@@ -118,12 +118,12 @@
 
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="<?= Helpers\generateUrl("Access","Access","error404");?>" class="menu-link">
+                    <a href="<?= Helpers\generateUrl("Purchase_request","Purchase_request","ConsultRequestPurchaseView");?>" class="menu-link">
                         <div data-i18n="Without menu">Ver</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="<?= Helpers\generateUrl("Access","Access","error404");?>" class="menu-link">
+                    <a href="<?= Helpers\generateUrl("Purchase_request","Purchase_request","consultPurchaseView");?>" class="menu-link">
                         <div data-i18n="Without menu">Crear</div>
                     </a>
                 </li>

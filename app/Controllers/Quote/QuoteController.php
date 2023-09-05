@@ -128,6 +128,7 @@ class QuoteController{
         $payment_method = $_POST['payment_method'];
         $address_shipping = $_POST['address_shipping'];
         $comments = $_POST['comments'];
+        $cc = $_POST['cc'];
         $subtotalQuoteInput = $_POST['subtotalQuoteInput'];
         $taxesQuoteInput = $_POST['taxesQuoteInput'];
         $totalQuoteInput = $_POST['totalQuoteInput'];
@@ -136,9 +137,9 @@ class QuoteController{
         $art_id = $_POST['art_id'];
         $PercentajeOrPrice = $_POST['discountPercentajeOrPrice'];
         $discountPrice = $_POST['discountPrice'];
-
+        
        // Insert the basic data into the "quotations" table
-        $objQuote->insertQuote($name,'a',$payment_method,$company,$address_shipping,$email,$phone,$comments,$_SESSION['UserNumDocument'],$subtotalQuoteInput,$taxesQuoteInput,$totalQuoteInput,null,$_SESSION['idUser'],'1');
+        $objQuote->insertQuote($name,'a',$payment_method,$company,$address_shipping,$email,$phone,$comments,$cc,$subtotalQuoteInput,$taxesQuoteInput,$totalQuoteInput,null,$_SESSION['idUser'],'1');
       
         //get last id
         $quo_id=$objQuote->getLastId('quotes','quo_id');
@@ -168,7 +169,7 @@ class QuoteController{
          //CONSULT DISCOUNT ARTICLE
         //CHECK IF THE COMPANY EXISTS IN THE DISCOUNT GROUPS
         $objDiscount= new Customer_discountsModel();
-        $discountCompany=$objDiscount->consultDiscountsByColumn('c_id',$_SESSION['IdCompany']);
+        $discountCompany=$objDiscount->consultDiscountsByColumn('c_id',$company);
         $priceDiscount=null;
         $discountPercentage=null;
         $arrayArticles = array();
@@ -212,8 +213,13 @@ class QuoteController{
             $article['quantity'] = $quantity[$key];  
             $articleArray[] = $article;
         }
-       
-        $template = PdfModel::templateQuotePdf($articleArray,$fieldName,$fieldValue);
+        // DATOS DEL TEMPLATE DE QUOTE
+        $objCompany= new CompanyModel();
+        $companyinfo=$objCompany->ConsultCompany($company);
+
+        $template = PdfModel::templateQuotePdf($articleArray,$fieldName,$fieldValue,$companyinfo[0]['c_name'],$name,$address_shipping,$phone,$email);
+
+
         $pdfModel = new PdfModel();
         $idQuote = $objQuote->getLastId('quotes','quo_id');
         $filePath=$pdfModel->generatePdf($template,$idQuote,'quotes'); 

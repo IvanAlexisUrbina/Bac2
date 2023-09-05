@@ -6,6 +6,7 @@ use Models\Category\CategoryModel;
 use Models\Company\CompanyModel;
 use Models\Customer_discounts\Customer_discountsModel;
 use Models\Subcategory\SubcategoryModel;
+use Models\User\UserModel;
 
 use function Helpers\dd;
 use function Helpers\generateUrl;
@@ -51,21 +52,74 @@ class GroupsController{
 
     public function viewModalCreate()
     {
+        $objUser = new UserModel();
+        $userClients = $objUser->consultUsersWithRolAndStatus('4', '1');
+        
+        $company = new CompanyModel();
+        $companies = array(); // Create an array to store the companies
+        
+        foreach ($userClients as $usc) {
+            $companyInfo = $company->ConsultCompany($usc['c_id']);
+            // Merge the company information into the $companies array
+            $companies = array_merge($companies, $companyInfo);
+        }
+
+
         $article = new ArticlesModel();
         $articles = $article->consultArticles();
     
         $category = new CategoryModel();
         $categories = $category->consultCategories();
     
-        $company = new CompanyModel();
-        $companies = $company->consultCompanies();
+       
     
         $subcategory = new SubcategoryModel();
         $subcategories = $subcategory->consultSubcategories();
     
         include_once '../app/Views/groups/groupsModalCreate.php';
     }
+    public function viewModalUpdateGroup(){
+        // var_dump($_POST);
+        $obj= new GroupsModel();
+        $id=$_POST['id'];
+        $group=$obj->consultGroupById($id);
+        
+        $objCustomerDiscounts= new Customer_discountsModel();
+        $result=$objCustomerDiscounts->consultDiscounts($id);
+        // dd($result);
+        $article = new ArticlesModel();
+        $articles = $article->consultArticles();
     
+        $category = new CategoryModel();
+        $categories = $category->consultCategories();
+    
+        $objUser = new UserModel();
+        $userClients = $objUser->consultUsersWithRolAndStatus('4', '1');
+        
+        $company = new CompanyModel();
+        $companies = array(); // Create an array to store the companies
+        
+        foreach ($userClients as $usc) {
+            $companyInfo = $company->ConsultCompany($usc['c_id']);
+            // Merge the company information into the $companies array
+            $companies = array_merge($companies, $companyInfo);
+        }
+
+
+        $subcategory = new SubcategoryModel();
+        $subcategories = $subcategory->consultSubcategories();
+    
+        // ARTICLES,SUBCATEGORIES,COMPANIES AND CATEGORIES ADD
+        $objCustomerDiscounts= new Customer_discountsModel();
+
+        $ADDarticles=$objCustomerDiscounts->consultAttrsListPrice($id);
+        $ADDcategories=$objCustomerDiscounts->consultAttrsListPrice($id,'cat_id');
+        $ADDcompanies=$objCustomerDiscounts->consultAttrsListPrice($id,'c_id');
+        $ADDsubcategories=$objCustomerDiscounts->consultAttrsListPrice($id,'sbcat_id');
+        
+        include_once '../app/Views/groups/groupsModalUpdate.php';
+    }
+
     public function InsertGroups(){
         $name = isset($_POST['nameGroup']) ? $_POST['nameGroup'] : null;
         $discount_percentage = isset($_POST['discount_percentage']) ? $_POST['discount_percentage'] : null;
@@ -84,42 +138,7 @@ class GroupsController{
         redirect(generateUrl("Groups","Groups","viewCreateGroups"));
     }
 
-    public function viewModalUpdateGroup(){
-        // var_dump($_POST);
-        $obj= new GroupsModel();
-        $id=$_POST['id'];
-        $group=$obj->consultGroupById($id);
-        
-        $objCustomerDiscounts= new Customer_discountsModel();
-        $result=$objCustomerDiscounts->consultDiscounts($id);
-        // dd($result);
-        $article = new ArticlesModel();
-        $articles = $article->consultArticles();
     
-        $category = new CategoryModel();
-        $categories = $category->consultCategories();
-    
-        $company = new CompanyModel();
-        $companies = $company->consultCompanies();
-
-        $subcategory = new SubcategoryModel();
-        $subcategories = $subcategory->consultSubcategories();
-    
-        // ARTICLES,SUBCATEGORIES,COMPANIES AND CATEGORIES ADD
-        $objCustomerDiscounts= new Customer_discountsModel();
-
-        $ADDarticles=$objCustomerDiscounts->consultAttrsListPrice($id);
-        $ADDcategories=$objCustomerDiscounts->consultAttrsListPrice($id,'cat_id');
-        $ADDcompanies=$objCustomerDiscounts->consultAttrsListPrice($id,'c_id');
-        $ADDsubcategories=$objCustomerDiscounts->consultAttrsListPrice($id,'sbcat_id');
-        
-        
-        
-
-
-
-        include_once '../app/Views/groups/groupsModalUpdate.php';
-    }
 
     public function updateListGroups(){
         $id=$_POST['id'];

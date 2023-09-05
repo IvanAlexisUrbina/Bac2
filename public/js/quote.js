@@ -171,6 +171,8 @@ $(document).ready(function () {
             let representantName=response.representant[0].u_name+" "+response.representant[0].u_lastname;
             // phone
             let representantPhone=response.representant[0].u_phone;
+            // phone
+            let representantDocument=response.representant[0].u_document;
             // email
             let representantEmail=response.representant[0].u_email;
             //
@@ -178,6 +180,7 @@ $(document).ready(function () {
                      
             $('#clientQuote').prop('disabled', false).val(representantName);            
             $('#phoneQuote').prop('disabled', false).val(representantPhone);            
+            $('#ccQuote').prop('disabled', false).val(representantDocument);            
             $('#emailQuote').prop('disabled', false).val(representantEmail);            
             $('#address_shipping').val(address_shipping);
             

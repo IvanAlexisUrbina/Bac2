@@ -5,7 +5,7 @@
             <a class="list-group-item list-group-item-action active" id="home-list-item" data-bs-toggle="list"
                 href="#horizontal-home">Agendar reunión</a>
             <a class="list-group-item list-group-item-action " id="profile-list-item" data-bs-toggle="list"
-                href="#horizontal-profile">Profile</a>
+                href="#horizontal-profile">Actividades</a>
             <a class="list-group-item list-group-item-action" id="messages-list-item" data-bs-toggle="list"
                 href="#horizontal-messages">Messages</a>
             <a class="list-group-item list-group-item-action" id="settings-list-item" data-bs-toggle="list"

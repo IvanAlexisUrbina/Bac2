@@ -306,11 +306,12 @@ class OrderController
         $quantity_article = $_POST['quantity_article'];
         $PriceNormal=$_POST['PriceNormal'];
         $art_id = $_POST['art_id'];
+        $cc = $_POST['cc'];
         $PercentajeOrPrice = $_POST['discountPercentajeOrPrice'];
         $discountPrice = $_POST['discountPrice'];
-
+        
        // Insert the basic data into the "orders" table
-       $objOrder->insertOrder($name,'a',$payment_method,$company,$address_shipping,$email,$phone,$comments,$_SESSION['UserNumDocument'],$subtotalOrderInput,$taxesOrderInput,$totalOrderInput,null,$_SESSION['idUser']);
+       $objOrder->insertOrder($name,'a',$payment_method,$company,$address_shipping,$email,$phone,$comments,$cc,$subtotalOrderInput,$taxesOrderInput,$totalOrderInput,null,$_SESSION['idUser']);
       
         //get last id
          $order_id=$objOrder->getLastId('order','order_id');
@@ -340,7 +341,7 @@ class OrderController
          //CONSULT DISCOUNT ARTICLE
         //CHECK IF THE COMPANY EXISTS IN THE DISCOUNT GROUPS
         $objDiscount= new Customer_discountsModel();
-        $discountCompany=$objDiscount->consultDiscountsByColumn('c_id',$_SESSION['IdCompany']);
+        $discountCompany=$objDiscount->consultDiscountsByColumn('c_id',$company);
         $priceDiscount=null;
         $discountPercentage=null;
         $arrayArticles = array();
@@ -384,8 +385,11 @@ class OrderController
             $article['quantity'] = $quantity[$key];  
             $articleArray[] = $article;
         }
-       
-        $template = PdfModel::templateOrderPdf($articleArray,$fieldName,$fieldValue);
+         // DATOS DEL TEMPLATE DE ORDER
+        $objCompany= new CompanyModel();
+        $companyinfo=$objCompany->ConsultCompany($company);
+
+        $template = PdfModel::templateOrderPdf($articleArray,$fieldName,$fieldValue,$companyinfo[0]['c_name'],$name,$address_shipping,$phone,$email);
         $pdfModel = new PdfModel();
         $idOrder =$objOrder->getLastId('order','order_id');
         $filePath=$pdfModel->generatePdf($template,$idOrder,'orders'); 

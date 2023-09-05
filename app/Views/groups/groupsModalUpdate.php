@@ -5,7 +5,11 @@
     <div class="container p-4">
         <div class="row d-flex">
             <div class="col-md-6">
-                <?php foreach ( $group as $gp): ?>
+                <?php
+
+                use function Helpers\dd;
+
+ foreach ( $group as $gp): ?>
 
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
@@ -15,14 +19,22 @@
                 </div>
                 <label for="">Descuento:</label>
                 <div class="input-group mb-3">
-                    <input type="number" step="0.01" min="0" max="100" value="<?=$gp['gp_discount_percentage']?>"
-                        name="discount_percentage" class="form-control" aria-label="Amount (to the nearest dollar)">
+                    <?php
+                    $discountPercentage = $gp['gp_discount_percentage'];
+                    if (!empty($discountPercentage)) {
+                        echo '<input type="number" step="0.01" min="0" max="100" id="discount_percentage" value="' . $discountPercentage . '" name="discount_percentage" class="form-control" aria-label="Amount (to the nearest dollar)">';
+                    } else {
+                        echo '<input type="number" step="0.01" min="0" max="100" id="discount_percentage"  name="discount_percentage" class="form-control" aria-label="Amount (to the nearest dollar)" disabled>';
+                    }
+                    ?>
                     <span class="input-group-text">%</span>
                 </div>
+
                 <?php endforeach; ?>
                 <label for="">Fecha finalizacion:</label>
                 <div class="input-group mb-3">
-                    <input class="form-control" type="datetime-local" name="date_end" id="date_end">
+                    
+                    <input class="form-control" type="datetime-local" value="<?= $gp['gp_date_end_discount']; ?>" name="date_end" id="date_end">
                 </div>
             </div>
             <div class="col-md-6">
@@ -32,8 +44,16 @@
                 </div>
                 <div class="form-group">
                     <label for="nombre">Precio:</label>
-                    <input type="text" value="<?= $result[0]['price_discount']?>" class="form-control" name="price" required>
+                    <?php
+                $priceDiscount = $result[0]['price_discount'];
+                if (!empty($priceDiscount)) {
+                    echo '<input type="text" id="price" value="' . $priceDiscount . '" class="form-control" name="price" required>';
+                } else {
+                    echo '<input type="text" id="price" class="form-control" name="price" disabled>';
+                }
+                ?>
                 </div>
+
             </div>
 
 

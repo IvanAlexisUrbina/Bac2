@@ -18,9 +18,16 @@
                         <?php } ?>
                     </select>
                 </div>
+
                 <div class="form-group">
                     <label for="nombre">Cliente:</label>
                     <input type="text" id="clientOrder" disabled class="form-control" name="name">
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre">Cedula:</label>
+                    <input type="number" id="ccOrder" disabled class="form-control" name="cc">
+                  
                 </div>
 
                 <div class="form-group">

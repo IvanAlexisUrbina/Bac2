@@ -50,7 +50,7 @@ Class PdfModel extends MasterModel
     }
     
 
-    public static function templateQuotePdf(array $articleArray,array $fieldName= NULL,array $fieldValue= NULL){
+    public static function templateQuotePdf(array $articleArray,array $fieldName= NULL,array $fieldValue= NULL,$companyName,$name,$address_shipping,$phone,$email){
         // VARS CONST GLOBAL
         require_once '../config/global.php';     
         $quotePdf='<!DOCTYPE html>
@@ -118,11 +118,11 @@ Class PdfModel extends MasterModel
             <h1>Cotización</h1>
         
             <div class="contact-info">
-                <p>Cliente: <b>'.$_SESSION['CompanyName'].'</b></p>
-                <p>Nombre del cliente: <b>'.$_SESSION['nameUser'].' '.$_SESSION['nameUser'].' </b></p>
-                <p>Dirección del cliente : <b> '.$_SESSION['CompanyName'].'</b></p>
-                <p>Teléfono del cliente: <b> '.$_SESSION['PhoneUser'].'</b></p>
-                <p>Correo electrónico del cliente:<b> '.$_SESSION['EmailUser'].'</b></p>';
+                <p>Cliente: <b>'.$companyName.'</b></p>
+                <p>Nombre del cliente: <b>'.$name.' </b></p>
+                <p>Dirección del cliente : <b> '.$address_shipping.'</b></p>
+                <p>Teléfono del cliente: <b> '.$phone.'</b></p>
+                <p>Correo electrónico del cliente:<b> '.$email.'</b></p>';
                 if($fieldName<>NULL OR $fieldValue<>NULL ){
                 for ($i=0; $i <count($fieldName) ; $i++) { 
                     $quotePdf.='<p>'.$fieldName[$i].':<b>'.$fieldValue[$i].'</b></p>';
@@ -196,7 +196,7 @@ Class PdfModel extends MasterModel
     }
 
 
-    public static function templateOrderPdf(array $articleArray,array $fieldName= NULL,array $fieldValue= NULL){
+    public static function templateOrderPdf(array $articleArray,array $fieldName= NULL,array $fieldValue= NULL,$companyName,$name,$address_shipping,$phone,$email){
         // VARS CONST GLOBAL
         require_once '../config/global.php';     
             
@@ -265,11 +265,11 @@ Class PdfModel extends MasterModel
             <h1>Pedido</h1>
         
             <div class="contact-info">
-                <p>Cliente: <b>'.$_SESSION['CompanyName'].'</b></p>
-                <p>Nombre del cliente: <b>'.$_SESSION['nameUser'].' '.$_SESSION['nameUser'].' </b></p>
-                <p>Dirección del cliente : <b> '.$_SESSION['CompanyName'].'</b></p>
-                <p>Teléfono del cliente: <b> '.$_SESSION['PhoneUser'].'</b></p>
-                <p>Correo electrónico del cliente:<b> '.$_SESSION['EmailUser'].'</b></p>';
+                <p>Cliente: <b>'.$companyName.'</b></p>
+                <p>Nombre del cliente: <b>'.$name.' </b></p>
+                <p>Dirección del cliente : <b> '.$address_shipping.'</b></p>
+                <p>Teléfono del cliente: <b> '.$phone.'</b></p>
+                <p>Correo electrónico del cliente:<b> '.$email.'</b></p>';
                 if($fieldName<>NULL OR $fieldValue<>NULL ){
                 for ($i=0; $i <count($fieldName) ; $i++) { 
                     $orderPdf.='<p>'.$fieldName[$i].':<b>'.$fieldValue[$i].'</b></p>';

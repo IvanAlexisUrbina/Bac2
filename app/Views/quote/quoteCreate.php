@@ -23,6 +23,11 @@
                     <input type="text" id="clientQuote" disabled class="form-control" name="name">
                   
                 </div>
+                <div class="form-group">
+                    <label for="nombre">Cedula:</label>
+                    <input type="number" id="ccQuote" disabled class="form-control" name="cc">
+                  
+                </div>
 
                 <div class="form-group">
                     <label for="email">Email:</label>

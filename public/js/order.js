@@ -247,9 +247,12 @@ if ($("#formOrderSinceQuote").length > 0) {
             let representantEmail=response.representant[0].u_email;
             //
             let address_shipping=response.orderAddress;
-                     
+            //
+            let representantDocument=response.representant[0].u_document;
+
             $('#clientOrder').prop('disabled', false).val(representantName);            
             $('#phoneOrder').prop('disabled', false).val(representantPhone);            
+            $('#ccOrder').prop('disabled', false).val(representantDocument);            
             $('#emailOrder').prop('disabled', false).val(representantEmail);            
             $('#address_shipping').val(address_shipping);
             
