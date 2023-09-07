@@ -89,7 +89,8 @@
                                         <option value="" disabled selected>Seleccione un área</option>
                                         <option value="ventas">Ventas</option>
                                         <option value="soporte">Soporte</option>
-                                        <option value="marketing">Marketing</option>
+                                        <option value="Cotizacion">Cotizacion</option>
+                                        <option value="Pedido">Pedido</option>
                                     </select>
                                 </div>
                             </div>

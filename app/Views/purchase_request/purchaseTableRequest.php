@@ -2,13 +2,12 @@
   <table id="myTable"  class="DataTable text-center table align-middle slide-in-top table-hover table-responsive">
     <thead class="table-secondary">
       <tr>
-        <th >Imagen</th>
-        <th>Nombre</th>
-        <th>Descripción</th>
-        <th>Unidad de medida</th>
-        <th>Color</th>
-        <th>Cantidad en stock</th>
-        <th>Ficha tecnica</th>
+        <th >Nombre</th>
+        <th>Descripcion</th>
+        <th>Motivo</th>
+        <th>Monto</th>
+        <th>Fecha</th>
+        <th>Estado</th>
       </tr>
     </thead>
     <tbody>
