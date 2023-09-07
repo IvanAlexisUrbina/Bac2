@@ -6,10 +6,10 @@
                 href="#horizontal-home">Agendar reunión</a>
             <a class="list-group-item list-group-item-action " id="profile-list-item" data-bs-toggle="list"
                 href="#horizontal-profile">Actividades</a>
-            <a class="list-group-item list-group-item-action" id="messages-list-item" data-bs-toggle="list"
+            <!-- <a class="list-group-item list-group-item-action" id="messages-list-item" data-bs-toggle="list"
                 href="#horizontal-messages">Messages</a>
             <a class="list-group-item list-group-item-action" id="settings-list-item" data-bs-toggle="list"
-                href="#horizontal-settings">Settings</a>
+                href="#horizontal-settings">Settings</a> -->
         </div>
         <div class="tab-content px-0 mt-0 card">
             <div class="tab-pane fade active show" id="horizontal-home">
