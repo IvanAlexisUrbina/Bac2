@@ -52,6 +52,39 @@ $(document).ready(function() {
             confirmButtonText: 'Aceptar'
         });
     }
+
+
+
+
+  
+        // Escuchar el evento de cambio en el select
+        $(document).on('change','#activity-type',function () {
+            // alert(a);
+            var selectedOption = $(this).val();
+            // Si se selecciona "Reunión", mostrar el div y borrar datos
+            if (selectedOption === "reunion") {
+                $('#DivMeet').show();
+                // Borra los datos de los campos en el div
+                $('#clientSelect').val([]).trigger('change');
+                $('#attendees').val([]).trigger('change');
+                $('#meetingType').val('');
+                $('#meetingLink').val('');
+                $('#comments').val('');
+                // Inicializar select2 para los selects múltiples
+                $('.js-example-basic-multiple').select2();
+            } else {
+                // Si se selecciona otra cosa, ocultar el div y borrar datos
+                $('#DivMeet').hide();
+                $('#clientSelect').val([]).trigger('change');
+                $('#attendees').val([]).trigger('change');
+                $('#meetingType').val('');
+                $('#meetingLink').val('');
+                $('#comments').val('');
+            }
+        });
+
+        
+
     
 });
 

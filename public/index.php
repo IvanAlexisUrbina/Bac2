@@ -3,25 +3,25 @@
     include_once '../config/Auth.php';
     include_once '../config/global.php';
 
-    // // Evitar caché en el navegador
-    // header("Cache-Control: private, no-cache, no-store, must-revalidate");
-    // header("Pragma: no-cache");
-    // header("Expires: 0");
+    // Evitar caché en el navegador
+    header("Cache-Control: private, no-cache, no-store, must-revalidate");
+    header("Pragma: no-cache");
+    header("Expires: 0");
 
-    // // Evitar caché en proxies compartidos
-    // header("Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate");
+    // Evitar caché en proxies compartidos
+    header("Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate");
 
-    // // Evitar caché en versiones antiguas de Internet Explorer
-    // header("Cache-Control: post-check=0, pre-check=0", false);
+    // Evitar caché en versiones antiguas de Internet Explorer
+    header("Cache-Control: post-check=0, pre-check=0", false);
 
-    // // Cabecera de Vary
-    // header("Vary: *");
+    // Cabecera de Vary
+    header("Vary: *");
 
-    // // Cabecera de Last-Modified
-    // header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+    // Cabecera de Last-Modified
+    header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 
-    // // Cabecera de ETag
-    // header("ETag: " . md5(rand()));
+    // Cabecera de ETag
+    header("ETag: " . md5(rand()));
 
     include_once '../app/Views/partials/header.php';
 ?>
@@ -42,9 +42,6 @@
                         include_once '../app/Views/partials/home.php';
                     }
                     ?>
-
-
-
                  
                         </div>
                         <?php 

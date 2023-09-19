@@ -28,7 +28,7 @@ $(document).ready(function() {
                 confirmButtonText: 'Aceptar'
               }).then(function() {
                 // Recargar la página para mostrar los cambios
-                location.reload();
+                window.location.href = window.location.href;
               });
             } else if (response == "error") {
               Swal.fire({

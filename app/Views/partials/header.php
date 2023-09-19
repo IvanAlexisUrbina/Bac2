@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="css/groups.css">
     <link rel="stylesheet" href="css/stock.css">
     <link rel="stylesheet" href="css/inbox.css">
+    <link rel="stylesheet" href="css/crm.css">
     <link rel="stylesheet" href="css/warehouse.css">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
