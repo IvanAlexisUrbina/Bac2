@@ -1,0 +1,32 @@
+.truncate {
+    /* max-width: 200px; Ajusta este valor según tus necesidades */
+    /* white-space: nowrap; */
+    overflow: hidden;
+    /* text-overflow: ellipsis; */
+    font-size: small;
+    justify-content: start;
+    text-align: left; 
+ }
+
+ /* CSS personalizado para DataTables */
+.dataTables_filter {
+    margin-bottom: 10px; /* Añade espacio debajo del campo de búsqueda */
+}
+
+.dataTables_filter label {
+    display: block; /* Hace que la etiqueta sea un bloque para controlar su posición */
+}
+
+.wrap-text {
+    white-space: normal !important; /* Forza el salto de línea */
+    word-wrap: break-word !important; /* Rompe palabras largas */
+}
+
+
+.padding-left-right{
+     padding: 10px 200px !important ;
+}
+
+.text-left-custom {
+    text-align: left !important;
+}

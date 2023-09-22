@@ -67,7 +67,12 @@
             <ul class="menu-sub">
                 <li class="menu-item">
                     <a href="<?= Helpers\generateUrl("CRM","CRM","consultViewDate");?>" class="menu-link">
-                        <div data-i18n="Without menu">Ver</div>
+                        <div data-i18n="Without menu">Crear actividades</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="<?= Helpers\generateUrl("CRM","CRM","consultActivities");?>" class="menu-link">
+                        <div data-i18n="Without menu">Ver actividades</div>
                     </a>
                 </li>
             </ul>

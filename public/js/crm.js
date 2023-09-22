@@ -83,8 +83,33 @@ $(document).ready(function() {
             }
         });
 
-        
 
+        $(document).on('change','#activity-reminder',function () {
+            var reminderDetails = $('#reminder-details');
+            var reminderTimeInput = $('#activity-reminder-time');
+            
+            if ($(this).is(':checked')) {
+                reminderDetails.show();
+            } else {
+                reminderDetails.hide();
+                reminderTimeInput.val(''); // Borrar el valor si el checkbox se desmarca
+            }
+        });
+   
+        $(document).on("click",".detaillsActivity",function () {
+            let url=$(this).attr("data-url");
+            let id=$(this).attr("data-id");
+            $.ajax({
+                url: url,
+                data:{act_id:id},
+                type: "POST",
+                success: function(datos) {
+                    $("#ModalContent").html(datos); 
+                    $("#ModalLarge").modal("show");  
+                }
+            });
+       });
+    
     
 });
 

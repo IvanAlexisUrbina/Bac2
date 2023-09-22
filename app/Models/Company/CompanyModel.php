@@ -376,6 +376,18 @@ Class CompanyModel extends MasterModel
         $this->delete($sql, $params);
     }
     
+    public function ConsultCompaniesClients(){
+        $sql="SELECT company.*
+        FROM users
+        INNER JOIN company
+        ON company.c_id=users.c_id
+        WHERE users.rol_id='4'";
+
+         $params = [];
+         $result = $this->select($sql, $params); 
+         return $result;
+    }
+
 } 
 
 

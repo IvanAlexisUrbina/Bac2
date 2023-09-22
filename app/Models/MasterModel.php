@@ -15,6 +15,7 @@ class MasterModel extends Connection {
     public function __construct() {
         $this->pdo = Connection::getInstance()->getPdo();
     }
+    
     public function getLastId($table, $idColumnName = 'id')
     {
         $sql = "SELECT `$idColumnName` FROM `$table` ORDER BY `$idColumnName` DESC LIMIT 1";
