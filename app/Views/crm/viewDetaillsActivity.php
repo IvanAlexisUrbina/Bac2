@@ -66,29 +66,34 @@
 
                     <!-- hide divs meet -->
                     <?php if (!empty($activity[0]['meetingDetaills'])): ?>
-                    <?php foreach ($activity[0]['meetingDetaills'] as $meetingDetaills): ?>
-                    <!-- 2 -->
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="meetingType">Asunto de la Reunión:</label>
-                            <label for="" class="form-control"><?= $meetingDetaills['meeting_type'] ?></label>
-                        </div>
+                        <?php foreach ($activity[0]['meetingDetaills'] as $meetingDetaills): ?>
+                            <!-- 2 -->
+                            <div class="row">
+                                <?php if (!empty($meetingDetaills['meeting_type'])): ?>
+                                    <div class="form-group col-md-6">
+                                        <label for="meetingType">Asunto de la Reunión:</label>
+                                        <label for="" class="form-control"><?= $meetingDetaills['meeting_type'] ?></label>
+                                    </div>
+                                <?php endif; ?>
 
-                        <div class="form-group col-md-6">
-                            <label for="meetingType">Link de la Reunión:</label>
-                            <label for="" class="form-control"><?= $meetingDetaills['meeting_link'] ?></label>
-                        </div>
-                    </div>
-                    <!-- 3 -->
+                                <?php if (!empty($meetingDetaills['meeting_link'])): ?>
+                                    <div class="form-group col-md-6">
+                                        <label for="meetingType">Link de la Reunión:</label>
+                                        <label for="" class="form-control"><?= $meetingDetaills['meeting_link'] ?></label>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                            <!-- 3 -->
 
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="comments">Comentarios:</label>
-                            <textarea class="form-control" id="comments" name="comments"
-                                rows="4"><?= $meetingDetaills['comments'] ?></textarea>
-                        </div>
-                    </div>
-                    <?php endforeach; ?>
+                            <?php if (!empty($meetingDetaills['comments'])): ?>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="comments">Comentarios:</label>
+                                        <textarea class="form-control" id="comments" name="comments" rows="4"><?= $meetingDetaills['comments'] ?></textarea>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     <?php endif; ?>
             </div>
             <?php

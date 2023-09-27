@@ -10,36 +10,36 @@
         </div>
 
     </div>
-   
-        <div class="col-md-12">
-            <div class="message-list table-responsive">
-                <h3>Peticion de registro</h3>
-                <table class="DataTable text-center table align-middle slide-in-top table-hover table-responsive">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Nombre empresa</th>
-                            <th>Representante legal</th>
-                            <th>Fecha</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($companies as $c): ?>
-                        <tr>
-                            <td><?php echo $c['c_name']; ?></td>
-                            <td><?php echo $c['representant'][0]['u_name'].' '. $c['representant'][0]['u_lastname']; ?>
-                            </td>
-                            <td><?php echo $c['created_at']; ?></td>
-                            <td>
-                                <button class="btn btn-primary btn-sm messageInboxRequest" data-id="<?= $c['c_id'] ?>"
-                                    data-url="<?= Helpers\generateUrl("Inbox","Inbox","viewRequestRegister",[],"ajax") ?>">
-                                    Abrir
-                                </button>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
+
+    <div class="col-md-12">
+        <div class="message-list table-responsive">
+            <h3>Peticion de registro</h3>
+            <table class="DataTable text-center table align-middle slide-in-top table-hover table-responsive">
+                <thead class="table-dark">
+                    <tr>
+                        <th class="text-white">Nombre empresa</th>
+                        <th class="text-white">Representante legal</th>
+                        <th class="text-white">Fecha</th>
+                        <th class="text-white">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($companies as $c): ?>
+                    <tr>
+                        <td><?php echo $c['c_name']; ?></td>
+                        <td><?php echo $c['representant'][0]['u_name'].' '. $c['representant'][0]['u_lastname']; ?>
+                        </td>
+                        <td><?php echo $c['created_at']; ?></td>
+                        <td>
+                            <button class="btn btn-primary btn-sm messageInboxRequest" data-id="<?= $c['c_id'] ?>"
+                                data-url="<?= Helpers\generateUrl("Inbox","Inbox","viewRequestRegister",[],"ajax") ?>">
+                                Abrir
+                            </button>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
+    </div>
 </div>

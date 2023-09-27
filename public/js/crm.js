@@ -109,6 +109,71 @@ $(document).ready(function() {
                 }
             });
        });
+        $(document).on("click",".updateActivity",function () {
+            let url=$(this).attr("data-url");
+            let id=$(this).attr("data-id");
+            $.ajax({
+                url: url,
+                data:{act_id:id},
+                type: "POST",
+                success: function(datos) {
+                    $("#ModalContent").html(datos); 
+                    $("#ModalLarge").modal("show"); 
+                    $('.js-example-basic-multiple').select2(); 
+                }
+            });
+       });
+
+
+
+
+       $(document).on("click", "#submit-button-activity", function () {
+        // Deshabilita el botón mientras se procesa la solicitud
+            $(this).prop("disabled", true);
+        
+            // Obtiene la URL del formulario
+            var url = $("form").attr("action");
+        
+            // Realiza la solicitud AJAX
+            $.ajax({
+                type: "POST",
+                url: url, // Usa la URL del formulario como la URL de la solicitud
+                data: $("form").serialize(), // Envía los datos del formulario
+                success: function (response) {
+                    // Habilita el botón nuevamente
+                    $("#submit-button-activity").prop("disabled", false);
+        
+                    // Muestra una alerta de éxito con SweetAlert
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Éxito',
+                        text: 'La actividad se ha guardado correctamente.'
+                    }).then(function () {
+                         // Borra todos los campos del formulario
+                        $("form")[0].reset();
+
+                        // Recarga la página
+                        location.reload();
+                    });
+                },
+                error: function (error) {
+                    // Habilita el botón nuevamente en caso de error
+                    $("#submit-button-activity").prop("disabled", false);
+        
+                    // Muestra una alerta de error con SweetAlert
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Ha ocurrido un error al guardar la actividad.'
+                    });
+                }
+            });
+        });
+    
+    
+
+    
+   
     
     
 });

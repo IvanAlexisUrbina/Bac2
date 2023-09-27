@@ -109,7 +109,7 @@ $(document).ready(function () {
                      });
                          // Manejar clic en el botón "x" para eliminar una categoría seleccionada
                          $(document).on('click', '.remove-category', function() {
-                         $(this).parent().remove();
+                            $(this).parent().parent().remove();
                          if ($('.selected-category').length === 0) {
                              categoryDropdown.hide();
                          }

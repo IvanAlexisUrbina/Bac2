@@ -20,7 +20,27 @@ Class GroupsModel extends MasterModel
         return $result;
     }
 
-
+    public function deleteCustomer_discountsByGp_id($gp_id) {
+        $sql = "DELETE FROM customer_discounts
+                WHERE gp_id = :gp_id";
+        $params = [':gp_id' => $gp_id];
+        
+        // Debes ejecutar la consulta para eliminar los registros
+        $affectedRows = $this->delete($sql, $params);
+        
+        // Puedes devolver la cantidad de registros afectados o cualquier otra información necesaria
+        return $affectedRows;
+    }
+    public function deleteListpriceGp_id($gp_id){
+        $sql = "DELETE FROM group_discounts
+                WHERE gp_id = :gp_id";
+        $params = [':gp_id' => $gp_id];
+        
+        // Debes ejecutar la consulta para eliminar los registros
+        $affectedRows = $this->delete($sql, $params);  
+        // Puedes devolver la cantidad de registros afectados o cualquier otra información necesaria
+        return $affectedRows;
+    }
     
     public function insertGroup($name, $discount, $coupon,$gp_date_end_discount)
     {

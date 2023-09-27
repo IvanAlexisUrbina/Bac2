@@ -22,7 +22,7 @@
 					<td>'.$o['order_id'].'</td>
 					<td>'.$o['order_name'].'</td>
 					<td>'.$o['order_date'].'</td>
-					<td>'.$o['order_total'].'</td>
+					<td>'.number_format($o['order_total'], 2, ',', '.').'</td>
 					<td>'.$o['state_name_es'].'</td>
 					<td class="text-center">
 					<button data-url="'.$o['order_url_document'].'" title="Visualizar pedido" class="pdfModalLink btn btn-outline-warning"><i class="fa-solid fa-eye"></i></button>

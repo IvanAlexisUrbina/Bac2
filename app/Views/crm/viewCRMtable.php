@@ -64,13 +64,13 @@
                     ?>
                 </td>
 
-                <td><?=$act['crm_status']?></td>
-                <td>Alta</td>
+                <td><?=$act['status'][0]['status_name']?></td>
+                <td><?=$act['priority'][0]['prst_name']?></td>
                 <td class="text-success"><?=$act['crm_reminder']?></td>
                 <td class="actions">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-outline-warning">Editar</button>
-                        <button type="button" class="btn btn-outline-danger">Eliminar</button>
+                        <!-- <button data-url="<?=Helpers\generateUrl("CRM","CRM","UpdateDetaillsActivity",[],"ajax")?>" data-id="<?=$act['crm_id']?>" type="button" class="updateActivity btn btn-outline-warning">Editar</button> -->
+                        <!-- <button type="button" class="btn btn-outline-danger">Eliminar</button> -->
                         <button  data-url="<?=Helpers\generateUrl("CRM","CRM","consutlDetaillsActivity",[],"ajax")?>" data-id="<?=$act['crm_id']?>" type="button" class="detaillsActivity btn btn-outline-info">Detalles</button>
                     </div>
                 </td>

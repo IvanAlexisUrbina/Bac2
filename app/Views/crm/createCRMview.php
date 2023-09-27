@@ -4,7 +4,7 @@
         <div class="container mt-5">
             <div class="activity-form">
                 <h2 class="mb-4">Registro de Actividades - CRM</h2>
-                <form action="<?= Helpers\generateUrl("CRM","CRM","insertActivityCRM");?>" method="POST">
+                <form action="<?= Helpers\generateUrl("CRM","CRM","insertActivityCRM",[],"ajax");?>" method="POST">
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="activity-type">Tipo de Actividad:</label>
@@ -58,6 +58,7 @@
                                 <!-- Agrega más opciones de vendedores o personas aquí -->
                             </select>
                         </div>
+
                         <div class="form-group col-md-6">
                             <label for="clientSelect">Clientes:</label>
                             <select multiple class="form-control js-example-basic-multiple" id="clientSelect"
@@ -73,6 +74,19 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="clientSelect">Prioridad de la actividad:</label>
+                            <select class="form-select "
+                                name="id_prst">
+                                <?php
+                                            foreach ($priority_States as $prio) {
+                                                echo "<option value='".$prio['id_prst']."'>".$prio['prst_name']."</option>";
+                                            }
+                    
+                                            ?>
+                                <!-- Agrega más opciones de clientes aquí -->
+                            </select>
+                        </div>
                         <div class="form-group col-md-6">
                             <label for="activity-description">Descripción:</label>
                             <textarea name="crm_desc" class="form-control" id="activity-description" rows="3"
@@ -118,7 +132,7 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-md-3">
-                            <button type="submit" class="btn btn-primary">Guardar Actividad</button>
+                            <button type="button"  id="submit-button-activity" class="btn btn-primary">Guardar Actividad</button>
                         </div>
                     </div>
                 </form>

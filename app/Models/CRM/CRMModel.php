@@ -103,11 +103,11 @@ Class CRMModel extends MasterModel
     }
 
 
-    public function insertCRMActivity($activity, $area, $dateTimeInit, $dateTimeEnd, $desc, $reminder,$crm_status,$assignor_id) {
+    public function insertCRMActivity($activity, $area, $dateTimeInit, $dateTimeEnd, $desc, $reminder,$crm_status,$assignor_id,$id_prst) {
         try {
             // Preparar la consulta SQL
-            $sql = "INSERT INTO crm (crm_activity, crm_area, crm_date_time_init, crm_date_time_end, crm_desc, crm_reminder,crm_status,assignor_id) 
-                    VALUES (:activity, :area, :dateTimeInit, :dateTimeEnd, :desc, :reminder,:crm_status,:assignor_id)";
+            $sql = "INSERT INTO crm (crm_activity, crm_area, crm_date_time_init, crm_date_time_end, crm_desc, crm_reminder,crm_status,assignor_id,id_prst) 
+                    VALUES (:activity, :area, :dateTimeInit, :dateTimeEnd, :desc, :reminder,:crm_status,:assignor_id,:id_prst)";
 
             $params = [
 
@@ -119,7 +119,8 @@ Class CRMModel extends MasterModel
             ':desc'=> $desc,
             ':reminder'=> $reminder,
             ':crm_status'=> $crm_status,
-            ':assignor_id'=> $assignor_id
+            ':assignor_id'=> $assignor_id,
+            ':id_prst'=> $id_prst
             ];
             // Ejecutar la consulta
             $this->insert($sql, $params);

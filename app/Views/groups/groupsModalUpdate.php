@@ -1,7 +1,7 @@
 <div class="card-header slide-in-top  bg-light text-center">
     <h3 class="mb-0">Actualizar lista de precio</h3>
 </div>
-<form action="<?= Helpers\generateUrl("Groups","Groups","InsertGroups")?>" method="post">
+<form action="<?= Helpers\generateUrl("Groups","Groups","updateListGroups")?>" method="post">
     <div class="container p-4">
         <div class="row d-flex">
             <div class="col-md-6">

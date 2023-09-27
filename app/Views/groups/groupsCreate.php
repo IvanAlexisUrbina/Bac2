@@ -11,8 +11,8 @@
     <hr>
     <h1 class="tracking-in-expand">Listas <i class="fa-solid fa-list"></i></h1>
     <div class="container table-responsive">
-        <table id="myTable" class="DataTable  text-center table-dark align-middle slide-in-top table-hover table-responsive table-striped">
-            <thead class="table-light">
+        <table id="myTable" class="DataTable  text-center  align-middle slide-in-top table-hover table-responsive table-striped">
+            <thead class="dark-table">
                 <tr>
                     <th>Nombre</th>
                     <th>Empresa/s</th>

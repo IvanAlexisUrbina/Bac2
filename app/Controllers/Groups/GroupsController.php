@@ -141,9 +141,24 @@ class GroupsController{
     
 
     public function updateListGroups(){
-        $id=$_POST['id'];
-        $obj= new GroupsModel();
-        
+        $gp_id=$_POST['gp_id'];
+        $objGroups= new GroupsModel();
+        $objGroups->deleteCustomer_discountsByGp_id($gp_id);
+        $objGroups->deleteListpriceGp_id($gp_id);
+        $name = isset($_POST['nameGroup']) ? $_POST['nameGroup'] : null;
+        $discount_percentage = isset($_POST['discount_percentage']) ? $_POST['discount_percentage'] : null;
+        $coupon = isset($_POST['coupon']) ? $_POST['coupon'] : null;
+        $price = isset($_POST['price']) ? $_POST['price'] : null;
+        $companies = isset($_POST['companies']) ? $_POST['companies'] : null;
+        $categories = isset($_POST['categories']) ? $_POST['categories'] : null;
+        $subcategories = isset($_POST['subcategories']) ? $_POST['subcategories'] : null;
+        $articles = isset($_POST['articles']) ? $_POST['articles'] : null;
+        $date_end = isset($_POST['date_end']) ? $_POST['date_end'] : null;        
+        $objGroups->insertGroup($name,$discount_percentage,$coupon,$date_end);
+        $gp_id=$objGroups->getLastId('group_discounts','gp_id');
+        $discounts= new Customer_discountsModel();
+        $discounts->insertCustomer_discounts($companies,$categories,$subcategories,$articles,$gp_id,$price);
+        redirect(generateUrl("Groups","Groups","viewCreateGroups")); 
     }
 
 }   

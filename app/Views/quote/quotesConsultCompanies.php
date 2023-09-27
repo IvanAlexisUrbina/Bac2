@@ -22,7 +22,7 @@
 					<td>'.$q['c_name'].'</td>
 					<td>'.$q['quo_name'].'</td>
 					<td>'.$q['quo_date'].'</td>
-					<td>'.$q['quo_total'].'</td>
+					<td>'.number_format($q['quo_total'], 2, ',', '.').'</td>
 					<td class="text-center">
 					<button data-url="'.$q['quo_url_document'].'" title="Visualizar cotizacion" class="pdfModalLink btn btn-outline-warning"><i class="fa-solid fa-eye"></i></button>
 					</td>

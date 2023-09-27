@@ -19,6 +19,7 @@
 <script src="js/groups.js"></script>
 <script src="js/warehouse.js"></script>
 <script src="js/crm.js"></script>
+<script src="js/request.js"></script>
 
 <!-- Helpers -->
 <script src="../assets/vendor/js/helpers.js"></script>

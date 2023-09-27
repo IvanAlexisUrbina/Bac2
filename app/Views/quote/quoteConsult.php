@@ -26,7 +26,7 @@
 				echo '<tr>
 					<td>'.$q['quo_id'].'</td>
 					<td>'.$q['quo_name'].'</td>
-					<td>'.$q['quo_total'].'</td>
+					<td>'.number_format($q['quo_total'], 2, ',', '.').'</td>
 					<td style="color:green;">'.date('Y-m-d', strtotime($q['quo_date'])).'</td>
 					<td style="color:red;">'.$validDate.'</td>
 					<td>'.$q['quote_state_name'].'</td>
