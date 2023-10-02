@@ -16,18 +16,23 @@ $(document).ready(function() {
   // Función para añadir artículos a la orden
   let cont = 0;
   $(document).on("click", "#addArticles", function() {
-    Swal.fire({
-      icon: "success",
-      title: "Articulo agregado correctamente",
-      timer: 1000,
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top',
       showConfirmButton: false,
-      position: "top",
-      width: "15rem",
-      padding: "0.5rem",
-      background: "#fff",
-      iconColor: "#1abc9c",
-      toast: true
+      timer: 3000, // Cambiar la duración a 3000 ms o el tiempo deseado
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer);
+        toast.addEventListener('mouseleave', Swal.resumeTimer);
+      },
     });
+    
+    Toast.fire({
+      icon: 'success', // Cambiar el icono a 'success' para indicar éxito
+      title: 'Artículo agregado', // Cambiar el mensaje a 'Artículo agregado'
+    });
+    
 
     cont++;
     let shopcar = $(".cart-counter").text(cont);
@@ -51,7 +56,7 @@ $(document).ready(function() {
           let subtotalValue = parseFloat($(this).text().replace("$", ""));
           totalSubtotal += subtotalValue;
         });
-
+        
         iva = totalSubtotal * 0.19;
         total = iva + totalSubtotal;
         $("#subtotalOrder").text("$" + totalSubtotal.toFixed(2));

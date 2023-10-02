@@ -224,48 +224,45 @@ $(document).ready(function () {
   //     });
   // });
 
-// Función para validar los campos
-function validarCampos() {
-  let allFieldsFilled = true;
-  let emptyFields = [];
+// // Función para validar los campos
+// function validarCampos() {
+//   let allFieldsFilled = true;
+//   let emptyFields = [];
 
-  $('.form-field').each(function() {
-      const fieldValue = $(this).val();
-      if (!fieldValue || fieldValue.trim() === '') {
-          allFieldsFilled = false;
-          emptyFields.push($(this).attr('name'));
-      }
-  });
+//   $('.form-field').each(function() {
+//       const fieldValue = $(this).val();
+//       if (!fieldValue || fieldValue.trim() === '') {
+//           allFieldsFilled = false;
+//           emptyFields.push($(this).attr('name'));
+//       }
+//   });
 
-  // Habilitar o deshabilitar el botón de submit según si están todos los campos llenos o no
-  if (allFieldsFilled) {
-      $('button[type="submit"]').prop('disabled', false);
-  } else {
-      $('button[type="submit"]').prop('disabled', true);
-      mostrarAlerta(emptyFields);
-  }
-}
+//   // Habilitar o deshabilitar el botón de submit según si están todos los campos llenos o no
+//   if (allFieldsFilled) {
+//       $('button[type="submit"]').prop('disabled', false);
+//   } else {
+//       $('button[type="submit"]').prop('disabled', true);
+//       mostrarAlerta(emptyFields);
+//   }
+// }
 
-// Mostrar alerta con los campos faltantes usando SweetAlert
-function mostrarAlerta(camposFaltantes) {
-  const mensaje = 'Los siguientes campos están vacíos o faltan por completar:\n' +
-                  camposFaltantes.join('\n');
+// // Mostrar alerta con los campos faltantes usando SweetAlert
+// function mostrarAlerta(camposFaltantes) {
+//   const mensaje = 'Los siguientes campos están vacíos o faltan por completar:\n' +
+//                   camposFaltantes.join('\n');
   
-  // Utilizar SweetAlert en lugar de alert
-  Swal.fire({
-    icon: 'warning',
-    title: 'Campos Faltantes',
-    text: mensaje,
-  });
-}
+//   // Utilizar SweetAlert en lugar de alert
+//   Swal.fire({
+//     icon: 'warning',
+//     title: 'Campos Faltantes',
+//     text: mensaje,
+//   });
+// }
 
 $(document).ready(function() {
   $('.js-example-basic-single').select2();
   // Llamar a la función de validación al cargar la página para inicializar el estado del botón de submit
-  validarCampos();
 
-  // Agregar eventos keyup y blur a los campos con clase "form-field"
-  $('.form-field').on('keyup blur', validarCampos);
 });
 
   

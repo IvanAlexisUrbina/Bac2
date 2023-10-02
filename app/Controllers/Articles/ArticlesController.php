@@ -83,42 +83,45 @@ class ArticlesController{
                     echo '<div class="row mt-3">';
                 }
                 ?>
-<div class="col-md-<?php echo 12 / $articlesForRows ?> roll-in-blurred-left cardsDiv">
-    <div class="card">
-        <img src="<?= $art['ar_img_url'] ?>" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title"><?= $art['ar_name'] ?></h5>
-            <p class="card-text"><b>Descripción: </b><?= $art['ar_desc'] ?></p>
-            <p class="card-text"><b>Unidad de medida: </b><?= $art['ar_measurement_value'] ?>
-                <?php foreach ($art['meauserement'] as $m) {
-                        echo $m['mt_meas'];
-                   ?>
-                <?php  } ?></p>
-            <?php foreach ($art['color'] as $color): ?>
-            <p class="card-text"><b>Color: </b><?= $color['color_name'] ?></p>
-            <?php endforeach; ?>
-            <?php foreach ($art['price'] as $price): ?>
-            <p class="card-text"><b>Precio: </b><?= $price['p_value'] ?></p>
-            <?php endforeach; ?>
-            <?php if (!empty($art['stock'])): ?>
-            <?php foreach ($art['stock'] as $stock): ?>
-            <p class="card-text"><b>Cantidad en stock: </b><?= $stock['stock_Quantity'] ?></p>
-            <?php endforeach; ?>
-            <?php else: ?>
-            <p class="card-text"><b>Cantidad en stock: </b>Sin existencias</p>
-            <?php endif; ?>
-            <button id="pdf-btn" data-pdf-url="<?= $art['ar_data_url']?>" class="btn btn-outline-primary">Ficha
-                tecnica</button>
+        <div class="col-md-<?php echo 12 / $articlesForRows ?> roll-in-blurred-left cardsDiv">
+            <div class="card h-100">
+                <img data-url="<?= Helpers\generateUrl("Stock", "Stock", "viewArticleDesc", [], "ajax") ?>"
+                    data-value="<?= $art['ar_id'] ?>" src="<?= $art['ar_img_url'] ?>"
+                    class="card-img-top img-fluid rounded viewArticle" style="height: 200px; object-fit: cover;" alt="...">
+                <div class="card-body" style="overflow: hidden;">
+                    <h5 class="card-title"><?= $art['ar_name'] ?></h5>
+                    <p class="card-text"><b>Descripción: </b><?=substr($art['ar_desc'], 0, 100) . '...' ?></p>
+                    <p class="card-text"><b>Unidad de medida: </b><?= $art['ar_measurement_value'] ?>
+                        <?php foreach ($art['meauserement'] as $m) {
+                            echo $m['mt_meas'];
+                        ?>
+                        <?php  } ?></p>
+                    <?php foreach ($art['color'] as $color): ?>
+                    <p class="card-text"><b>Color: </b><?= $color['color_name'] ?></p>
+                    <?php endforeach; ?>
+                    <?php foreach ($art['price'] as $price): ?>
+                    <p class="card-text"><b>Precio: </b><?= $price['p_value'] ?></p>
+                    <?php endforeach; ?>
+                    <?php if (!empty($art['stock'])): ?>
+                    <?php foreach ($art['stock'] as $stock): ?>
+                    <p class="card-text"><b>Cantidad en stock: </b><?= $stock['stock_Quantity'] ?></p>
+                    <?php endforeach; ?>
+                    <?php else: ?>
+                    <p class="card-text"><b>Cantidad en stock: </b>Sin existencias</p>
+                    <?php endif; ?>
+                    <button id="pdf-btn" data-pdf-url="<?= $art['ar_data_url']?>" class="btn btn-outline-primary">Ficha
+                        técnica</button>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+
 <?php
                         $count++;
                         if ($count % $articlesForRows == 0) {
                             echo '</div>';
                         }
                     }
-                    
+
                     if ($count % $articlesForRows!= 0) {
                         echo '</div>';
                     }

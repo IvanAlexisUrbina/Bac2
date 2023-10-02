@@ -34,23 +34,25 @@ use function Helpers\generateUrl;
 </div>
 
 <div class="container" id="contArticles">
-    <?php 
+    
+<?php 
 $count = 0; 
 foreach ($articles as $art) { 
     if ($count % 2 == 0) { 
         echo '<div class="row mt-3">'; // Crea una nueva fila
     }
 ?>
-    <div class="col-md-6 cardsDiv">
+   <div class="col-md-6 cardsDiv">
         <div class="card">
-            <img src="<?= $art['ar_img_url']?>" class="card-img-top" alt="...">
+            <img src="<?= $art['ar_img_url']?>" data-url="<?= Helpers\generateUrl("Stock", "Stock", "viewArticleDesc", [], "ajax") ?>" data-value="<?= $art['ar_id'] ?>" class="card-img-top img-fluid rounded viewArticle"  style="height: 400px ; object-fit: cover;" alt="...">
             <div class="card-body">
                 <h5 class="card-title"><?= $art['ar_name']?></h5>
-                <p class="card-text"><b>Descripción: </b><?= $art['ar_desc']?></p>
+                <!-- Aplica la función substr para truncar la descripción -->
+                <p class="card-text"><b>Descripcióna: </b><?= substr($art['ar_desc'], 0, 100) . '...' ?></p>
                 <p class="card-text"><b>Unidad de medida: </b><?= $art['ar_measurement_value']?> <?php foreach ($art['meauserement'] as $m) {
-                        echo $m['mt_meas'];
-                   ?>
-                <?php  } ?></p>
+                    echo $m['mt_meas'];
+                ?></p>
+                <?php  } ?>
                 <?php foreach ($art['color'] as $color): ?>
                 <p class="card-text"><b>Color: </b><?= $color['color_name']?></p>
                 <?php endforeach; ?>
@@ -65,21 +67,15 @@ foreach ($articles as $art) {
                 <p class="card-text"><b>Cantidad en stock: </b>Sin existencias</p>
                 <?php endif; ?>
                 <button id="pdf-btn" data-pdf-url="<?= $art['ar_data_url']?>" class="btn btn-outline-primary">Ficha
-                    tecnica</button>
+                    técnica</button>
             </div>
         </div>
     </div>
     <?php 
-    $count++; // Incrementar el contador 
-    if ($count % 2 == 0) { // Se cierra cuando llega a 2
+    $count++;
+    if ($count % 2 == 0) {
         echo '</div>';
     }
-} 
-
-// Si el número de artículos no es par, cerrar la última fila
-if ($count % 2 != 0) { 
-    echo '</div>';
-}
-?>
+} ?>
 
 </div>
