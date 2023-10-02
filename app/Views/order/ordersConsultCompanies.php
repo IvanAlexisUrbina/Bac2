@@ -5,7 +5,7 @@
     </div>
     <div class="table-responsive">
 
-        <table class="table DataTable table-hover slide-in-top table-dark table-stripe">
+        <table class="DataTable  text-center truncate table align-middle slide-in-top table-hover">
             <thead>
                 <tr>
                     <th scope="col">#</th>

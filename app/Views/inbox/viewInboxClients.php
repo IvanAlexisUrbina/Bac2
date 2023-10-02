@@ -14,13 +14,14 @@
     <div class="col-md-12">
         <div class="message-list table-responsive">
             <h3>Peticion de registro</h3>
-            <table class="DataTable text-center table align-middle slide-in-top table-hover table-responsive">
-                <thead class="table-dark">
+            <table class="DataTable  text-center truncate table align-middle slide-in-top table-hover">
+
+                <thead>
                     <tr>
-                        <th class="text-white">Nombre empresa</th>
-                        <th class="text-white">Representante legal</th>
-                        <th class="text-white">Fecha</th>
-                        <th class="text-white">Acciones</th>
+                        <th >Nombre empresa</th>
+                        <th >Representante legal</th>
+                        <th >Fecha</th>
+                        <th >Acciones</th>
                     </tr>
                 </thead>
                 <tbody>

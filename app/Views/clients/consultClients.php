@@ -4,14 +4,14 @@
         <span class="lead tracking-in-expand">Total de clientes: <b><?= count($users);?></b></span>
         <a class="btn btn-primary" href="<?= Helpers\generateUrl("Inbox","Inbox","viewInbox");?>">Nuevo cliente</a>
     </div>
-    <table class="table DataTable table-hover slide-in-top table-dark table-stripe">
+    <table class="table DataTable text-center truncate align-middle table-hover slide-in-top">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Empresa</th>
-                <th scope="col">NIT</th>
-                <th scope="col">Nombre representante</th>
-                <th scope="col">Acciones</th>
+                <th  class="text-nowrap" scope="col">#</th>
+                <th  class="text-nowrap" scope="col">Empresa</th>
+                <th  class="text-nowrap" scope="col">NIT</th>
+                <th  class="text-nowrap" scope="col">Nombre representante</th>
+                <th  class="text-nowrap" scope="col">Acciones</th>
             </tr>
         </thead>
         <tbody class="table-light">

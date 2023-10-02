@@ -4,7 +4,7 @@
         <span class="lead tracking-in-expand">Total de pedidos: <b><?= count($orders);?></b></span>
         <a class="btn btn-primary" href="<?= Helpers\generateUrl("Order","Order","ViewCreateOrder");?>">Nuevo pedido</a>
     </div>
-    <table class="table DataTable table-hover slide-in-top table-dark table-stripe">
+    <table class="DataTable  text-center truncate table align-middle slide-in-top table-hover">
         <thead>
             <tr>
                 <th scope="col">#</th>

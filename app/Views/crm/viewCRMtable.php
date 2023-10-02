@@ -1,19 +1,19 @@
 <div class="container table-responsive">
     <h1>Actividades</h1>
 
-    <table class="DataTable  text-center truncate table align-middle slide-in-top table-hover table-responsive">
-        <thead class="table-dark">
+    <table class="DataTable  text-center truncate table align-middle slide-in-top table-hover">
+        <thead>
             <tr>
-                <th class="text-nowrap text-white">Fecha y Hora</th>
-                <th class="text-nowrap text-white">Tipo de Actividad</th>
-                <th class="text-nowrap text-white">Asunto o Descripción</th>
-                <th class="text-nowrap text-white">Cliente o Contacto</th>
-                <th class="text-nowrap text-white">Usuario Responsable</th>
-                <th class="text-nowrap text-white">Asignado por</th>
-                <th class="text-nowrap text-white">Estado</th>
-                <th class="text-nowrap text-white">Prioridad</th>
-                <th class="text-nowrap text-white">Recordatorio</th>
-                <th class="text-nowrap text-white">Acciones</th>
+                <th class="text-nowrap">Fecha y Hora</th>
+                <th class="text-nowrap">Tipo de Actividad</th>
+                <th class="text-nowrap">Asunto o Descripción</th>
+                <th class="text-nowrap">Cliente o Contacto</th>
+                <th class="text-nowrap">Usuario Responsable</th>
+                <th class="text-nowrap">Asignado por</th>
+                <th class="text-nowrap">Estado</th>
+                <th class="text-nowrap">Prioridad</th>
+                <th class="text-nowrap">Recordatorio</th>
+                <th class="text-nowrap">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -66,7 +66,7 @@
 
                 <td><?=$act['status'][0]['status_name']?></td>
                 <td><?=$act['priority'][0]['prst_name']?></td>
-                <td class="text-success"><?=$act['crm_reminder']?></td>
+                <td class="text-success "><span for="" class="badge bg-label-success"><?=$act['crm_reminder']?></span></td>
                 <td class="actions">
                     <div class="btn-group" role="group">
                         <!-- <button data-url="<?=Helpers\generateUrl("CRM","CRM","UpdateDetaillsActivity",[],"ajax")?>" data-id="<?=$act['crm_id']?>" type="button" class="updateActivity btn btn-outline-warning">Editar</button> -->

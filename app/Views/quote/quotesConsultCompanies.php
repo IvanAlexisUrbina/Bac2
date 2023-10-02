@@ -3,7 +3,7 @@
 		<div class="d-flex justify-content-between mb-3">
 		<span class="lead tracking-in-expand">Total de cotizaciones: <b><?= count($quotes);?></b></span>
 	</div>
-		<table class="table DataTable table-hover slide-in-top table-dark table-stripe">
+		<table class="DataTable  text-center truncate table align-middle slide-in-top table-hover">
 			<thead>
 				<tr>
 				<th scope="col">Cod_#</th>

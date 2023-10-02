@@ -283,7 +283,7 @@
 
 
         <!-- Misc -->
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
+        <!-- <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li> -->
         <li class="menu-item">
             <!-- <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" target="_blank"
                 class="menu-link">

@@ -83,7 +83,7 @@
         </div>
         <div class="table-responsive">
 
-            <table class="table DataTable table-sm slide-in-top table-hover table-dark table-striped">
+            <table class="DataTable  text-center truncate table align-middle slide-in-top table-hover">
                 <thead>
                     <tr>
                         <th>Articulo</th>
@@ -96,7 +96,7 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody id="contArticlesOrder" class="table-light">
+                <tbody id="contArticlesOrder">
                     <!-- ADD ARTICLES FOR AJAX  -->
                 </tbody>
             </table>

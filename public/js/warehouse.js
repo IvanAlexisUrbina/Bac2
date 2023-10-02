@@ -111,5 +111,35 @@ $(document).ready(function () {
 
 
 
+    
+    // Función para manejar el clic en el botón
+    function scrollToTop() {
+        $("html, body").animate({ scrollTop: 0 }, "fast");
+        return false;
+    }
+
+    // Espera hasta que el documento esté listo y luego selecciona el botón
+    var scrollToTopBtn = $("#scrollToTopBtn");
+
+    // Verifica si el botón se encontró antes de aplicar eventos
+    if (scrollToTopBtn.length) {
+        // Oculta el botón al principio
+        scrollToTopBtn.hide();
+
+        // Muestra u oculta el botón cuando el usuario se desplaza hacia abajo
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 0) {
+                scrollToTopBtn.fadeIn();
+            } else {
+                scrollToTopBtn.fadeOut();
+            }
+        });
+
+        // Aplica el evento clic al botón
+        scrollToTopBtn.on("click", scrollToTop);
+    }
+
+
+
 
 });

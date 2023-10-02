@@ -1,9 +1,9 @@
 <div class="container">
-    <h1 class="tracking-in-expand">Registro de bodegas <i class="fas fa-warehouse"></i></h1>
+    <h1 class="tracking-in-expand">Bodegas <i class="fas fa-warehouse"></i></h1>
     <div class="row justify-content-center mt-5">
         <div class="col-md-8">
             <div class="card shadow">
-                <div class="card-header slide-in-top bg-dark text-center text-white">
+                <div class="card-header slide-in-top bg-light text-center text-white">
                     <h3 class="mb-0"> Información de registro</h3>
                 </div>
                 <div class="card-body swing-in-top-fwd">
@@ -28,7 +28,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="depto">Departamento:</label>
+                                    <label for="depto">Departamentos:</label>
                                     <select name="depto"
                                         data-url="<?php echo Helpers\generateUrl("Access","Access","TownsWithDepto",[],"ajax") ?>"
                                         class="form-select" id="departmentWarehouse">
@@ -68,8 +68,9 @@
                             </div>
                         </div>
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary mt-4">Registrar</button>
+                            <button type="submit" class="btn btn-primary mt-4">Crear</button>
                         </div>
+
                     </form>
                 </div>
             </div>
@@ -81,29 +82,30 @@
 
 
 <div class="container mt-4">
-    <div class="slide-in-top card-header bg-dark text-center text-white">
+    <div class="slide-in-top card-header bg-light text-center text-white">
         <h3 class="mb-0"><i class="fas fa-warehouse"></i> Bodegas registradas</h3>
     </div>
     <div class="row mt-4">
         <?php foreach ($warehouse as $wh) { ?>
-        <div class="col-md-3">
-            <div class="card warehouse swing-in-top-fwd">
-                <img src="img/warehouse.png" class="card-img-top" alt="...">
+        <div class="col-md-4">
+            <div class="card mb-4">
+
                 <div class="card-body">
-                    <h3><?= $wh['wh_name'] ?></h3>
-                    <b>Codigo bodega: </b>
-                    <p class="card-text"><?= $wh['wh_code'] ?></p>
-                    <b>Responsable: </b>
-                    <p class="card-text"><?= $wh['wh_responsible'] ?></p>
-                    <b>Departamento: </b>
-                    <p class="card-text"><?= $wh['wh_departament'] ?></p>
-                    <b>Ciudad: </b>
-                    <p class="card-text"><?= $wh['wh_city'] ?></p>
-                    <b>Fecha creacion: </b>
-                    <p class="card-text"><?= $wh['wh_date'] ?></p>
+                    <div class="col-md-6 mx-auto mb-2">
+
+                        <img src="img/warehouse.png" class="card-img-top" alt="...">
+                    </div>
+                    <h3 class="card-title"><?= $wh['wh_name'] ?></h3>
+                    <ul class="list-unstyled">
+                        <li><b>Codigo bodega:</b> <?= $wh['wh_code'] ?></li>
+                        <li><b>Responsable:</b> <?= $wh['wh_responsible'] ?></li>
+                        <li><b>Departamento:</b> <?= $wh['wh_departament'] ?></li>
+                        <li><b>Ciudad:</b> <?= $wh['wh_city'] ?></li>
+                        <li><b>Fecha creación:</b> <?= $wh['wh_date'] ?></li>
+                    </ul>
                 </div>
-                <div class="col-md-12 text-center mb-3 mt-3">
-                    <button data-url="<?= Helpers\generateUrl("Warehouse","Warehouse","deleteWarehouse");?>"
+                <div class="card-footer text-center">
+                    <button data-url="<?= Helpers\generateUrl("Warehouse","Warehouse","deleteWarehouse",[],"ajax");?>"
                         data-value="<?= $wh['wh_id'] ?>" class="btn btn-outline-danger deleteWarehouse">
                         Eliminar
                     </button>
@@ -112,7 +114,6 @@
                         class="btn btn-outline-primary  buttonOpenWarehouse" data-value="<?= $wh['wh_id']; ?>">
                         Editar
                     </button>
-
                     <button
                         data-url="<?= Helpers\generateUrl("Warehouse","Warehouse","ViewWarehouseArticles",['wh_id'=>$wh['wh_id']],"ajax");?>"
                         class="buttonOpenWhArticles btn btn-outline-success">
@@ -121,7 +122,12 @@
                 </div>
             </div>
         </div>
+
         <?php } ?>
+    </div>
+    <div class="mt-2 col-md-12 text-center">
+
+        <button id="scrollToTopBtn" class="btn btn-primary"><i class='bx bxs-up-arrow'></i></button>
     </div>
 </div>
 

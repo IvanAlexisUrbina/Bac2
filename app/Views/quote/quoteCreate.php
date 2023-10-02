@@ -93,7 +93,7 @@
         <div class="table-responsive">
 
             <table
-                class="table DataTable table-sm slide-in-top table-hover table-dark table-striped text-center mx-auto">
+            class="DataTable  text-center truncate table align-middle slide-in-top table-hover">
                 <thead>
                     <tr>
                         <th>#Cod</th>
@@ -107,7 +107,7 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody id="contArticlesQuote" class="table-light">
+                <tbody id="contArticlesQuote">
                     <!-- ADD ARTICLES FOR AJAX  -->
                 </tbody>
             </table>
