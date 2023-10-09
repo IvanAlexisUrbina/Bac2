@@ -5,7 +5,7 @@
         <button id="createSeller" class="btn btn-outline-primary" data-url="<?= Helpers\generateUrl("Clients","Clients","CreateSeller",[],"ajax")?>">Crear vendedores</button>    
     </div>
 
-    <table class="table DataTable table-hover slide-in-top table-dark table-stripe">
+    <table class="table DataTable table-hover slide-in-top table-stripe">
         <thead>
             <tr>
                 <th scope="col">ID</th>

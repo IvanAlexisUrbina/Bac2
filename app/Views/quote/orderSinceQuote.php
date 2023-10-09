@@ -98,7 +98,7 @@ foreach ($quote as $quot) {
         </div>
         <div class="table-responsive">
 
-            <table class="table DataTable table-sm slide-in-top table-hover table-dark table-striped">
+            <table class="table DataTable table-sm slide-in-top table-hover  table-striped">
                 <thead>
                     <tr>
                         <th>Articulo</th>
@@ -111,7 +111,7 @@ foreach ($quote as $quot) {
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody id="contArticlesOrder" class="table-light">
+                <tbody id="contArticlesOrder" >
                     <!-- ADD ARTICLES FOR AJAX  -->
                     <?php
                     echo $articlesHmtl;

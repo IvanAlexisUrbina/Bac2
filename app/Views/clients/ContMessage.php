@@ -21,7 +21,7 @@
 
     <!-- Lista de mensajes -->
     <div class="table_responsive">
-        <table class="table DataTable table-hover slide-in-top table-dark table-stripe">
+        <table class="table DataTable table-hover slide-in-top table-stripe">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -31,7 +31,7 @@
                     <th scope="col">Mensaje</th>
                 </tr>
             </thead>
-            <tbody class="table-light">
+            <tbody >
             <?php
 				foreach ($Messages as $m) {
 					echo '<tr>

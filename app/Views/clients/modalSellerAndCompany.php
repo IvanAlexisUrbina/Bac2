@@ -7,7 +7,7 @@
         Agregar empresa
     </button>
 </div>
-    <table class="table DataTable table-hover slide-in-top table-dark table-stripe">
+    <table class="table DataTable table-hover slide-in-top  table-stripe">
         <thead>
             <tr>
                 <th scope="col">Nombre empresa</th>
@@ -16,7 +16,7 @@
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
-        <tbody id="theadClientsOfSeller" class="table-light">
+        <tbody id="theadClientsOfSeller" >
             <?php
 
                                                             use function Helpers\dd;

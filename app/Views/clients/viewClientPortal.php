@@ -59,7 +59,7 @@
     <div class="d-flex justify-content-between mb-3">
         <span class="lead tracking-in-expand">Total de clientes: <b><?= count($users);?></b></span>
     </div>
-    <table class="DataTable text-center table align-middle slide-in-top table-hover table-responsive table-dark">
+    <table class="DataTable text-center table align-middle slide-in-top table-hover table-responsive ">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -70,7 +70,7 @@
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
-        <tbody class="table-light">
+        <tbody >
             <?php
 
 foreach ($users as $q) {

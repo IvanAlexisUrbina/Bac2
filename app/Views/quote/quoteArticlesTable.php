@@ -1,6 +1,6 @@
 <div class="container table-responsive">
   <table id="myTable"  class="DataTable text-center table align-middle slide-in-top table-hover table-responsive">
-    <thead class="table-dark">
+    <thead >
       <tr>
         <th >Imagen</th>
         <th>Nombre</th>

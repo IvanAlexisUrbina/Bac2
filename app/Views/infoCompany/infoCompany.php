@@ -41,7 +41,7 @@
         <!-- LIST USERS -->
         <div class="col-12 table-responsive">
             <table id="usersTable"
-                class="DataTable table table-dark table-striped table-hover slide-in-top text-center align-middle">
+                class="DataTable table  table-striped table-hover slide-in-top text-center align-middle">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -53,7 +53,7 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody id="ListUsersOfCompany" class="table-light">
+                <tbody id="ListUsersOfCompany">
                     <?php foreach ($users as $u) {
                 echo '<tr>
                         <td>'.$u['u_id'].'</td>

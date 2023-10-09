@@ -2,7 +2,7 @@
     <div class="container">
         <h2>Selección de Empresas</h2>
         <div class="table-responsive">
-            <table class="table DataTable table-hover slide-in-top table-dark table-stripe">
+            <table class="table DataTable table-hover slide-in-top  table-stripe">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -11,7 +11,7 @@
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
-                <tbody class="table-light">
+                <tbody >
                     <?php
                     foreach ($companies as $c) {
                         echo '<tr>

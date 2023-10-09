@@ -8,7 +8,7 @@
     <div class="table-responsive">
 
         <table class="table DataTable text-center slide-in-top align-middle table-hover table-responsive">
-            <thead class="table-dark">
+            <thead >
                 <tr>
                     <th>ID</th>
                     <th>Imagen</th>
