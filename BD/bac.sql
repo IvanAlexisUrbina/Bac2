@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-08-2023 a las 23:32:10
+-- Tiempo de generación: 09-10-2023 a las 21:28:09
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.1.12
 
@@ -34,6 +34,33 @@ CREATE TABLE `action_permissions` (
   `rol_id` int(11) DEFAULT NULL,
   `allowed` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `activity_status`
+--
+
+CREATE TABLE `activity_status` (
+  `act_status_id` int(11) NOT NULL,
+  `act_status__name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `activity_status`
+--
+
+INSERT INTO `activity_status` (`act_status_id`, `act_status__name`) VALUES
+(1, 'Pendiente'),
+(2, 'En Progreso'),
+(3, 'Completada'),
+(4, 'Cancelada'),
+(5, 'Reprogramada'),
+(6, 'Pospuesta'),
+(7, 'En Espera'),
+(8, 'Rechazada'),
+(9, 'Vencida'),
+(10, 'En Revisión');
 
 -- --------------------------------------------------------
 
@@ -185,6 +212,67 @@ CREATE TABLE `credittransactions` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `crm`
+--
+
+CREATE TABLE `crm` (
+  `crm_id` int(11) NOT NULL,
+  `crm_activity` varchar(60) NOT NULL,
+  `crm_area` varchar(60) NOT NULL,
+  `crm_date_time_init` datetime NOT NULL,
+  `crm_date_time_end` datetime NOT NULL,
+  `crm_desc` text NOT NULL,
+  `crm_reminder` datetime DEFAULT NULL,
+  `crm_status` int(11) DEFAULT NULL,
+  `assignor_id` int(11) NOT NULL,
+  `id_prst` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `crm`
+--
+
+INSERT INTO `crm` (`crm_id`, `crm_activity`, `crm_area`, `crm_date_time_init`, `crm_date_time_end`, `crm_desc`, `crm_reminder`, `crm_status`, `assignor_id`, `id_prst`) VALUES
+(5, 'reunion', 'soporte', '2023-09-22 13:59:27', '2023-09-15 13:59:00', 'desc', '2023-09-22 13:59:00', 1, 86, 1),
+(6, 'llamada', 'ventas', '2023-09-22 15:33:16', '2023-09-07 15:33:00', 'desc 2', '2023-09-29 15:33:00', 4, 86, 1),
+(7, 'llamada', 'ventas', '2023-09-26 17:25:53', '2023-09-26 17:35:00', 'desc', '2023-09-26 20:33:00', 1, 86, 3),
+(8, 'llamada', 'ventas', '2023-09-27 11:04:04', '2023-09-21 11:04:00', 'desc', '2023-09-15 11:04:00', 3, 86, 2),
+(9, 'llamada', 'ventas', '2023-09-27 11:21:18', '2023-09-27 11:21:00', 'desc', '2023-09-27 11:21:00', 1, 86, 4),
+(10, 'tarea', 'Cotizacion', '2023-09-27 12:11:54', '2023-09-22 12:12:00', 'desc', '2023-09-27 12:13:00', 1, 86, 1),
+(11, 'reunion', 'ventas', '2023-10-02 10:00:01', '2023-10-02 11:00:00', 'Descripción Reunión de cierre', '2023-09-30 10:49:00', 1, 86, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `crm_meeting`
+--
+
+CREATE TABLE `crm_meeting` (
+  `crm_meet_id` int(11) NOT NULL,
+  `crm_id` int(11) NOT NULL,
+  `meeting_type` varchar(255) DEFAULT NULL,
+  `meeting_link` varchar(255) DEFAULT NULL,
+  `comments` text DEFAULT NULL,
+  `u_id` int(11) DEFAULT NULL,
+  `c_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `crm_meeting`
+--
+
+INSERT INTO `crm_meeting` (`crm_meet_id`, `crm_id`, `meeting_type`, `meeting_link`, `comments`, `u_id`, `c_id`) VALUES
+(4, 5, 'ASUNTO PRUEBA', 'fasdfasd', 'asdfasd', 87, 67),
+(5, 6, NULL, NULL, NULL, 87, 67),
+(6, 7, NULL, NULL, NULL, 87, 67),
+(7, 8, NULL, NULL, NULL, 87, 67),
+(8, 9, NULL, NULL, NULL, 87, 67),
+(9, 10, NULL, NULL, NULL, 87, 67),
+(10, 11, 'Cierre de negocio', 'link de la reunion', 'Ese día nos reuniremos con el gerente para intentar cerrar el negocio.', 87, 67);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `customer_discounts`
 --
 
@@ -197,6 +285,13 @@ CREATE TABLE `customer_discounts` (
   `gp_id` int(11) DEFAULT NULL,
   `price_discount` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `customer_discounts`
+--
+
+INSERT INTO `customer_discounts` (`cd_id`, `c_id`, `cat_id`, `sbcat_id`, `ar_id`, `gp_id`, `price_discount`) VALUES
+(18, 67, 1, 1, 1, 46, NULL);
 
 -- --------------------------------------------------------
 
@@ -279,8 +374,7 @@ CREATE TABLE `group_discounts` (
 --
 
 INSERT INTO `group_discounts` (`gp_id`, `gp_name`, `gp_discount_percentage`, `gp_coupon`, `gp_date_end_discount`) VALUES
-(42, 'GRUPO PRUEBA', NULL, 'cupon', '2023-07-06 11:24:00'),
-(43, 'GRUPO PRUEBA2', 12, 'cupon', '2023-08-23 23:07:00');
+(46, 'GRUPO PRUEBA', 12, 'cupon', '2023-09-14 15:14:00');
 
 -- --------------------------------------------------------
 
@@ -307,34 +401,6 @@ INSERT INTO `measurement_type` (`mt_id`, `mt_name`, `mt_meas`) VALUES
 (6, 'pulgadas', 'in'),
 (7, 'yardas', 'yd'),
 (8, 'Unidad', 'Unit');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `meeting`
---
-
-CREATE TABLE `meeting` (
-  `meeting_id` int(11) NOT NULL,
-  `meeting_date` date DEFAULT NULL,
-  `meeting_time` time DEFAULT NULL,
-  `meeting_type` varchar(255) DEFAULT NULL,
-  `meeting_link` varchar(255) DEFAULT NULL,
-  `comments` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `meeting_attendees`
---
-
-CREATE TABLE `meeting_attendees` (
-  `meet_att_id` int(11) NOT NULL,
-  `meeting_id` int(11) DEFAULT NULL,
-  `u_id` int(11) DEFAULT NULL,
-  `c_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -406,7 +472,8 @@ CREATE TABLE `order` (
 --
 
 INSERT INTO `order` (`order_id`, `order_name`, `order_desc`, `order_date`, `order_payment_method`, `order_company`, `order_shipping_address`, `order_email`, `order_phone`, `order_comments`, `order_cedula_nit`, `order_subtotal`, `order_iva`, `order_total`, `order_url_document`, `u_id`, `order_state_id`) VALUES
-(18, 'IVAN ALEXIS URBINA MELO', 'a', '2023-08-31 21:11:36', '3', '67', 'calle 1 c', 'iaurbina04@misena.edu.co', '2147483647', 'aa', '1144108606', '5200.00', '988.00', '6188.00', 'uploads/orders/18/Document_orders_18_20230831231136.pdf', 87, 1);
+(18, 'IVAN ALEXIS URBINA MELO', 'a', '2023-08-31 21:11:36', '3', '67', 'calle 1 c', 'iaurbina04@misena.edu.co', '2147483647', 'aa', '1144108606', '5200.00', '988.00', '6188.00', 'uploads/orders/18/Document_orders_18_20230831231136.pdf', 87, 1),
+(19, 'IVAN ALEXIS URBINA MELO', 'a', '2023-09-05 16:36:21', '2', '67', 'No hay dirección de envío registrada - Ingresa una direccion', 'iaurbina04@misena.edu.coa', '2147483647', 'asdf', '2147483647', '2400.00', '456.00', '2856.00', 'uploads/orders/19/Document_orders_19_20230905183621.pdf', 86, 1);
 
 -- --------------------------------------------------------
 
@@ -430,7 +497,8 @@ CREATE TABLE `order_articles` (
 
 INSERT INTO `order_articles` (`orderart_id`, `order_id`, `ar_id`, `orderart_quantity`, `orderart_pricenormal`, `orderart_discountPercentajeOrPrice`, `orderart_discountPrice`) VALUES
 (17, 18, 1, 2, 1200, 'No', 1200),
-(18, 18, 2, 2, 1400, 'No', 1400);
+(18, 18, 2, 2, 1400, 'No', 1400),
+(19, 19, 1, 2, 1200, 'No', 1200);
 
 -- --------------------------------------------------------
 
@@ -532,6 +600,93 @@ INSERT INTO `prices` (`p_id`, `ar_id`, `wh_id`, `p_value`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `priority_states`
+--
+
+CREATE TABLE `priority_states` (
+  `id_prst` int(11) NOT NULL,
+  `prst_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `priority_states`
+--
+
+INSERT INTO `priority_states` (`id_prst`, `prst_name`) VALUES
+(1, 'Alta Prioridad'),
+(2, 'Prioridad Media'),
+(3, 'Baja Prioridad'),
+(4, 'Sin Prioridad');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `purchase_requests`
+--
+
+CREATE TABLE `purchase_requests` (
+  `pr_id` int(11) NOT NULL,
+  `pr_desc` text NOT NULL,
+  `pr_quantity` decimal(10,2) NOT NULL,
+  `pr_date_request` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `u_id` int(11) NOT NULL,
+  `state_id` int(11) DEFAULT NULL,
+  `type_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `purchase_requests`
+--
+
+INSERT INTO `purchase_requests` (`pr_id`, `pr_desc`, `pr_quantity`, `pr_date_request`, `u_id`, `state_id`, `type_id`) VALUES
+(1, 'desc', '20000.00', '2023-09-27 16:20:20', 86, 1, 1),
+(2, 'desc', '2212312.00', '2023-09-27 16:27:55', 86, 1, 1),
+(3, 'compra almuerzo', '2000.00', '2023-09-28 10:05:34', 86, 1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `purchase_request_states`
+--
+
+CREATE TABLE `purchase_request_states` (
+  `state_id` int(11) NOT NULL,
+  `state_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `purchase_request_states`
+--
+
+INSERT INTO `purchase_request_states` (`state_id`, `state_name`) VALUES
+(1, 'Pendiente de Aprobación'),
+(2, 'Aprobada'),
+(3, 'Rechazada'),
+(4, 'En Proceso'),
+(5, 'Completada');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `purchase_request_types`
+--
+
+CREATE TABLE `purchase_request_types` (
+  `type_id` int(11) NOT NULL,
+  `type_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `purchase_request_types`
+--
+
+INSERT INTO `purchase_request_types` (`type_id`, `type_name`) VALUES
+(1, 'Viáticos'),
+(2, 'Productos');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `quotes`
 --
 
@@ -560,7 +715,9 @@ CREATE TABLE `quotes` (
 --
 
 INSERT INTO `quotes` (`quo_id`, `quo_name`, `quo_desc`, `quo_date`, `quo_payment_method`, `quo_company`, `quo_shipping_address`, `quo_email`, `quo_phone`, `quo_comments`, `quo_cedula_nit`, `quo_subtotal`, `quo_iva`, `quo_total`, `quo_url_document`, `u_id`, `quote_state_id`) VALUES
-(79, 'IVAN ALEXIS URBINA MELO', 'a', '2023-08-31 20:41:46', '2', '67', 'CALLE 1 C #76 A 25\r\nAPARTAMENTO E 202', 'iaurbina04@misena.edu.co', 2147483647, 'comments', '1144108606', '6600.00', '1254.00', '7854.00', 'uploads/quotes/79/Document_quotes_79_20230831224146.pdf', 87, 1);
+(79, 'IVAN ALEXIS URBINA MELO', 'a', '2023-08-31 20:41:46', '2', '67', 'CALLE 1 C #76 A 25\r\nAPARTAMENTO E 202', 'iaurbina04@misena.edu.co', 2147483647, 'comments', '1144108606', '6600.00', '1254.00', '7854.00', 'uploads/quotes/79/Document_quotes_79_20230831224146.pdf', 87, 1),
+(80, 'IVAN ALEXIS URBINA MELO', 'a', '2023-09-05 17:13:09', '2', '67', 'No hay dirección de envío registrada - Ingresa una direccion', 'iaurbina04@misena.edu.coa', 2147483647, 'asdfasdf', '2147483647', '2400.00', '456.00', '2856.00', 'uploads/quotes/80/Document_quotes_80_20230905191309.pdf', 86, 1),
+(81, 'IVAN ALEXIS URBINA MELO', 'a', '2023-09-05 23:17:41', '2', '67', 'No hay dirección de envío registrada - Ingresa una direccion', 'iaurbina04@misena.edu.coa', 2147483647, '', '2147483647', '2800.00', '532.00', '3332.00', 'uploads/quotes/81/Document_quotes_81_20230906011741.pdf', 86, 1);
 
 -- --------------------------------------------------------
 
@@ -603,7 +760,9 @@ CREATE TABLE `quote_articles` (
 
 INSERT INTO `quote_articles` (`quoart_id`, `quo_id`, `ar_id`, `quoart_quantity`, `quoart_pricenormal`, `quoart_discountPercentajeOrPrice`, `quoart_discountPrice`) VALUES
 (85, 79, 1, 2, 1200, 'No', 1200),
-(86, 79, 2, 3, 1400, 'No', 1400);
+(86, 79, 2, 3, 1400, 'No', 1400),
+(87, 80, 1, 2, 1200, 'No', 1200),
+(88, 81, 2, 2, 1400, 'No', 1400);
 
 -- --------------------------------------------------------
 
@@ -1966,9 +2125,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`u_id`, `u_name`, `u_lastname`, `u_phone`, `u_email`, `u_document`, `u_type_document`, `u_country`, `u_city`, `u_pass`, `u_code`, `rol_id`, `c_id`, `status_id`, `u_codeSeller`) VALUES
 (9, 'Ivan Alexis', 'Urbina Melo', 2147483647, 'iurbina@businessandconnection.coma', 12341234, 'Cedula de ciudadanía', 'Colombia', 'Cali', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', 'daa211ccacbeb884', 1, 1, 1, NULL),
-(86, 'Edwin valencia', 'prueba', 2147483647, 'evaniche@hotmail.com', 1144108604, 'Cedula de ciudadanía', 'Colombia', 'RIOSUCIO', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', 'c1e7e75f62936243', 2, 54, 1, NULL),
-(87, 'Andres Muete', 'Muete', 1144108604, 'iurbina@businessandconnection.com', 1144108606, 'Cedula de ciudadanía', 'Colombia', 'PUERTO RONDÓN', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', '21439534b062262c', 3, 54, 1, 'CodePrueba'),
-(98, 'IVAN ALEXIS', 'URBINA MELO', 2147483647, 'iaurbina04@misena.edu.co', 2147483647, 'Cedula de ciudadanía', 'Colombia', 'PROVIDENCIA Y SANTA CATALINA', NULL, NULL, 4, 67, 1, NULL);
+(86, 'Edwin valencia', 'prueba', 2147483647, 'iaurbina04@misena.edu.co', 1144108604, 'Cedula de ciudadanía', 'Colombia', 'RIOSUCIO', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', 'd74b28478ff32bbb', 2, 54, 1, NULL),
+(87, 'Andres Muete', 'Muete', 1144108604, 'iurbina@businessandconnection.com', 1144108606, 'Cedula de ciudadanía', 'Colombia', 'PUERTO RONDÓN', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', 'cad21bdc58b52d84', 3, 54, 1, 'CodePrueba'),
+(98, 'IVAN ALEXIS', 'URBINA MELO', 2147483647, 'iaurbina04@misena.edu.coa', 2147483647, 'Cedula de ciudadanía', 'Colombia', 'PROVIDENCIA Y SANTA CATALINA', NULL, NULL, 4, 67, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -2010,6 +2169,12 @@ ALTER TABLE `action_permissions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `m_id` (`m_id`,`rol_id`),
   ADD KEY `rol_id` (`rol_id`);
+
+--
+-- Indices de la tabla `activity_status`
+--
+ALTER TABLE `activity_status`
+  ADD PRIMARY KEY (`act_status_id`);
 
 --
 -- Indices de la tabla `articles`
@@ -2056,6 +2221,25 @@ ALTER TABLE `creditlimits`
 --
 ALTER TABLE `credittransactions`
   ADD PRIMARY KEY (`transaction_id`);
+
+--
+-- Indices de la tabla `crm`
+--
+ALTER TABLE `crm`
+  ADD PRIMARY KEY (`crm_id`),
+  ADD KEY `u_id` (`assignor_id`),
+  ADD KEY `crm_status` (`crm_status`),
+  ADD KEY `prst_id` (`id_prst`),
+  ADD KEY `id_prst` (`id_prst`);
+
+--
+-- Indices de la tabla `crm_meeting`
+--
+ALTER TABLE `crm_meeting`
+  ADD PRIMARY KEY (`crm_meet_id`),
+  ADD KEY `crm_id` (`crm_id`),
+  ADD KEY `c_id` (`c_id`),
+  ADD KEY `u_id` (`u_id`);
 
 --
 -- Indices de la tabla `customer_discounts`
@@ -2108,21 +2292,6 @@ ALTER TABLE `group_discounts`
 --
 ALTER TABLE `measurement_type`
   ADD PRIMARY KEY (`mt_id`);
-
---
--- Indices de la tabla `meeting`
---
-ALTER TABLE `meeting`
-  ADD PRIMARY KEY (`meeting_id`);
-
---
--- Indices de la tabla `meeting_attendees`
---
-ALTER TABLE `meeting_attendees`
-  ADD PRIMARY KEY (`meet_att_id`),
-  ADD KEY `meeting_id` (`meeting_id`,`u_id`,`c_id`),
-  ADD KEY `meeting_company_ibfk_1` (`c_id`),
-  ADD KEY `meeting_users_ibfk_1` (`u_id`);
 
 --
 -- Indices de la tabla `messages`
@@ -2185,6 +2354,33 @@ ALTER TABLE `prices`
   ADD PRIMARY KEY (`p_id`),
   ADD KEY `ar_id` (`ar_id`),
   ADD KEY `wh_id` (`wh_id`);
+
+--
+-- Indices de la tabla `priority_states`
+--
+ALTER TABLE `priority_states`
+  ADD PRIMARY KEY (`id_prst`);
+
+--
+-- Indices de la tabla `purchase_requests`
+--
+ALTER TABLE `purchase_requests`
+  ADD PRIMARY KEY (`pr_id`),
+  ADD KEY `u_id` (`u_id`),
+  ADD KEY `state_id` (`state_id`),
+  ADD KEY `type_id` (`type_id`);
+
+--
+-- Indices de la tabla `purchase_request_states`
+--
+ALTER TABLE `purchase_request_states`
+  ADD PRIMARY KEY (`state_id`);
+
+--
+-- Indices de la tabla `purchase_request_types`
+--
+ALTER TABLE `purchase_request_types`
+  ADD PRIMARY KEY (`type_id`);
 
 --
 -- Indices de la tabla `quotes`
@@ -2290,6 +2486,12 @@ ALTER TABLE `action_permissions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `activity_status`
+--
+ALTER TABLE `activity_status`
+  MODIFY `act_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT de la tabla `articles`
 --
 ALTER TABLE `articles`
@@ -2320,10 +2522,22 @@ ALTER TABLE `creditlimits`
   MODIFY `limit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT de la tabla `crm`
+--
+ALTER TABLE `crm`
+  MODIFY `crm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT de la tabla `crm_meeting`
+--
+ALTER TABLE `crm_meeting`
+  MODIFY `crm_meet_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT de la tabla `customer_discounts`
 --
 ALTER TABLE `customer_discounts`
-  MODIFY `cd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `cd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `customer_payment_method`
@@ -2353,25 +2567,13 @@ ALTER TABLE `extra_attributes_quotes`
 -- AUTO_INCREMENT de la tabla `group_discounts`
 --
 ALTER TABLE `group_discounts`
-  MODIFY `gp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `gp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT de la tabla `measurement_type`
 --
 ALTER TABLE `measurement_type`
   MODIFY `mt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT de la tabla `meeting`
---
-ALTER TABLE `meeting`
-  MODIFY `meeting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de la tabla `meeting_attendees`
---
-ALTER TABLE `meeting_attendees`
-  MODIFY `meet_att_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `messages`
@@ -2389,13 +2591,13 @@ ALTER TABLE `modules`
 -- AUTO_INCREMENT de la tabla `order`
 --
 ALTER TABLE `order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `order_articles`
 --
 ALTER TABLE `order_articles`
-  MODIFY `orderart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `orderart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `order_states`
@@ -2422,10 +2624,34 @@ ALTER TABLE `prices`
   MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
+-- AUTO_INCREMENT de la tabla `priority_states`
+--
+ALTER TABLE `priority_states`
+  MODIFY `id_prst` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `purchase_requests`
+--
+ALTER TABLE `purchase_requests`
+  MODIFY `pr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `purchase_request_states`
+--
+ALTER TABLE `purchase_request_states`
+  MODIFY `state_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `purchase_request_types`
+--
+ALTER TABLE `purchase_request_types`
+  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `quotes`
 --
 ALTER TABLE `quotes`
-  MODIFY `quo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `quo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT de la tabla `quotes_states`
@@ -2437,7 +2663,7 @@ ALTER TABLE `quotes_states`
 -- AUTO_INCREMENT de la tabla `quote_articles`
 --
 ALTER TABLE `quote_articles`
-  MODIFY `quoart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `quoart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -2535,6 +2761,22 @@ ALTER TABLE `creditlimits`
   ADD CONSTRAINT `creditlimits_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `company` (`c_id`);
 
 --
+-- Filtros para la tabla `crm`
+--
+ALTER TABLE `crm`
+  ADD CONSTRAINT `crm_ibfk_1` FOREIGN KEY (`assignor_id`) REFERENCES `users` (`u_id`),
+  ADD CONSTRAINT `crm_ibfk_2` FOREIGN KEY (`crm_status`) REFERENCES `activity_status` (`act_status_id`),
+  ADD CONSTRAINT `crm_ibfk_3` FOREIGN KEY (`id_prst`) REFERENCES `priority_states` (`id_prst`);
+
+--
+-- Filtros para la tabla `crm_meeting`
+--
+ALTER TABLE `crm_meeting`
+  ADD CONSTRAINT `crm_meeting_ibfk_1` FOREIGN KEY (`crm_id`) REFERENCES `crm` (`crm_id`),
+  ADD CONSTRAINT `crm_meeting_ibfk_2` FOREIGN KEY (`c_id`) REFERENCES `company` (`c_id`),
+  ADD CONSTRAINT `crm_meeting_ibfk_3` FOREIGN KEY (`u_id`) REFERENCES `users` (`u_id`);
+
+--
 -- Filtros para la tabla `customer_discounts`
 --
 ALTER TABLE `customer_discounts`
@@ -2570,14 +2812,6 @@ ALTER TABLE `extra_attributes_quotes`
   ADD CONSTRAINT `extra_attributes_quotes_ibfk_1` FOREIGN KEY (`quo_id`) REFERENCES `quotes` (`quo_id`);
 
 --
--- Filtros para la tabla `meeting_attendees`
---
-ALTER TABLE `meeting_attendees`
-  ADD CONSTRAINT `meeting_attendees_ibfk_1` FOREIGN KEY (`meeting_id`) REFERENCES `meeting` (`meeting_id`),
-  ADD CONSTRAINT `meeting_company_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `company` (`c_id`),
-  ADD CONSTRAINT `meeting_users_ibfk_1` FOREIGN KEY (`u_id`) REFERENCES `users` (`u_id`);
-
---
 -- Filtros para la tabla `order`
 --
 ALTER TABLE `order`
@@ -2597,6 +2831,14 @@ ALTER TABLE `permissions`
 ALTER TABLE `prices`
   ADD CONSTRAINT `prices_ibfk_2` FOREIGN KEY (`ar_id`) REFERENCES `articles` (`ar_id`),
   ADD CONSTRAINT `prices_ibfk_3` FOREIGN KEY (`wh_id`) REFERENCES `warehouse` (`wh_id`);
+
+--
+-- Filtros para la tabla `purchase_requests`
+--
+ALTER TABLE `purchase_requests`
+  ADD CONSTRAINT `purchase_requests_ibfk_1` FOREIGN KEY (`u_id`) REFERENCES `users` (`u_id`),
+  ADD CONSTRAINT `purchase_requests_ibfk_2` FOREIGN KEY (`state_id`) REFERENCES `purchase_request_states` (`state_id`),
+  ADD CONSTRAINT `purchase_requests_ibfk_3` FOREIGN KEY (`type_id`) REFERENCES `purchase_request_types` (`type_id`);
 
 --
 -- Filtros para la tabla `quotes`
