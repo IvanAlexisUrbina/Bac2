@@ -44,7 +44,7 @@ use function Helpers\generateUrl;
     ?>
     <div class="col-md-6 cardsDiv ">
         <div class="card">
-            <img src="<?= $art['ar_img_url']?>" class="card-img-top" alt="...">
+            <img src="<?= $art['ar_img_url']?>" class="card-img-top img-fluid rounded"  style="height: 400px ; object-fit: cover;" alt="...">
             <div class="card-body">
                 <h5 class="card-title"><?= $art['ar_name']?></h5>
                 <p class="card-text"><b>Descripción: </b><?= $art['ar_desc']?></p>

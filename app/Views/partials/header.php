@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/profile.css">
 
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/request.css">
     <link rel="stylesheet" href="css/quote.css">
     <link rel="stylesheet" href="css/clients.css">
     <link rel="stylesheet" href="css/groups.css">

@@ -24,6 +24,7 @@ $(document).ready(function() {
                 url: url, // Usa la URL del formulario como la URL de la solicitud
                 data: $("form").serialize(), // Envía los datos del formulario
                 success: function (response) {
+                    console.log(response);
                     // Habilita el botón nuevamente
                     $("#submit-button-request").prop("disabled", false);
         
@@ -55,12 +56,46 @@ $(document).ready(function() {
         });
 
 
+     $(document).on("click", ".requestModalStatus", function() {
+        let url = $(this).attr("data-url");
+        let id =$(this).data('id');
+        console.log(url);
+        $.ajax({
+        url: url,
+        data:{id:id},
+        type: "POST",
+        success: function(datos) {
+            $("#ModalContent").html(datos);
+            $("#ModalLarge").modal("show");
+        }
+        });
+    });
 
 
 
 
+// Agrega un evento change al select con id "type"
+$(document).on("change", "#type", function() {
+    // Verifica si la opción seleccionada tiene el valor "2"
+    if ($(this).val() == "2") {
+        // Si es "2", muestra el div con id "containerRequestArticles"
+        $("#containerRequestArticles").show();
+        $("#ammount").val("");
+        $("#valContainer").hide(); 
+    } else {
+        // Si no es "2", oculta el div con id "containerRequestArticles"
+        $("#containerRequestArticles").hide();
+        $("#valContainer").show(); 
+    }
+});
 
-
+// Asegúrate de que el estado inicial coincida con el valor seleccionado
+if ($("#type").val() == "2") {
+    $("#containerRequestArticles").show();
+    $('.js-example-basic-single2').select2();
+} else {
+    $("#containerRequestArticles").hide();
+}
 
 
 
