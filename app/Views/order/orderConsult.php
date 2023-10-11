@@ -14,6 +14,14 @@
                 <th scope="col">Estado del pedido</th>
                 <th scope="col">Acciones</th>
             </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
         </thead>
         <tbody class="table-light">
             <?php

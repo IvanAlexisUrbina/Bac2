@@ -8,6 +8,13 @@
                 <th>Descripción</th>
                 <th>Cantidad en stock</th>
             </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
         </thead>
         <tbody>
             <?php

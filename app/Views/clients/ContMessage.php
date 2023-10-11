@@ -30,9 +30,16 @@
                     <th scope="col">Asunto</th>
                     <th scope="col">Mensaje</th>
                 </tr>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
             </thead>
-            <tbody >
-            <?php
+            <tbody>
+                <?php
 				foreach ($Messages as $m) {
 					echo '<tr>
 					<td>'.$m['id'].'</td>

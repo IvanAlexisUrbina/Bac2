@@ -16,39 +16,39 @@
                         <option value="<?=$c['c_id']?>"><?=$c['c_name']?></option>
                         <?php } ?>
                     </select>
-                  
+
                 </div>
                 <div class="form-group">
                     <label for="nombre">Cliente:</label>
                     <input type="text" id="clientQuote" disabled class="form-control" name="name">
-                  
+
                 </div>
                 <div class="form-group">
                     <label for="nombre">Cedula:</label>
                     <input type="number" id="ccQuote" disabled class="form-control" name="cc">
-                  
+
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email:</label>
                     <div class="input-group mb-3">
-                    <input type="text" id="emailQuote" disabled class="form-control" name="email">
-                  
+                        <input type="text" id="emailQuote" disabled class="form-control" name="email">
+
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="telefono">Teléfono:</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-phone"></i></span>
-                    
-                            <input type="text" disabled class="form-control" id="phoneQuote" name="phone">
+
+                        <input type="text" disabled class="form-control" id="phoneQuote" name="phone">
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <label for="telefono">Fecha válida de la cotización:</label>
                 <div class="input-group mb-3">
-                   <input type="date" class="form-control" name="quoteValidateDate" id="quoteValidateDate">
+                    <input type="date" class="form-control" name="quoteValidateDate" id="quoteValidateDate">
                 </div>
 
 
@@ -59,15 +59,15 @@
                     <div id="methodspayQuote" arial="payment_method">
                         <input type="text" disabled class="form-control">
                     </div>
-                            
+
                 </div>
                 <div class="form-group">
                     <label for="direccion"></label>
 
                     <div class="input-group">
                         <span class="input-group-text">Dirección de envío:</span>
-                        <textarea class="form-control form-field" aria-label="With textarea"
-                           id="address_shipping" name="address_shipping"></textarea>
+                        <textarea class="form-control form-field" aria-label="With textarea" id="address_shipping"
+                            name="address_shipping"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
@@ -92,8 +92,7 @@
         </div>
         <div class="table-responsive">
 
-            <table
-            class="DataTable  text-center truncate table align-middle slide-in-top table-hover">
+            <table class="DataTable  text-center truncate table align-middle slide-in-top table-hover">
                 <thead>
                     <tr>
                         <th>#Cod</th>
@@ -105,6 +104,17 @@
                         <th>Precio tras el descuento</th>
                         <th>Subtotal</th>
                         <th>Acciones</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="contArticlesQuote">

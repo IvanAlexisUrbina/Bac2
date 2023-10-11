@@ -27,7 +27,8 @@
                 <div class="form-group">
                     <label for="email">Email:</label>
                     <div class="input-group mb-3">
-                        <input type="text" value="<?=$_SESSION['EmailUser']?>" readonly class="form-control" name="emailApplicant">
+                        <input type="text" value="<?=$_SESSION['EmailUser']?>" readonly class="form-control"
+                            name="emailApplicant">
                     </div>
                 </div>
                 <div class="form-group">
@@ -155,6 +156,16 @@
                             <th class="text-nowrap">Precio tras el descuento</th>
                             <th>Subtotal</th>
                             <th>Acciones</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody id="contArticlesOrder">

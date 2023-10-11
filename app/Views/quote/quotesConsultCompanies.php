@@ -1,21 +1,29 @@
 <div class="container table-responsive">
-		<h1 class="tracking-in-expand">Cotizaciones</h1>
-		<div class="d-flex justify-content-between mb-3">
-		<span class="lead tracking-in-expand">Total de cotizaciones: <b><?= count($quotes);?></b></span>
-	</div>
-		<table class="DataTable  text-center truncate table align-middle slide-in-top table-hover">
-			<thead>
-				<tr>
-				<th scope="col">Cod_#</th>
-				<th scope="col">Empresa</th>
-				<th scope="col">Cotizante</th>
-				<th scope="col">Fecha del documento</th>
-				<th scope="col">Valor</th>
-				<th scope="col">Acciones</th>
-				</tr>
-			</thead>
-			<tbody class="table-light">
-			<?php
+    <h1 class="tracking-in-expand">Cotizaciones</h1>
+    <div class="d-flex justify-content-between mb-3">
+        <span class="lead tracking-in-expand">Total de cotizaciones: <b><?= count($quotes);?></b></span>
+    </div>
+    <table class="DataTable  text-center truncate table align-middle slide-in-top table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Cod_#</th>
+                <th scope="col">Empresa</th>
+                <th scope="col">Cotizante</th>
+                <th scope="col">Fecha del documento</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Acciones</th>
+            </tr>
+			<tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="table-light">
+            <?php
 				foreach ($quotes as $q) {
 					echo '<tr>
 					<td>'.$q['quo_id'].'</td>
@@ -29,8 +37,8 @@
 					</tr>';
 				}
 			?>
-				
 
-			</tbody>
-		</table>
-	</div>
+
+        </tbody>
+    </table>
+</div>

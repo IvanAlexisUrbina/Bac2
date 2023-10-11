@@ -7,11 +7,18 @@
     <table class="table DataTable text-center truncate align-middle table-hover slide-in-top">
         <thead>
             <tr>
-                <th  class="text-nowrap" scope="col">#</th>
-                <th  class="text-nowrap" scope="col">Empresa</th>
-                <th  class="text-nowrap" scope="col">NIT</th>
-                <th  class="text-nowrap" scope="col">Nombre representante</th>
-                <th  class="text-nowrap" scope="col">Acciones</th>
+                <th class="text-nowrap" scope="col">#</th>
+                <th class="text-nowrap" scope="col">Empresa</th>
+                <th class="text-nowrap" scope="col">NIT</th>
+                <th class="text-nowrap" scope="col">Nombre representante</th>
+                <th class="text-nowrap" scope="col">Acciones</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody class="table-light">

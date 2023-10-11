@@ -1,5 +1,3 @@
-
-
 <div class="container">
     <div class="col-md-12 d-flex">
         <div class="col-md-6 p-2">
@@ -35,6 +33,13 @@
                     <th>Descripción</th>
                     <th>Subcategorias</th>
                     <th>Acciones</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody class="table-light">

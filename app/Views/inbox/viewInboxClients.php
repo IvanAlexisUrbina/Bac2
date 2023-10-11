@@ -18,10 +18,16 @@
 
                 <thead>
                     <tr>
-                        <th >Nombre empresa</th>
-                        <th >Representante legal</th>
-                        <th >Fecha</th>
-                        <th >Acciones</th>
+                        <th>Nombre empresa</th>
+                        <th>Representante legal</th>
+                        <th>Fecha</th>
+                        <th>Acciones</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>

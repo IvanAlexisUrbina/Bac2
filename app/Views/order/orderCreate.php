@@ -27,7 +27,7 @@
                 <div class="form-group">
                     <label for="nombre">Cedula:</label>
                     <input type="number" id="ccOrder" disabled class="form-control" name="cc">
-                  
+
                 </div>
 
                 <div class="form-group">
@@ -57,8 +57,8 @@
 
                     <div class="input-group">
                         <span class="input-group-text">Dirección de envío:</span>
-                        <textarea class="form-control form-field" aria-label="With textarea"
-                          id="address_shipping"  name="address_shipping"></textarea>
+                        <textarea class="form-control form-field" aria-label="With textarea" id="address_shipping"
+                            name="address_shipping"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
@@ -94,6 +94,16 @@
                         <th>Precio tras el descuento</th>
                         <th>Subtotal</th>
                         <th>Acciones</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="contArticlesOrder">

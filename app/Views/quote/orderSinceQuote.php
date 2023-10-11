@@ -110,8 +110,18 @@ foreach ($quote as $quot) {
                         <th>Subtotal</th>
                         <th>Acciones</th>
                     </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
                 </thead>
-                <tbody id="contArticlesOrder" >
+                <tbody id="contArticlesOrder">
                     <!-- ADD ARTICLES FOR AJAX  -->
                     <?php
                     echo $articlesHmtl;

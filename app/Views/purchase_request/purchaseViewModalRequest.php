@@ -10,26 +10,30 @@
 
                 <div class="form-group">
                     <label for="nombre">Solicitante:</label>
-                    <input type="text" id="clientOrder" disabled class="form-control" value="<?=$_SESSION['nameUser']." ".$_SESSION['LastNameUser']?>" name="name">
+                    <input type="text" id="clientOrder" disabled class="form-control"
+                        value="<?=$_SESSION['nameUser']." ".$_SESSION['LastNameUser']?>" name="name">
                 </div>
 
                 <div class="form-group">
                     <label for="nombre">Cedula:</label>
-                    <input type="number" id="ccOrder" value="<?=$_SESSION['UserNumDocument']?>" disabled class="form-control" name="cc">
-                  
+                    <input type="number" id="ccOrder" value="<?=$_SESSION['UserNumDocument']?>" disabled
+                        class="form-control" name="cc">
+
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email:</label>
                     <div class="input-group mb-3">
-                        <input type="text" id="emailOrder" value="<?=$_SESSION['EmailUser']?>" disabled class="form-control" name="email">
+                        <input type="text" id="emailOrder" value="<?=$_SESSION['EmailUser']?>" disabled
+                            class="form-control" name="email">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="telefono">Teléfono:</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-phone"></i></span>
-                        <input type="text" disabled class="form-control" value="<?=$_SESSION['PhoneUser']?>" id="phoneOrder" name="phone">
+                        <input type="text" disabled class="form-control" value="<?=$_SESSION['PhoneUser']?>"
+                            id="phoneOrder" name="phone">
                     </div>
                 </div>
             </div>
@@ -54,7 +58,7 @@
         <hr>
 
 
-  
+
 
         <h3 class="tracking-in-expand">Articulos <i class="fa-solid fa-cart-shopping"></i></h3>
         <div class="text-right p-4">
@@ -74,6 +78,16 @@
                         <th class="text-nowrap">Precio tras el descuento</th>
                         <th>Subtotal</th>
                         <th>Acciones</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="contArticlesOrder">

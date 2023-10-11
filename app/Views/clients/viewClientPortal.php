@@ -69,6 +69,14 @@
                 <th scope="col">Fecha fin suscripción</th>
                 <th scope="col">Acciones</th>
             </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
         </thead>
         <tbody >
             <?php

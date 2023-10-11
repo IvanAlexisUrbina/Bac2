@@ -1,4 +1,5 @@
-<form id="companyForm" action="<?= Helpers\generateUrl("Clients","Clients","RegisterCompaniesOnSeller",[],"ajax") ?>" method="POST">
+<form id="companyForm" action="<?= Helpers\generateUrl("Clients","Clients","RegisterCompaniesOnSeller",[],"ajax") ?>"
+    method="POST">
     <div class="container">
         <h2>Selección de Empresas</h2>
         <div class="table-responsive">
@@ -10,8 +11,14 @@
                         <th scope="col">Descripción de empresa</th>
                         <th scope="col">Acciones</th>
                     </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
                 </thead>
-                <tbody >
+                <tbody>
                     <?php
                     foreach ($companies as $c) {
                         echo '<tr>
@@ -60,7 +67,8 @@ $(document).ready(function() {
 
             // Mostrar la empresa seleccionada en la lista
             $('#selectedCompanies').append('<li class="list-group-item">' + companyName +
-                '  <button type="button" class="btn btn-outline-danger btn-remove-company" data-company-id="' + companyId + '"><i class="fa-solid fa-trash"></i></button>' +
+                '  <button type="button" class="btn btn-outline-danger btn-remove-company" data-company-id="' +
+                companyId + '"><i class="fa-solid fa-trash"></i></button>' +
                 '</li>');
         }
 
@@ -92,37 +100,35 @@ $(document).ready(function() {
 
 
 document.getElementById("companyForm").addEventListener("submit", function(event) {
-        event.preventDefault(); // Evitar envío predeterminado del formulario
+    event.preventDefault(); // Evitar envío predeterminado del formulario
 
-        // Realizar la solicitud AJAX aquí
-          // Obtener los valores de los campos ocultos
-          var selectedCompanyIds = $("#selectedCompanyIds").val();
-            var s_id = $("#s_id").val();
+    // Realizar la solicitud AJAX aquí
+    // Obtener los valores de los campos ocultos
+    var selectedCompanyIds = $("#selectedCompanyIds").val();
+    var s_id = $("#s_id").val();
 
-            // Crear objeto de datos a enviar
-            var data = {
-                selectedCompanyIds: selectedCompanyIds,
-                s_id: s_id
-            };
+    // Crear objeto de datos a enviar
+    var data = {
+        selectedCompanyIds: selectedCompanyIds,
+        s_id: s_id
+    };
 
-            // Realizar la solicitud AJAX utilizando jQuery.ajax
-            $.ajax({
-                url: this.action,
-                type: this.method,
-                data: data,
-                success: function(response) { console.log(response);
-                    // Manejar la respuesta de la solicitud AJAX
-                    $("#theadClientsOfSeller").html(response); 
-                    // Realizar las actualizaciones necesarias en la tabla por AJAX
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    // Manejar errores de la solicitud AJAX
-                    console.error("Error en la solicitud AJAX:", textStatus, errorThrown);
-                }
-            });
-        
+    // Realizar la solicitud AJAX utilizando jQuery.ajax
+    $.ajax({
+        url: this.action,
+        type: this.method,
+        data: data,
+        success: function(response) {
+            console.log(response);
+            // Manejar la respuesta de la solicitud AJAX
+            $("#theadClientsOfSeller").html(response);
+            // Realizar las actualizaciones necesarias en la tabla por AJAX
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            // Manejar errores de la solicitud AJAX
+            console.error("Error en la solicitud AJAX:", textStatus, errorThrown);
+        }
     });
 
-
-
+});
 </script>

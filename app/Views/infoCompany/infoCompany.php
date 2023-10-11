@@ -2,8 +2,8 @@
     <h3 class="tracking-in-expand">Perfil de usuarios</h3>
     <div class="row d-flex">
         <div class="col-md-6">
-            <form id="insertUser" class="slide-in-top" action="<?= Helpers\generateUrl("Company","Company","insertUsersCompany",[],"ajax")?>"
-                method="POST">
+            <form id="insertUser" class="slide-in-top"
+                action="<?= Helpers\generateUrl("Company","Company","insertUsersCompany",[],"ajax")?>" method="POST">
                 <label for="">Nombre/s</label>
                 <input name="u_name" type="text" class="form form-control">
                 <label for="">Apellido/s</label>
@@ -30,14 +30,15 @@
                 </div>
                 <label for="">Numero de documento</label>
                 <div class="input-group mb-3">
-                    <input type="number" name="u_document"class="form-control" aria-describedby="basic-addon2">
+                    <input type="number" name="u_document" class="form-control" aria-describedby="basic-addon2">
                 </div>
                 <div class="col-md-6">
-                    <button type="button" id="RegisterUsersOfCompany" class="btn btn-outline-primary">Registrar usuario</button>
+                    <button type="button" id="RegisterUsersOfCompany" class="btn btn-outline-primary">Registrar
+                        usuario</button>
                 </div>
             </form>
         </div>
-        
+
         <!-- LIST USERS -->
         <div class="col-12 table-responsive">
             <table id="usersTable"
@@ -51,6 +52,15 @@
                         <th>Rol</th>
                         <th>Estado</th>
                         <th>Acciones</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="ListUsersOfCompany">

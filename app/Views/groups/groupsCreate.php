@@ -11,7 +11,8 @@
     <hr>
     <h1 class="tracking-in-expand">Listas <i class="fa-solid fa-list"></i></h1>
     <div class="container table-responsive">
-        <table id="myTable" class="DataTable  text-center  align-middle slide-in-top table-hover table-responsive table-striped">
+        <table id="myTable"
+            class="DataTable  text-center  align-middle slide-in-top table-hover table-responsive table-striped">
             <thead class="dark-table">
                 <tr>
                     <th>Nombre</th>
@@ -21,6 +22,15 @@
                     <th>Subcategorias</th>
                     <th>Fecha de finalizacion</th>
                     <th>Action</th>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
                 </tr>
             </thead>
             <tbody class="table-light">

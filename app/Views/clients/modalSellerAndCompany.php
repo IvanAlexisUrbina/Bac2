@@ -15,6 +15,12 @@
                 <th scope="col">Numero de telefono</th>
                 <th scope="col">Acciones</th>
             </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
         </thead>
         <tbody id="theadClientsOfSeller" >
             <?php
