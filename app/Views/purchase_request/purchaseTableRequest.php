@@ -20,7 +20,7 @@
                 <th></th>
                 <th></th>
             </tr>
-            <?php } ?>
+            <?php } else {?>
             </tr>
             <tr>
                 <th></th>
@@ -29,6 +29,7 @@
                 <th></th>
                 <th></th>
             </tr>
+            <?php }?>
         </thead>
         <tbody>
             <?php
@@ -44,8 +45,12 @@
                 <?php if ($_SESSION['RolUser'] == '2') { ?>
                 <td><button data-id="<?=$req['pr_id']?>"
                         data-url="<?=Helpers\generateUrl("Purchase_request","Purchase_request","RequestUpdateStatusViewModal",[],"ajax")?>"
-                        class="btn btn-warning requestModalStatus"><i class="fa-solid fa-coins"></i></button></td>
+                        class="btn btn-warning requestModalStatus"><i class="fa-solid fa-coins"></i></button>
                 <?php } ?>
+                <?php if ($req['type_id']=='2') {?>
+                    <button data-url="<?=$req['pr_url_document']?>"  title="Visualizar Solicitud de compra" class="pdfModalLink btn btn-outline-info"><i class="fa-solid fa-eye"></i></button>
+                <?php }?>
+                </td>
             </tr>
             <?php } ?>
         </tbody>
