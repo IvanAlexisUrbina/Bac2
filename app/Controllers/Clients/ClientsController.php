@@ -200,21 +200,21 @@ class ClientsController
         redirect(generateUrl("Clients","Clients","CreateSellers"));
 
     }
-    public function SellerAndCompanyModal(){
-        $s_id=$_POST['id'];
-        $objS= new SellersModel();
-        $companies=$objS->consultCompaniesOfSellerById($s_id);
-        $objCompany= new CompanyModel();
-           // Obtener el rol y la empresa del usuario
-        foreach ($companies as &$company) {
-            $rol_id ='3';
-            $c_id = $company['c_id'];
-            $rolAndCompany = $objCompany->RolAndCompany($c_id, $rol_id);
-            $company['rol'] = $rolAndCompany; // Asumiendo que el campo de rol se llama 'rol'
-        }
+    // public function SellerAndCompanyModal(){
+    //     $s_id=$_POST['id'];
+    //     $objS= new SellersModel();
+    //     $companies=$objS->consultCompaniesOfSellerById($s_id);
+    //     $objCompany= new CompanyModel();
+    //        // Obtener el rol y la empresa del usuario
+    //     foreach ($companies as &$company) {
+    //         $rol_id ='3';
+    //         $c_id = $company['c_id'];
+    //         $rolAndCompany = $objCompany->RolAndCompany($c_id, $rol_id);
+    //         $company['rol'] = $rolAndCompany; // Asumiendo que el campo de rol se llama 'rol'
+    //     }
         
-        include_once '../app/Views/clients/modalSellerAndCompany.php';  
-    }
+    //     include_once '../app/Views/clients/modalSellerAndCompany.php';  
+    // }
 
     public function DeleteSellerOfCompany(){
         $objSeller= new SellersModel();

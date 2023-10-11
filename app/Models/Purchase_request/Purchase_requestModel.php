@@ -71,12 +71,13 @@ Class Purchase_requestModel extends MasterModel
         return $result;
     }
 
-    public function insertPurchaseRequest($pr_desc, $pr_quantity, $u_id,$status_id,$type_id){
-        $sql = "INSERT INTO purchase_requests (pr_desc, pr_quantity, u_id, state_id,type_id) 
-                VALUES (:pr_desc, :pr_quantity, :u_id, :state_id,:type_id)";
+    public function insertPurchaseRequest($pr_desc, $pr_quantity,$pr_url_document, $u_id,$status_id,$type_id){
+        $sql = "INSERT INTO purchase_requests (pr_desc, pr_quantity,pr_url_document, u_id, state_id,type_id) 
+                VALUES (:pr_desc, :pr_quantity,:pr_url_document, :u_id, :state_id,:type_id)";
         $params = [
             ':pr_desc' => $pr_desc,
             ':pr_quantity' => $pr_quantity,
+            ':pr_url_document' => $pr_url_document,
             ':u_id' => $u_id,
             ':state_id' => $status_id,
             ':type_id'=>$type_id
@@ -84,7 +85,20 @@ Class Purchase_requestModel extends MasterModel
         $this->insert($sql, $params);
     }
     
-    
+    public function insertPurchaseArticle($pr_id, $ar_id, $quantity, $priceNormal, $discountPercentajeOrPrice, $discountPrice)
+    {
+        $sql = "INSERT INTO purchase_request_articles (pr_id, ar_id, reqart_quantity, reqart_pricenormal, reqart_discountPercentajeOrPrice, reqart_discountPrice)
+                VALUES (:pr_id, :ar_id, :quantity, :priceNormal, :discountPercentajeOrPrice, :discountPrice)";
+        $params = [
+            ':pr_id' => $pr_id,
+            ':ar_id' => $ar_id,
+            ':quantity' => $quantity,
+            ':priceNormal' => $priceNormal,
+            ':discountPercentajeOrPrice' => $discountPercentajeOrPrice,
+            ':discountPrice' => $discountPrice,
+        ];
+        $this->insert($sql, $params);
+    }
 
     // public function updatePrice($ar_id, $wh_id, $p_value,$p_id)
     // {

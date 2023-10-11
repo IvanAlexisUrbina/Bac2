@@ -33,21 +33,29 @@ Class PdfModel extends MasterModel
     {
         $html = $template;
         $this->mpdf->WriteHTML($html);
-    
-        $folderName = ($folderType === 'quotes') ? 'quotes' : 'orders';
+
+        // Validar y asignar el nombre de la carpeta en función de $folderType
+        if ($folderType === 'quotes' || $folderType === 'orders' || $folderType === 'requestdocs') {
+            $folderName = $folderType;
+        } else {
+            // Valor predeterminado en caso de que $folderType no sea uno de los valores permitidos
+            $folderName = 'default';
+        }
+
         $folderPath = 'uploads/' . $folderName . '/' . $id . '/';
-    
+
         if (!file_exists($folderPath)) {
             mkdir($folderPath, 0755, true);
         }
-    
-        $fileName = 'Document_'.$folderType.'_' . $id . '_' . date('YmdHis') . '.pdf';
+
+        $fileName = 'Document_' . $folderName . '_' . $id . '_' . date('YmdHis') . '.pdf';
         $filePath = $folderPath . $fileName;
-    
+
         $this->mpdf->Output($filePath, 'F');
-    
+
         return $filePath;
     }
+
     
 
     public static function templateQuotePdf(array $articleArray,array $fieldName= NULL,array $fieldValue= NULL,$companyName,$name,$address_shipping,$phone,$email){
@@ -341,6 +349,152 @@ Class PdfModel extends MasterModel
         </html>';
         return $orderPdf;
     }
+
+
+    public static function templatePurchaseRequestPdf(array $articleArray, array $fieldName = NULL, array $fieldValue = NULL, $companyName, $name, $address_shipping, $phone, $email)
+    {
+        // VARS CONST GLOBAL
+        require_once '../config/global.php';
+
+        $purchaseRequestPdf = '<!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="utf-8">
+                <title>Solicitud de Compra</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        font-size: 12px;
+                    }
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin-bottom: 20px;
+                    }
+                    th, td {
+                        padding: 5px;
+                        border: 1px solid #ccc;
+                        text-align: left;
+                    }
+                    th {
+                        background-color: #eee;
+                    }
+                    h1 {
+                        font-size: 24px;
+                        margin-top: 0;
+                        margin-bottom: 20px;
+                    }
+                    .header {
+                        text-align: left;
+                        margin-bottom: 20px;
+                    }
+                    .header img {
+                        height: 80px;
+                        width: 80px;
+                        left: 0;
+                    }
+                    .contact-info {
+                        margin-bottom: 20px;
+                    }
+                    .contact-info p {
+                        margin: 0;
+                    }
+                    .footer {
+                        text-align: right;
+                        font-size: 10px;
+                        margin-top: 20px;
+                    }
+                </style>
+            </head>
+            <body>
+            
+                <div class="header">
+                    <img src="' . LOGOBLACK . '">
+                    <p>' . TITLE_PAGE . '</p>
+                    <p>' . SMTP_USERNAME . '</p>
+                    <p>Teléfono de ejemplo</p>
+                    <p>Correo electrónico de ejemplo</p>
+                </div>
+            
+                <h1>Solicitud de Compra</h1>
+            
+                <div class="contact-info">
+                    <p>Proveedor: <b>' . $companyName . '</b></p>
+                    <p>Nombre del solicitante: <b>' . $name . ' </b></p>
+                    <p>Dirección del solicitante : <b> ' . $address_shipping . '</b></p>
+                    <p>Teléfono del solicitante: <b> ' . $phone . '</b></p>
+                    <p>Correo electrónico del solicitante:<b> ' . $email . '</b></p>';
+        if ($fieldName <> NULL || $fieldValue <> NULL) {
+            for ($i = 0; $i < count($fieldName); $i++) {
+                $purchaseRequestPdf .= '<p>' . $fieldName[$i] . ':<b>' . $fieldValue[$i] . '</b></p>';
+            }
+        }
+        $purchaseRequestPdf .= '
+            </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Cantidad</th>
+                            <th>Precio unitario</th>
+                            <th>Descuento</th>
+                            <th>Precio tras el descuento</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+        $TotalArticle = 0;
+        $total = 0;
+        foreach ($articleArray as $articles) {
+            $article = $articles[0]; // Accedo a la primera posición de la información del artículo
+            $quantity = $articles['quantity']; // Accedo a la cantidad
+            $price = $articles['price']; // Accedo al precio
+            $subtotalArticle = $quantity * $price;
+            $TotalArticle += $subtotalArticle;
+            $TotalArticle_formatted = number_format($TotalArticle, 2, '.', ',');
+            $purchaseRequestPdf .=
+                "<tr>
+                                <td>" . $article['ar_id'] . "</td>
+                                <td>" . $article['ar_name'] . "</td>
+                                <td>" . $article['ar_desc'] . "</td>           
+                                <td>" . $quantity . "</td>       
+                                <td>$ " . $articles['pricePre'] . "</td>                            
+                                <td> " . $articles['discountPercentajeOrPrice'] . "</td>                            
+                                <td>$ " . $price . "</td>                            
+                                <td>$" . $subtotalArticle . "</td>                            
+                            </tr>";
+        }
+        $iva = $TotalArticle * 0.19;
+        $total += $TotalArticle + $iva;
+        $total_formatted = number_format($total, 2, '.', ',');
+        $iva_formatted = number_format($iva, 2, '.', ',');
+        // TOTAL, SUBTOTAL, IMPUESTOS
+        $purchaseRequestPdf .= '</tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" style="text-align: right;">Subtotal:</td>
+                            <td>$' . $TotalArticle_formatted . '</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: right;">Impuestos:</td>
+                            <td>$' . $iva_formatted . '</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: right;">Total:</td>
+                            <td>$' . $total_formatted . '</td>
+                        </tr>
+                    </tfoot>
+                </table>    
+                <div class="footer">
+                    <p>Gracias por su solicitud de compra.</p>
+                </div>
+            </body>
+            </html>';
+        return $purchaseRequestPdf;
+    }
+
 } 
 
 

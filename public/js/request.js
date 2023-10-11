@@ -42,6 +42,7 @@ $(document).ready(function() {
                     });
                 },
                 error: function (error) {
+                    console.log(error.responseText);
                     // Habilita el botón nuevamente en caso de error
                     $("#submit-button-request").prop("disabled", false);
         

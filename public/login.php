@@ -99,7 +99,7 @@ use function Helpers\generateUrl;
                         </div>
                         <!-- /Logo -->
 
-                        <h1 class="codediv">Codigo de validación</h1>
+                        <h1 class="codediv text-center">Codigo de validación</h1>
 
                         <form action="<?= generateUrl("Access","Access","UserAccess",[],"ajax"); ?>" method="post"
                             id="loginForm">

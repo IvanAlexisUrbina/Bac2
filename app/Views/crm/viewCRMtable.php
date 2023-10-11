@@ -15,6 +15,18 @@
                 <th class="text-nowrap">Recordatorio</th>
                 <th class="text-nowrap">Acciones</th>
             </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
         </thead>
         <tbody>
             <!-- Ejemplo de una fila de actividad -->
@@ -24,7 +36,7 @@
                 <td><?=$act['crm_date_time_init']?></td>
                 <td><?= strtoupper($act['crm_activity']) ?></td>
                 <td><?=$act['crm_desc']?></td>
-                <td >
+                <td>
                     <?php 
                     if (!empty($act['clients'])) {
                         echo '<ul class="text-left-custom">';
@@ -66,12 +78,15 @@
 
                 <td><?=$act['status'][0]['status_name']?></td>
                 <td><?=$act['priority'][0]['prst_name']?></td>
-                <td class="text-success "><span for="" class="badge bg-label-success"><?=$act['crm_reminder']?></span></td>
+                <td class="text-success "><span for="" class="badge bg-label-success"><?=$act['crm_reminder']?></span>
+                </td>
                 <td class="actions">
                     <div class="btn-group" role="group">
                         <!-- <button data-url="<?=Helpers\generateUrl("CRM","CRM","UpdateDetaillsActivity",[],"ajax")?>" data-id="<?=$act['crm_id']?>" type="button" class="updateActivity btn btn-outline-warning">Editar</button> -->
                         <!-- <button type="button" class="btn btn-outline-danger">Eliminar</button> -->
-                        <button  data-url="<?=Helpers\generateUrl("CRM","CRM","consutlDetaillsActivity",[],"ajax")?>" data-id="<?=$act['crm_id']?>" type="button" class="detaillsActivity btn btn-outline-info">Detalles</button>
+                        <button data-url="<?=Helpers\generateUrl("CRM","CRM","consutlDetaillsActivity",[],"ajax")?>"
+                            data-id="<?=$act['crm_id']?>" type="button"
+                            class="detaillsActivity btn btn-outline-info">Detalles</button>
                     </div>
                 </td>
 

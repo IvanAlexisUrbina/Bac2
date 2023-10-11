@@ -396,7 +396,7 @@ class OrderController
         $objOrder->updateField('`order`','order_id',$idOrder,'order_url_document',$filePath);
         // dd($_FILES['fieldValue']);
 
-
+        // attrs extra oorder
         if (isset($_POST['fieldName'])) {
             $fieldNames = $_POST['fieldName'];
             $fieldValues = $_POST['fieldValue'];
@@ -406,6 +406,7 @@ class OrderController
             }
         
         }
+        // attrs extra oorder
         if (isset($_FILES['fieldValue'])) {
             $fileCount = count($_FILES['fieldValue']['name']);
         
@@ -431,11 +432,11 @@ class OrderController
         
                 // Mover el archivo a la ubicación de destino
                 if (move_uploaded_file($fileTmpName, $filePath)) {
-                    echo "El archivo $fileName se ha subido correctamente.";
-                    echo "Ruta completa del archivo: $filePath";
+                    // echo "El archivo $fileName se ha subido correctamente.";
+                    // echo "Ruta completa del archivo: $filePath";
                    $objOrder->insertExtraAttributeOrder($fileName, $filePath, $order_id);
                 } else {
-                    echo "Ocurrió un error al mover el archivo $fileName.";
+                    // echo "Ocurrió un error al mover el archivo $fileName.";
                 }
             }
         }

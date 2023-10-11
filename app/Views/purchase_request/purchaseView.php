@@ -69,7 +69,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="comentarios">Comentariosa:</label>
+                    <label for="comentarios">Comentarios:</label>
                     <textarea class="form-control" name="comments" rows="3"></textarea>
                 </div>
 
