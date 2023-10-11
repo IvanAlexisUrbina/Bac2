@@ -30,7 +30,7 @@
                 <th></th>
             </tr>
             <?php }?>
-        </thead>
+         </thead>
         <tbody>
             <?php
             use function Helpers\dd;
