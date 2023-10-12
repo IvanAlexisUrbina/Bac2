@@ -62,7 +62,7 @@ echo '<script>var RolUser = ' . json_encode($_SESSION['RolUser']) . ';</script>'
     </div>
 
     <!-- ... Código HTML anterior ... -->
-<div class="col-md-12 card ">
+<div class="col-md-12 card p-4">
     <div class="col-md-6 ">
         <canvas id="incomeChart" width="400" height="200"></canvas>
     </div>

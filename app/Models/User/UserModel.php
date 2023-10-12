@@ -176,12 +176,10 @@ Class UserModel extends MasterModel
         $users=$this->select($sql, $params);
         return $users;
     }
-    public function consultUsersWithRol(int $rol_id){
+    public function consultUsersWithRol(){
         $sql = "SELECT u_id,u_name,u_lastname,c_id,u_email FROM users
-        WHERE rol_id = :rol_id";
-        $params = [
-            ':rol_id'=>$rol_id
-        ];
+        WHERE rol_id = '2' OR rol_id='3'";
+        $params = [];
         $users=$this->select($sql, $params);
         return $users;
     }

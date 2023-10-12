@@ -56,7 +56,13 @@ Class Purchase_requestModel extends MasterModel
         // Devuelve el ID del último registro insertado
         return $this->getLastId('purchase_request_states','state_id ');
     }
-    
+    public function consultArticlesOfTheRequest($pr_id){
+        $sql = "SELECT * FROM purchase_request_articles
+                WHERE pr_id = :id";
+        $params = [':id' => $pr_id];
+        $articles = $this->select($sql, $params);
+        return $articles;
+    }
    
 
     public function consultRequest(){
@@ -71,16 +77,17 @@ Class Purchase_requestModel extends MasterModel
         return $result;
     }
 
-    public function insertPurchaseRequest($pr_desc, $pr_quantity,$pr_url_document, $u_id,$status_id,$type_id){
-        $sql = "INSERT INTO purchase_requests (pr_desc, pr_quantity,pr_url_document, u_id, state_id,type_id) 
-                VALUES (:pr_desc, :pr_quantity,:pr_url_document, :u_id, :state_id,:type_id)";
+    public function insertPurchaseRequest($pr_desc, $pr_quantity,$pr_url_document, $u_id,$status_id,$type_id,$c_id=null){
+        $sql = "INSERT INTO purchase_requests (pr_desc, pr_quantity,pr_url_document, u_id, state_id,type_id,c_id) 
+                VALUES (:pr_desc, :pr_quantity,:pr_url_document, :u_id, :state_id,:type_id,:c_id)";
         $params = [
             ':pr_desc' => $pr_desc,
             ':pr_quantity' => $pr_quantity,
             ':pr_url_document' => $pr_url_document,
             ':u_id' => $u_id,
             ':state_id' => $status_id,
-            ':type_id'=>$type_id
+            ':type_id'=>$type_id,
+            ':c_id'=>$c_id
         ];
         $this->insert($sql, $params);
     }

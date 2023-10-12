@@ -4,6 +4,9 @@ $(document).ready(function() {
         responsive: true,
         orderCellsTop: true,
         fixedHeader: true,
+        colReorder: true,
+        resizer: true,
+        autoWidth:false,
         language: {
             "decimal": "",
             "emptyTable": "No hay datos",
@@ -25,19 +28,55 @@ $(document).ready(function() {
             }
         }
     });
-
+    // table.columns.adjust().draw();
     // Agrega filtros de búsqueda a las columnas
+
     $('.DataTable thead tr:eq(1) th').each(function(i) {
         var title = $(this).text(); // Nombre de la columna
-        $(this).html('<input type="text" class="form form-control" placeholder="' + 'Buscar' + '" />');
-        $('input', this).on('keyup change', function() {
-            // Realiza la búsqueda en la columna correspondiente cuando se cambia el valor del input
-            if (table.column(i).search() !== this.value) {
-                table
-                    .column(i)
-                    .search(this.value)
-                    .draw();
+    
+        var containsImageOrButton = false;
+    
+        // Verifica si alguna fila del tbody de la columna contiene una imagen o un botón
+        $(this).parent().parent().parent().find('tbody tr').each(function() {
+            if ($(this).find('td:eq(' + i + ')').find('img').length > 0 || $(this).find('td:eq(' + i + ')').find('button').length > 0) {
+                containsImageOrButton = true;
+                return false; // Sal del bucle una vez que encuentres una imagen o botón
             }
         });
+    
+        if (!containsImageOrButton) {
+            // Agrega el campo de búsqueda solo si no contiene una imagen o un botón en ninguna fila del tbody
+            $(this).html('<input type="text" class="form form-control" placeholder="' + 'Buscar' + '" />');
+            $('input', this).on('keyup change', function() {
+                // Realiza la búsqueda en la columna correspondiente cuando se cambia el valor del input
+                if (table.column(i).search() !== this.value) {
+                    table
+                        .column(i)
+                        .search(this.value)
+                        .draw();
+                }
+            });
+        }
     });
+    
+
+
+
+  // Habilita el redimensionamiento de columnas con el mouse
+  $('.DataTable th').resizable({
+    handles: 'e', // Permite redimensionar solo el lado derecho (oeste)
+    minWidth: 50, // Ancho mínimo de la columna
+    stop: function(event, ui) {
+        // Al detener el redimensionamiento, actualiza el ancho de la columna
+        var columnIndex = $(this).index();
+        var newWidth = ui.size.width;
+        table.column(columnIndex).nodes().to$().css('width', newWidth);
+        table.draw();
+    }
+});
+
+
+    
+
+
 });

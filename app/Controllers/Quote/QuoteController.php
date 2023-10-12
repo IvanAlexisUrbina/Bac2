@@ -276,6 +276,7 @@ class QuoteController{
     public function AddArticlesAjax(){
         $idArticle=$_POST['id_article'];
         $quantity=$_POST['quantity_articles'];
+        $c_id=$_POST['companyId'];
 
         // GET INFO ARTICLE
         $objArticle=new ArticlesModel(); 
@@ -292,7 +293,7 @@ class QuoteController{
         //CONSULT DISCOUNT ARTICLE
         //CHECK IF THE COMPANY EXISTS IN THE DISCOUNT GROUPS
         $objDiscount= new Customer_discountsModel();
-        $discountCompany=$objDiscount->consultDiscountsByColumn('c_id',$_SESSION['IdCompany']);
+        $discountCompany=$objDiscount->consultDiscountsByColumn('c_id',$c_id);
         
         $priceDiscount=null;
         $discountPercentage=null;

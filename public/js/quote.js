@@ -33,11 +33,11 @@ $(document).ready(function () {
     let id_article = $(this).val();
     let url = $(this).attr('data-url');
     let quantity_articles = $(this).siblings('input').val();
-  
+    let c_id =$('#SelectQuote').val();
     $.ajax({
       type: 'POST',
       url: url,
-      data: { id_article: id_article, quantity_articles: quantity_articles },
+      data: { id_article: id_article, quantity_articles: quantity_articles,companyId:c_id },
       success: function(response) {
         let totalSubtotal = 0;
         let iva = 0;

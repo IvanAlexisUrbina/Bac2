@@ -34,16 +34,12 @@
 
 <script src="../assets/vendor/js/menu.js"></script>
 <!-- endbuild -->
-
 <!-- Vendors JS -->
 <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
-
 <!-- Main JS -->
 <script src="../assets/js/main.js"></script>
-
 <!-- Page JS -->
 <script src="../assets/js/dashboards-analytics.js"></script>
-
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 
@@ -51,4 +47,9 @@
 <script src="js/dataTable.js"></script>
 <!-- select -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!-- Incluye la extensión ColReorder -->
+<script src="https://cdn.datatables.net/colreorder/1.5.4/js/dataTables.colReorder.min.js"></script>
 
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script src="https://cdn.datatables.net/resizer/2.0.4/js/dataTables.resizer.min.js"></script>

@@ -7,7 +7,7 @@
     </div>
     <div class="table-responsive">
 
-        <table class="table DataTable text-center slide-in-top align-middle table-hover table-responsive">
+        <table class="table DataTable text-center slide-in-top align-middle table-hover">
             <thead>
                 <tr>
                     <th>ID</th>

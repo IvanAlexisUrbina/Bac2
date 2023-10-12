@@ -1,4 +1,4 @@
-<form action="<?=Helpers\generateUrl("Order","Order","pdfOrder",[],"ajax");?>" method="POST"
+<form class="p-4" action="<?=Helpers\generateUrl("Order","Order","pdfOrder",[],"ajax");?>" method="POST"
     enctype="multipart/form-data">
     <div class="container">
         <h1 class="tracking-in-expand">Solicitud de compra<i class="fa-solid fa-pen-to-square"></i></h1>
@@ -92,6 +92,11 @@
                 </thead>
                 <tbody id="contArticlesOrder">
                     <!-- ADD ARTICLES FOR AJAX  -->
+                     <!-- ADD ARTICLES FOR AJAX  -->
+                     <?php
+                    echo $articlesHmtl;
+                    
+                    ?>
                 </tbody>
             </table>
         </div>

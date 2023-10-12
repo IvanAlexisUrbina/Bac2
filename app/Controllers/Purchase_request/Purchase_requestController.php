@@ -8,6 +8,7 @@ use Models\Customer_discounts\Customer_discountsModel;
 use Models\Purchase_request\Purchase_requestModel;
 use Models\Groups\GroupsModel;
 use Models\Pdf\PdfModel;
+use Models\Category\CategoryModel;
 require '../vendor/autoload.php';
 
 class Purchase_requestController
@@ -27,10 +28,110 @@ class Purchase_requestController
     }
 
     public function RequestUpdateStatusViewModal(){
-        
+        $pr_id=$_POST['id'];
+        $Objpurchase= new Purchase_requestModel();
+        $request=$Objpurchase->consultRequestById($pr_id);
+        foreach ($request as &$req) {
+            $req['articles']=$Objpurchase->consultArticlesOfTheRequest($req['pr_id']);
+        }
+
+        $articlesHmtl='';
+            foreach ($request as $rq) {
+            // dd($quo);
+    
+                foreach ($rq['articles'] as $art) {
+                    // dd($art['ar_id'],$art['quoart_quantity']);
+                    $article=$this->articlesRequest($art['ar_id'],$art['reqart_quantity']);
+                    $articlesHmtl.=$article;
+                }
+            }
+
+
+        //  dd($request);
         include_once "../app/Views/purchase_request/purchaseViewModalRequest.php";
 
     }
+
+    public function articlesRequest($idArticle,$quantity){
+
+        // GET INFO ARTICLE
+        $objArticle=new ArticlesModel(); 
+
+        $article= $objArticle->consultArticleById($idArticle);
+
+        $idCategory = $article[0]['cat_id'];       
+        //GET INFO CATEGORY
+        //CONSULT DISCOUNT CATEGORY
+        $objCategory=new CategoryModel();
+        $category=$objCategory->consultCategoryById($idCategory);
+        $nameCategory = $category[0]['cat_name']; 
+        //GET INFO PRICE ARTICLE
+        $objPrice= new PricesModel(); 
+        $price=$objPrice->consultPriceById($idArticle);
+        //CONSULT DISCOUNT ARTICLE
+        //CHECK IF THE COMPANY EXISTS IN THE DISCOUNT GROUPS
+        $objDiscount= new Customer_discountsModel();
+        $discountCompany=$objDiscount->consultDiscountsByColumn('c_id',$_SESSION['IdCompany']);
+        
+        $priceDiscount=null;
+        $discountPercentage=null;
+        $arryArticles = array();
+        $arrayCategories = array();
+        $arraySubcategories = array();
+        $discountPercentajeOrPrice='No aplica';
+        
+        if (!empty($discountCompany)) {
+            //CONSULT CATEGORIES,SUBCATEGORIES,ARTICLES AND DISCOUNT GROUP OF DISCOUNT
+            $objGroups= new GroupsModel();
+            $group=$objGroups->consultGroupById($discountCompany[0]['gp_id']);
+            foreach ($discountCompany as $key) {
+                $arryArticles[]=$key['ar_id'];
+                $arrayCategories[]=$key['cat_id'];
+                $arraySubcategories[]=$key['sbcat_id'];
+            }
+
+                $priceDiscount=$discountCompany[0]['price_discount'];
+                $discountPercentage=$group[0]['gp_discount_percentage'];
+
+                
+            // Here it checks if the discount is based on price or percentage, and assigns it to the variable $discountPercentajeOrPrice.
+                if (!empty($discountPercentage)) {
+                    $discountPercentajeOrPrice = $discountPercentage.'%';
+                }
+                if (!empty($priceDiscount)) {
+                    $discountPercentajeOrPrice = $priceDiscount.'$';
+                }
+        }
+
+        $PriceWithDiscount=0;
+        $html = '';
+
+        foreach ($article as $ar) {
+            $discountedPrice = $this->verifyDiscount($ar['ar_id'], $ar['cat_id'], $ar['sbcat_id'], $arryArticles, $arrayCategories, $arraySubcategories, $priceDiscount, $discountPercentage, $price[0]['p_value']);
+            $subtotal = $discountedPrice * $quantity;
+            
+            $html .= '<tr>
+                        <td> <i class="fa-solid fa-file"></i>' . $ar['ar_name'] . '</td>
+                        <td>' . $nameCategory . '</td>
+                        <td>
+                            <input type="number" class="form-control quantityArt" name="quantity_article[]" min="1" value="' . $quantity . '">
+                            <input type="hidden"  name="art_id[]" value="' . $ar['ar_id'] . '">
+                        </td>
+                        <td class="price">' . $price[0]['p_value'] . '<input type="hidden" name="PriceNormal[]" value="' . $price[0]['p_value'] . '"></td>
+                        <td>' . $discountPercentajeOrPrice . '<input type="hidden" name="discountPercentajeOrPrice[]" value=' . $discountPercentajeOrPrice . '></td>
+                        <td class="discount">' . $discountedPrice . '<input type="hidden" name="discountPrice[]" value="' . $discountedPrice . '" ></td>
+                        <td class="subtotal">$' . $subtotal . '</td>
+                        <td><button class="btn btn-danger delete-row"><i class="fa-solid fa-square-xmark"></i></button></td>
+                    </tr>';
+        }
+        
+        return $html;
+    }
+
+
+
+
+
 
     public function generateRequestPurchase(){
         $Objpurchase= new Purchase_requestModel();   
@@ -61,7 +162,7 @@ class Purchase_requestController
            $discountPrice = $_POST['discountPrice'];
            //$totalOrderInput products 
            // Insert the basic data into the "purchase request" table
-           $Objpurchase->insertPurchaseRequest($pr_desc,$totalOrderInput,null,$_SESSION['idUser'],'1',$type_id);
+           $Objpurchase->insertPurchaseRequest($pr_desc,$totalOrderInput,null,$_SESSION['idUser'],'1',$type_id,$company);
             //get last id
            $pr_id=$Objpurchase->getLastId('purchase_requests','pr_id');
 
