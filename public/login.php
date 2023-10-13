@@ -99,7 +99,7 @@ use function Helpers\generateUrl;
                         </div>
                         <!-- /Logo -->
 
-                        <h1 class="codediv text-center">Codigo de validación</h1>
+                        <h1 class="codediv text-center">Código de validación</h1>
 
                         <form action="<?= generateUrl("Access","Access","UserAccess",[],"ajax"); ?>" method="post"
                             id="loginForm">
@@ -134,7 +134,7 @@ use function Helpers\generateUrl;
 
                             <!-- form 2 -->
                             <div class="mb-3 codediv">
-                                <label for="email" class="form-label">Codigo de verificación</label>
+                                <label for="email" class="form-label">Código de verificación</label>
                                 <input name="u_code" id="u_code" type="password" 
                                 class="form-control" placeholder="Ingresa tu codigo de verificación">
                             </div>
