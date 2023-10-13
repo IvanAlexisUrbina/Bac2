@@ -92,7 +92,7 @@ use function Helpers\generateUrl;
                         <div class="app-brand justify-content-center">
                             <a href="index.html" class="app-brand-link gap-2">
                                 <span class="app-brand-logo demo">
-                                    <img style="width:250px;" id="logoSideBar" src="img/Logo-Portal.png" alt=""
+                                    <img style="width:250px;" id="logoSideBar" src="img/logo_prueba.jpg" alt=""
                                         srcset="">
                                 </span>
                             </a>
