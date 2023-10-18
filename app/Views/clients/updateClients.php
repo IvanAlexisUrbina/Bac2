@@ -116,7 +116,7 @@
                         <?php
                 $documentTypes = array("Cedula de ciudadanía", "Cedula de extranjeria", "Pasaporte");
                 foreach ($documentTypes as $type) {
-                    $selected = ($type == $comp['representant'][0]['u_document_type']) ? 'selected' : '';
+                    $selected = ($type == $comp['representant'][0]['u_type_document']) ? 'selected' : '';
                     ?>
                         <option value="<?php echo $type; ?>" <?php echo $selected; ?>><?php echo $type; ?></option>
                         <?php } ?>

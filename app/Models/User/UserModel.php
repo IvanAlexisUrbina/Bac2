@@ -3,7 +3,7 @@ namespace Models\User;
 
 use Models\MasterModel;
 use PDO;
-
+use PDOException;
 use function Helpers\dd;
 
 Class UserModel extends MasterModel
@@ -43,26 +43,34 @@ Class UserModel extends MasterModel
 
 
 
-    public function UpdateRepresentantCompanyRolCompanyAndProgrammer($u_id,$u_name,$u_lastname,$u_document,$u_email,$u_type_document){
-        $sql = "UPDATE users SET
-                    u_name = :u_name,
-                    u_lastname=:u_lastname,
-                    u_document = :u_document,
-                    u_email = :u_email,
-                    u_type_document = :u_type_document
-                    WHERE u_id = :u_id";
-                        
-        $params = [
-            ':u_id' => $u_id,
-            ':u_name' => $u_name,
-            ':u_lastname'=>$u_lastname,
-            ':u_document' => $u_document,
-            ':u_email' => $u_email,
-            ':u_type_document' => $u_type_document,
-        ];
-        $this->update($sql, $params);
+    public function UpdateRepresentantCompanyRolCompanyAndProgrammer($u_id, $u_name, $u_lastname, $u_document, $u_email, $u_type_document) {
+        try {
+            $sql = "UPDATE users SET
+                        u_name = :u_name,
+                        u_lastname = :u_lastname,
+                        u_document = :u_document,
+                        u_email = :u_email,
+                        u_type_document = :u_type_document
+                        WHERE u_id = :u_id";
     
+            $params = [
+                ':u_id' => $u_id,
+                ':u_name' => $u_name,
+                ':u_lastname' => $u_lastname,
+                ':u_document' => $u_document,
+                ':u_email' => $u_email,
+                ':u_type_document' => $u_type_document,
+            ];
+            
+            $this->update($sql, $params);
+            
+            // echo "Actualización exitosa"; // Opcional: Mensaje de éxito
+        } catch (PDOException $e) {
+            // Manejo de excepciones en caso de error
+            // echo "Error al actualizar: " . $e->getMessage();
+        }
     }
+    
     
 
 
@@ -128,12 +136,10 @@ Class UserModel extends MasterModel
         $sql = "SELECT u_id,u_name,u_lastname,u_email,u_document,u_type_document,u_phone
         FROM users
         WHERE rol_id = :rol_id 
-        AND c_id = :c_id 
-        AND status_id = :status_id";
+        AND c_id = :c_id ";
         $params = [
             'rol_id' => $rol_id,
             'c_id' => $c_id,
-            'status_id' => $status_id
         ];
     
         $user=$this->select($sql, $params);
@@ -176,13 +182,14 @@ Class UserModel extends MasterModel
         $users=$this->select($sql, $params);
         return $users;
     }
-    public function consultUsersWithRol(){
+    public function consultUsersWithRol(int $rol_id){
         $sql = "SELECT u_id,u_name,u_lastname,c_id,u_email FROM users
-        WHERE rol_id = '2' OR rol_id='3'";
-        $params = [];
+        WHERE rol_id = :rol";
+        $params = [":rol"=>$rol_id];
         $users=$this->select($sql, $params);
         return $users;
     }
+
     public function checkEmailExists($email)
     {
         $sql = "SELECT COUNT(*) as total FROM users WHERE u_email = :email";

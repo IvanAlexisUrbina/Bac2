@@ -265,6 +265,7 @@ class CompanyController
         $mail->DataEmail($templateUserCompany,$email,'¡Tu suscripción esta a punto de terminar, porfavor llena tus datos como empresa!');
         redirect(generateUrl("Clients","Clients","ViewClientPortal"));
     }
+
     // USERS OF COMPANIES
     public function UpdateInfoCompany(){
         $c_id=$_POST['id'];
@@ -275,10 +276,10 @@ class CompanyController
         $industries=$objIndustry->consultTypes_industry();
         // SHOW CLIENT OF PORTAL
         foreach ($company as $c => $value) {
-            $user = $objUser->getUsersByRoleCompanyAndStatus('2', $value['c_id'], '2');
+            $user = $objUser->getUsersByRoleCompanyAndStatus('4', $value['c_id'], '1');
             $company[$c]['representant'] = $user; 
         }
-        // dd( $subscription);
+        //  dd( $company);
         include_once "../app/Views/clients/updateClients.php";
     }
     
@@ -296,7 +297,7 @@ class CompanyController
             $user = $objUser->getUsersByRoleCompanyAndStatus('4', $value['c_id'], '1');
             $company[$c]['representant'] = $user; // Almacenar los usuarios en la posición correspondiente de la compañía
         }
-        // dd($company);
+        //  dd($company);
         include_once "../app/Views/clients/updateClients.php";
     }
 
@@ -319,7 +320,7 @@ class CompanyController
         $representative_document = $_POST['representative_document'];
         $representative_email = $_POST['representative_email'];
         $representative_document_type = $_POST['representative_document_type'];
-
+// dd($_POST);
         $objCompany= new CompanyModel();
         $objCompany->UpdateInfoCompanyRolCompanyAndProgrammer($c_id,$company_name,$c_desc,$NIT,$country,$department,$city,$industry);
         $objUser= new UserModel();

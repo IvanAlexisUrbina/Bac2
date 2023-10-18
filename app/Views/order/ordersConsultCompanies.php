@@ -37,7 +37,7 @@
 					<td>'.$q['state_name_es'].'</td>
 					<td>'.number_format($q['order_total'], 2, ',', '.').'</td>
 					<td class="text-center">
-					<button data-url="'.$q['order_url_document'].'" title="Visualizar cotizacion" class="pdfModalLink btn btn-outline-warning"><i class="fa-solid fa-eye"></i></button>
+					<button data-url="'.$q['order_url_document'].'" title="Visualizar Pedido" class="pdfModalLink btn btn-outline-warning"><i class="fa-solid fa-eye"></i></button>
 					<button data-company="'.$q['c_id'].'"data-id="'.$q['order_id'].'"  data-url="'.Helpers\generateUrl("Order","Order","modalStatusOrder",[],"ajax").'" title="Aceptar documento" class="ModalAcceptDocumentOrder btn btn-outline-primary"><i class="fa-solid fa-circle-check"></i></button>
 					</td>
 					</tr>';

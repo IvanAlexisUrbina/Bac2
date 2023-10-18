@@ -67,16 +67,18 @@ class ClientsController
 
     public function ViewClientPortal(){
         $objUser= new UserModel();
-        $users=$objUser->consultUsersWithRol('2');
+        $users=$objUser->consultUsersWithRol('4');
         $objCompany= new CompanyModel();
         $objSuscription= new SubscriptionModel();
-        
+        // dd($users);
         foreach ($users as &$user) {
             $company=$objCompany->ConsultCompany($user['c_id']);
             $subscription=$objSuscription->consultPlanSubscription($user['c_id']);
             $user['company'] = $company;
             $user['subscription']=$subscription; // Agregar información de la empresa al usuario
         }
+
+        // dd($users);
         include '../app/Views/clients/viewClientPortal.php';
     }
     
