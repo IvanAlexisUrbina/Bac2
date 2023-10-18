@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-10-2023 a las 21:28:09
+-- Tiempo de generación: 18-10-2023 a las 04:21:56
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.1.12
 
@@ -262,12 +262,12 @@ CREATE TABLE `crm_meeting` (
 --
 
 INSERT INTO `crm_meeting` (`crm_meet_id`, `crm_id`, `meeting_type`, `meeting_link`, `comments`, `u_id`, `c_id`) VALUES
-(4, 5, 'ASUNTO PRUEBA', 'fasdfasd', 'asdfasd', 87, 67),
+(4, 5, 'ASUNTO PRUEBA', 'fasdfasd', 'asdfasd', 98, 67),
 (5, 6, NULL, NULL, NULL, 87, 67),
 (6, 7, NULL, NULL, NULL, 87, 67),
-(7, 8, NULL, NULL, NULL, 87, 67),
-(8, 9, NULL, NULL, NULL, 87, 67),
-(9, 10, NULL, NULL, NULL, 87, 67),
+(7, 8, NULL, NULL, NULL, 9, 67),
+(8, 9, NULL, NULL, NULL, 86, 67),
+(9, 10, NULL, NULL, NULL, 86, 67),
 (10, 11, 'Cierre de negocio', 'link de la reunion', 'Ese día nos reuniremos con el gerente para intentar cerrar el negocio.', 87, 67);
 
 -- --------------------------------------------------------
@@ -629,19 +629,47 @@ CREATE TABLE `purchase_requests` (
   `pr_desc` text NOT NULL,
   `pr_quantity` decimal(10,2) NOT NULL,
   `pr_date_request` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `pr_url_document` varchar(255) DEFAULT NULL,
   `u_id` int(11) NOT NULL,
   `state_id` int(11) DEFAULT NULL,
-  `type_id` int(11) NOT NULL
+  `type_id` int(11) NOT NULL,
+  `c_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `purchase_requests`
 --
 
-INSERT INTO `purchase_requests` (`pr_id`, `pr_desc`, `pr_quantity`, `pr_date_request`, `u_id`, `state_id`, `type_id`) VALUES
-(1, 'desc', '20000.00', '2023-09-27 16:20:20', 86, 1, 1),
-(2, 'desc', '2212312.00', '2023-09-27 16:27:55', 86, 1, 1),
-(3, 'compra almuerzo', '2000.00', '2023-09-28 10:05:34', 86, 1, 2);
+INSERT INTO `purchase_requests` (`pr_id`, `pr_desc`, `pr_quantity`, `pr_date_request`, `pr_url_document`, `u_id`, `state_id`, `type_id`, `c_id`) VALUES
+(1, 'desc', '20000.00', '2023-10-11 17:19:05', NULL, 86, 1, 1, NULL),
+(2, 'desc', '2212312.00', '2023-10-11 17:19:14', NULL, 86, 1, 1, NULL),
+(4, 'comments', '2856.00', '2023-10-11 17:14:23', 'uploads/requestdocs/4/Document_requestdocs_4_20231010235854.pdf', 86, 1, 2, 67),
+(5, '11/10/2023', '5845.28', '2023-10-11 17:14:25', 'uploads/requestdocs/5/Document_requestdocs_5_20231011165629.pdf', 86, 1, 2, 67);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `purchase_request_articles`
+--
+
+CREATE TABLE `purchase_request_articles` (
+  `reqart_id` int(11) NOT NULL,
+  `pr_id` int(11) NOT NULL,
+  `ar_id` int(11) NOT NULL,
+  `reqart_quantity` int(11) NOT NULL,
+  `reqart_pricenormal` float NOT NULL,
+  `reqart_discountPercentajeOrPrice` varchar(255) NOT NULL,
+  `reqart_discountPrice` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `purchase_request_articles`
+--
+
+INSERT INTO `purchase_request_articles` (`reqart_id`, `pr_id`, `ar_id`, `reqart_quantity`, `reqart_pricenormal`, `reqart_discountPercentajeOrPrice`, `reqart_discountPrice`) VALUES
+(1, 4, 1, 2, 1200, 'No', 1200),
+(2, 5, 1, 2, 1200, '12%', 1056),
+(3, 5, 2, 2, 1400, '12%', 1400);
 
 -- --------------------------------------------------------
 
@@ -2125,8 +2153,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`u_id`, `u_name`, `u_lastname`, `u_phone`, `u_email`, `u_document`, `u_type_document`, `u_country`, `u_city`, `u_pass`, `u_code`, `rol_id`, `c_id`, `status_id`, `u_codeSeller`) VALUES
 (9, 'Ivan Alexis', 'Urbina Melo', 2147483647, 'iurbina@businessandconnection.coma', 12341234, 'Cedula de ciudadanía', 'Colombia', 'Cali', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', 'daa211ccacbeb884', 1, 1, 1, NULL),
-(86, 'Edwin valencia', 'prueba', 2147483647, 'iaurbina04@misena.edu.co', 1144108604, 'Cedula de ciudadanía', 'Colombia', 'RIOSUCIO', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', 'd74b28478ff32bbb', 2, 54, 1, NULL),
-(87, 'Andres Muete', 'Muete', 1144108604, 'iurbina@businessandconnection.com', 1144108606, 'Cedula de ciudadanía', 'Colombia', 'PUERTO RONDÓN', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', 'cad21bdc58b52d84', 3, 54, 1, 'CodePrueba'),
+(86, 'Edwin valencia', 'prueba', 2147483647, 'iaurbina04@misena.edu.co', 1144108604, 'Cedula de ciudadanía', 'Colombia', 'RIOSUCIO', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', 'c363ce1abb3eb928', 2, 54, 1, NULL),
+(87, 'Andres Muete', 'Muete', 1144108604, 'iurbina@businessandconnection.com', 1144108606, 'Cedula de ciudadanía', 'Colombia', 'PUERTO RONDÓN', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', '387bc5c30f20b281', 3, 54, 1, 'CodePrueba'),
 (98, 'IVAN ALEXIS', 'URBINA MELO', 2147483647, 'iaurbina04@misena.edu.coa', 2147483647, 'Cedula de ciudadanía', 'Colombia', 'PROVIDENCIA Y SANTA CATALINA', NULL, NULL, 4, 67, 1, NULL);
 
 -- --------------------------------------------------------
@@ -2368,7 +2396,16 @@ ALTER TABLE `purchase_requests`
   ADD PRIMARY KEY (`pr_id`),
   ADD KEY `u_id` (`u_id`),
   ADD KEY `state_id` (`state_id`),
-  ADD KEY `type_id` (`type_id`);
+  ADD KEY `type_id` (`type_id`),
+  ADD KEY `c_id` (`c_id`);
+
+--
+-- Indices de la tabla `purchase_request_articles`
+--
+ALTER TABLE `purchase_request_articles`
+  ADD PRIMARY KEY (`reqart_id`),
+  ADD KEY `pr_id` (`pr_id`),
+  ADD KEY `ar_id` (`ar_id`);
 
 --
 -- Indices de la tabla `purchase_request_states`
@@ -2633,7 +2670,13 @@ ALTER TABLE `priority_states`
 -- AUTO_INCREMENT de la tabla `purchase_requests`
 --
 ALTER TABLE `purchase_requests`
-  MODIFY `pr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `pr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `purchase_request_articles`
+--
+ALTER TABLE `purchase_request_articles`
+  MODIFY `reqart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `purchase_request_states`
@@ -2838,7 +2881,15 @@ ALTER TABLE `prices`
 ALTER TABLE `purchase_requests`
   ADD CONSTRAINT `purchase_requests_ibfk_1` FOREIGN KEY (`u_id`) REFERENCES `users` (`u_id`),
   ADD CONSTRAINT `purchase_requests_ibfk_2` FOREIGN KEY (`state_id`) REFERENCES `purchase_request_states` (`state_id`),
-  ADD CONSTRAINT `purchase_requests_ibfk_3` FOREIGN KEY (`type_id`) REFERENCES `purchase_request_types` (`type_id`);
+  ADD CONSTRAINT `purchase_requests_ibfk_3` FOREIGN KEY (`type_id`) REFERENCES `purchase_request_types` (`type_id`),
+  ADD CONSTRAINT `purchase_requests_ibfk_4` FOREIGN KEY (`c_id`) REFERENCES `company` (`c_id`);
+
+--
+-- Filtros para la tabla `purchase_request_articles`
+--
+ALTER TABLE `purchase_request_articles`
+  ADD CONSTRAINT `purchase_request_articles_ibfk_1` FOREIGN KEY (`pr_id`) REFERENCES `purchase_requests` (`pr_id`),
+  ADD CONSTRAINT `purchase_request_articles_ibfk_2` FOREIGN KEY (`ar_id`) REFERENCES `articles` (`ar_id`);
 
 --
 -- Filtros para la tabla `quotes`
