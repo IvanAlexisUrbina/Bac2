@@ -8,6 +8,7 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
+                <th scope="col">Empresa</th>
                 <th scope="col">Cliente</th>
                 <th scope="col">Fecha del documento</th>
                 <th scope="col">Valor</th>
@@ -21,6 +22,7 @@
                 <th></th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody class="table-light">
@@ -28,6 +30,7 @@
 				foreach ($orders as $o) {
 					echo '<tr>
 					<td>'.$o['order_id'].'</td>
+					<td>'.$o['company'][0]['c_name'].'</td>
 					<td>'.$o['order_name'].'</td>
 					<td>'.$o['order_date'].'</td>
 					<td>'.number_format($o['order_total'], 2, ',', '.').'</td>

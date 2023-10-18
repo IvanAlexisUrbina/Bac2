@@ -142,6 +142,7 @@
                 <i class="menu-icon tf-icons bx bx-dollar"></i>
                 <div data-i18n="Misc">Cotizaciones</div>
             </a>
+            <?php if ($_SESSION['RolUser']==2) { ?>
             <ul class="menu-sub">
                 <li class="menu-item">
                     <a href="<?= Helpers\generateUrl("Quote","Quote","quotesCompanies");?>" class="menu-link">
@@ -153,12 +154,25 @@
                         <div data-i18n="Error">Crear</div>
                     </a>
                 </li>
-                <!-- <li class="menu-item">
+            </ul>
+            <?php }?>
+            <?php if ($_SESSION['RolUser']==3) { ?>
+
+            <ul class="menu-sub">
+
+                <li class="menu-item">
+                    <a href="<?= Helpers\generateUrl("Quote","Quote","ViewCreateQuote");?>" class="menu-link">
+                        <div data-i18n="Error">Crear</div>
+                    </a>
+                </li>
+                <li class="menu-item">
                     <a href="<?= Helpers\generateUrl("Quote","Quote","ViewQuotes");?>" class="menu-link">
                         <div data-i18n="Under Maintenance">Ver</div>
                     </a>
-                </li> -->
+                </li>
             </ul>
+            <?php }?>
+
         </li>
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">

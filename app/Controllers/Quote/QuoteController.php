@@ -24,6 +24,10 @@ class QuoteController{
         //users clients
         $usersClients=$objUser->consultUsersWithRolAndStatus('4','1');         
         $objCompany= new CompanyModel();
+
+        $objMethods = new MethodsPayModel();
+        $methods[]=$objMethods->consultMethods();
+        
         foreach ($usersClients as $u) {
             //companies clients
             $companies=$objCompany->ConsultCompany($u['c_id']);
@@ -101,6 +105,12 @@ class QuoteController{
     public function ViewQuotes(){
          $obj=new QuoteModel();
          $quotes=$obj->consultQuotes($_SESSION['IdCompany']);
+         $objCompany= new CompanyModel();
+
+         foreach ($quotes as &$ord) {
+            $ord['company']=$objCompany->ConsultCompany($ord['quo_company']);
+        }
+
          include_once "../app/Views/quote/quoteConsult.php";
     }
 
@@ -395,7 +405,7 @@ class QuoteController{
                 ?>
 <div class="col-md-<?php echo 12 / $articlesForRows?> roll-in-blurred-left cardsDiv">
     <div class="card">
-        <img src="<?= $art['ar_img_url'] ?>" class="card-img-top" alt="...">
+        <img src="<?= $art['ar_img_url'] ?>" class="card-img-top img-fluid rounded" style="height: 400px ; object-fit: cover;" alt="...">
         <div class="card-body">
             <h5 class="card-title"><?= $art['ar_name'] ?></h5>
             <p class="card-text"><b>Descripción: </b><?= $art['ar_desc'] ?></p>

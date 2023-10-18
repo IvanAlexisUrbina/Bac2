@@ -9,14 +9,16 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Cotizante</th>
+                <th scope="col">Empresa</th>
+                <th scope="col">Cliente</th>
                 <th scope="col">Valor</th>
                 <th scope="col">Fecha del documento</th>
                 <th scope="col">Fecha valida la cotizacion</th>
-				<th scope="col">Estado del documento</th>
+                <th scope="col">Estado del documento</th>
                 <th scope="col">Acciones</th>
             </tr>
-			<tr>
+            <tr>
+                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -34,27 +36,32 @@
 				
 				echo '<tr>
 					<td>'.$q['quo_id'].'</td>
+                    <td>'.$q['company'][0]['c_name'].'</td>
 					<td>'.$q['quo_name'].'</td>
 					<td>'.number_format($q['quo_total'], 2, ',', '.').'</td>
 					<td style="color:green;">'.date('Y-m-d', strtotime($q['quo_date'])).'</td>
 					<td style="color:red;">'.$validDate.'</td>
 					<td>'.$q['quote_state_name'].'</td>
-					<td class="text-center">
-						<button data-url="'.$q['quo_url_document'].'" title="Visualizar pedido" class="pdfModalLink btn btn-outline-warning"><i class="fa-solid fa-eye"></i></button>';
-				
-				if ($q['quote_state_id'] != 2) {
-					echo '<a href="'.Helpers\generateUrl('Order', 'Order', 'GenerateOrderSinceQuote', ['quo_id'=>$q['quo_id']]).'" title="Generar Pedido" class="GenerateOrderSinceQuote btn btn-outline-success" style="margin-left: 10px;">
-						<i class="fa-solid fa-cart-shopping"></i>
-					</a>';
-				}
-				
-				echo '</td>
-				</tr>';
-			}
-			
+					<div class="btn-group">
+    <td class="text-center">
+        <button data-url="'.$q['quo_url_document'].'" title="Visualizar pedido" class="pdfModalLink btn btn-outline-warning">
+            <i class="fa-solid fa-eye"></i>
+        </button>';
+       
+        if ($q['quote_state_id'] != 2) {
+            echo '<a href="'.Helpers\generateUrl('Order', 'Order', 'GenerateOrderSinceQuote', ['quo_id'=>$q['quo_id']]).'" title="Generar Pedido" class="GenerateOrderSinceQuote btn btn-outline-success">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>';
+        }
+        echo '   </td>
+        </div>
+
+        </tr>';
+        }
 
 
-			?>
+
+?>
 
         </tbody>
     </table>

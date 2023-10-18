@@ -261,6 +261,8 @@ $(document).ready(function () {
 
 $(document).ready(function() {
   $('.js-example-basic-single').select2();
+
+  $('.js-example-basic-singleorder').select2();
   // Llamar a la función de validación al cargar la página para inicializar el estado del botón de submit
 
 });

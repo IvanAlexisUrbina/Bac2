@@ -71,6 +71,11 @@ class OrderController
             //companies clients
             $companies=$objCompany->ConsultCompany($u['c_id']);
         }
+        $objMethods = new MethodsPayModel();
+        
+        $objMethods = new MethodsPayModel();
+        $methods[]=$objMethods->consultMethods();
+        
         
         include_once "../app/Views/order/orderCreate.php";
     }
@@ -278,7 +283,14 @@ class OrderController
     }
     public function ViewOrders(){
         $obj=new OrderModel();
+        $objCompany= new CompanyModel();
+        
         $orders=$obj->consultOrders();
+        
+        foreach ($orders as &$ord) {
+            $ord['company']=$objCompany->ConsultCompany($ord['order_company']);
+        }
+        // dd($orders);
         include_once "../app/Views/order/orderConsult.php";
     }
     public function CreateOrder(){

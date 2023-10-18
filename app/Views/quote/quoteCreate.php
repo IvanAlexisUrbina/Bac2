@@ -55,11 +55,16 @@
                 <h3 class="tracking-in-expand">Información de pago <i class="fa-solid fa-money-bill"></i></h3>
                 <div class="form-group">
                     <label for="metodo_pago">Método de pago:</label>
-
-                    <div id="methodspayQuote" arial="payment_method">
-                        <input type="text" disabled class="form-control">
-                    </div>
-
+                    <select class="form-select form-field" id="payment_method" name="payment_method">
+                        <option selected disabled> Seleccione una opcion</option>
+                        <?php
+                        foreach ($methods as $method) {
+                            $payment_method_id = $method[0]['payment_method_id'];
+                            $name = $method[0]['name'];
+                            echo "<option value='$payment_method_id'>$name</option>";
+                        }
+                        ?>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="direccion"></label>

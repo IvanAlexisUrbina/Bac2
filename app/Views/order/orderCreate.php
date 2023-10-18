@@ -1,7 +1,7 @@
 <form action="<?=Helpers\generateUrl("Order","Order","pdfOrder",[],"ajax");?>" method="POST"
     enctype="multipart/form-data">
     <div class="container">
-        <h1 class="tracking-in-expand">Pedido <i class="fa-solid fa-pen-to-square"></i></h1>
+        <h1 class="tracking-in-expand">Pedido a<i class="fa-solid fa-pen-to-square"></i></h1>
         <hr>
         <div class="row d-flex">
 
@@ -11,7 +11,7 @@
                 <label for="">Empresa:</label>
                 <div class="input-group mb-3">
                     <select data-url="<?= Helpers\generateUrl("Order","Order","attrsByAjax",[],"ajax")?>"
-                        id="SelectOrder" name="company" class="form-control js-example-basic-single">
+                        id="SelectOrder" name="company" class="form-control js-example-basic-singleorder">
                         <option value="" disabled selected>Seleccione una opcion</option>
                         <?php foreach ($companies as $c) {?>
                         <option value="<?=$c['c_id']?>"><?=$c['c_name']?></option>
@@ -48,9 +48,16 @@
                 <h3 class="tracking-in-expand">Información de pago <i class="fa-solid fa-money-bill"></i></h3>
                 <div class="form-group">
                     <label for="metodo_pago">Método de pago:</label>
-                    <div id="methodspayOrder" arial="payment_method">
-                        <input type="text" disabled class="form-control">
-                    </div>
+                    <select class="form-select form-field" id="payment_method" name="payment_method">
+                        <option selected disabled> Seleccione una opcion</option>
+                        <?php
+                        foreach ($methods as $method) {
+                            $payment_method_id = $method[0]['payment_method_id'];
+                            $name = $method[0]['name'];
+                            echo "<option value='$payment_method_id'>$name</option>";
+                        }
+                        ?>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="direccion"></label>

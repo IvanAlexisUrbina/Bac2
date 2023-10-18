@@ -31,6 +31,8 @@ class Purchase_requestController
         $pr_id=$_POST['id'];
         $Objpurchase= new Purchase_requestModel();
         $request=$Objpurchase->consultRequestById($pr_id);
+
+        
         foreach ($request as &$req) {
             $req['articles']=$Objpurchase->consultArticlesOfTheRequest($req['pr_id']);
         }
@@ -47,7 +49,7 @@ class Purchase_requestController
             }
 
 
-        //  dd($request);
+        // dd($request);
         include_once "../app/Views/purchase_request/purchaseViewModalRequest.php";
 
     }

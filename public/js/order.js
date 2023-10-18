@@ -277,7 +277,50 @@ if ($("#formOrderSinceQuote").length > 0) {
     });
 });
 
+  $(document).on('change', '#SelectOrder', function () {
+  // alert('hola');
+    let url = $(this).attr('data-url');
+    let id = $(this).val();
 
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: { c_id: id },
+        dataType: "json", // Indica que esperas una respuesta JSON
+        success: function (response) {
+            console.log(response); // Mostrar la respuesta completa
+            // name
+            let representantName=response.representant[0].u_name+" "+response.representant[0].u_lastname;
+            // phone
+            let representantPhone=response.representant[0].u_phone;
+            // phone
+            let representantDocument=response.representant[0].u_document;
+            // email
+            let representantEmail=response.representant[0].u_email;
+            //
+            let address_shipping=response.orderAddress;
+                    
+            $('#clientOrder').prop('disabled', false).val(representantName);            
+            $('#phoneOrder').prop('disabled', false).val(representantPhone);            
+            $('#ccOrder').prop('disabled', false).val(representantDocument);            
+            $('#emailOrder').prop('disabled', false).val(representantEmail);            
+            $('#address_shipping').val(address_shipping);
+            
+          // Crear un elemento <select> con las opciones de métodos de pago
+          let optionsMethods = $("<select class='form-select' name='payment_method' id='methodspayQuote'></select>");
+          optionsMethods.append("<option value='' selected disabled>Selecciona una opcion</option>");
+          
+          // Agregar opciones de métodos de pago al <select>
+          response.methods.forEach(method => {
+              optionsMethods.append(`<option value='${method.value}'>${method.name}</option>`);
+          });
+          
+          // Insertar el <select> en el contenedor deseado
+          $('#methodspayQuote').replaceWith(optionsMethods);
+          
+        }
+    });
+  });
 
   // Resto del código...
 });

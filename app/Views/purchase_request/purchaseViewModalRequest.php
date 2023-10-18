@@ -38,13 +38,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <h3 class="tracking-in-expand">Información de pago <i class="fa-solid fa-money-bill"></i></h3>
-                <div class="form-group">
-                    <label for="metodo_pago">Método de pago:</label>
-                    <div id="methodspayOrder" arial="payment_method">
-                        <input type="text" disabled class="form-control">
-                    </div>
-                </div>
+                <h3 class="tracking-in-expand">Información adicional </h3>
                 <div class="form-group">
                     <label for="comentarios">Comentarios:</label>
                     <textarea class="form-control" id="comentarios" name="comments" rows="3"></textarea>
