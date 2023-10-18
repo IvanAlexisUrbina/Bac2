@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-10-2023 a las 04:21:56
+-- Tiempo de generación: 19-10-2023 a las 01:24:39
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.1.12
 
@@ -182,7 +182,7 @@ CREATE TABLE `company` (
 INSERT INTO `company` (`c_id`, `c_name`, `c_desc`, `c_num_nit`, `c_route_rut`, `c_route_cc_representant`, `c_chamber_commerce`, `c_form_inscription`, `c_certificate_bank`, `c_street`, `c_apartament`, `c_country`, `c_city`, `c_state`, `c_postal_code`, `c_shippingStreet`, `c_shippingApartament`, `c_shippingCountry`, `c_shippingCity`, `c_shippingState`, `c_shippingPostalcode`, `created_at`, `id_subs`, `tpi_id`, `status_id`, `u_id`) VALUES
 (1, 'Business And Connection', 'solutions technology', '3423421-323', NULL, NULL, NULL, NULL, NULL, 'CALLE 1 C #76 A 25', 'APARTAMENTO E 202', 'Colombia', 'CALI', 'Valle del Cauca', 760035, 'CALLE 1 C #76 A 25', 'APARTAMENTO E 202', 'Colombia', 'CALI', 'Valle del Cauca', 760035, '2023-06-20 19:30:42', NULL, 2, 1, NULL),
 (54, 'Comercializadora Valencia', 'descripcion empresa', '81293819283-9', 'uploads/companies/company_54/rut/Capturas de pantalla Portal de Clientes.pdf', 'uploads/companies/company_54/chamber_of_commerce/Capturas de pantalla Portal de Clientes.pdf', 'uploads/companies/company_54/representative_cedula/Capturas de pantalla Portal de Clientes.pdf', 'uploads/companies/company_54/form_inscription/Capturas de pantalla Portal de Clientes.pdf', 'uploads/companies/company_54/certificate_bank/Capturas de pantalla Portal de Clientes.pdf', NULL, NULL, 'Colombia', 'RIOSUCIO', 'CHOCO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-08-02 17:35:07', 13, 3, 1, NULL),
-(67, 'LA MUELA', 'desc', '3423421-3', 'uploads/companies/company_67/rut/Diseño sin título.pdf', 'uploads/companies/company_67/chamber_of_commerce/Diseño sin título.pdf', 'uploads/companies/company_67/representative_cedula/Diseño sin título.pdf', 'uploads/companies/company_67/form_inscription/Diseño sin título.pdf', 'uploads/companies/company_67/certificate_bank/Diseño sin título.pdf', NULL, NULL, 'Colombia', 'PROVIDENCIA Y SANTA CATALINA', 'ARCHIPIELAGO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-08-30 18:50:53', NULL, 1, 1, NULL);
+(67, 'LA MUELA', 'descfsafsdf', '3423421-3', 'uploads/companies/company_67/rut/Diseño sin título.pdf', 'uploads/companies/company_67/chamber_of_commerce/Diseño sin título.pdf', 'uploads/companies/company_67/representative_cedula/Diseño sin título.pdf', 'uploads/companies/company_67/form_inscription/Diseño sin título.pdf', 'uploads/companies/company_67/certificate_bank/Diseño sin título.pdf', NULL, NULL, 'Colombia', 'PROVIDENCIA Y SANTA CATALINA', 'ARCHIPIELAGO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-10-18 17:21:40', 13, 1, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -310,8 +310,9 @@ CREATE TABLE `customer_payment_method` (
 --
 
 INSERT INTO `customer_payment_method` (`customer_payment_id`, `c_id`, `payment_method_id`) VALUES
-(36, 67, 2),
-(37, 67, 3);
+(38, 67, 1),
+(39, 67, 2),
+(40, 67, 3);
 
 -- --------------------------------------------------------
 
@@ -473,7 +474,8 @@ CREATE TABLE `order` (
 
 INSERT INTO `order` (`order_id`, `order_name`, `order_desc`, `order_date`, `order_payment_method`, `order_company`, `order_shipping_address`, `order_email`, `order_phone`, `order_comments`, `order_cedula_nit`, `order_subtotal`, `order_iva`, `order_total`, `order_url_document`, `u_id`, `order_state_id`) VALUES
 (18, 'IVAN ALEXIS URBINA MELO', 'a', '2023-08-31 21:11:36', '3', '67', 'calle 1 c', 'iaurbina04@misena.edu.co', '2147483647', 'aa', '1144108606', '5200.00', '988.00', '6188.00', 'uploads/orders/18/Document_orders_18_20230831231136.pdf', 87, 1),
-(19, 'IVAN ALEXIS URBINA MELO', 'a', '2023-09-05 16:36:21', '2', '67', 'No hay dirección de envío registrada - Ingresa una direccion', 'iaurbina04@misena.edu.coa', '2147483647', 'asdf', '2147483647', '2400.00', '456.00', '2856.00', 'uploads/orders/19/Document_orders_19_20230905183621.pdf', 86, 1);
+(19, 'IVAN ALEXIS URBINA MELO', 'a', '2023-09-05 16:36:21', '2', '67', 'No hay dirección de envío registrada - Ingresa una direccion', 'iaurbina04@misena.edu.coa', '2147483647', 'asdf', '2147483647', '2400.00', '456.00', '2856.00', 'uploads/orders/19/Document_orders_19_20230905183621.pdf', 86, 1),
+(20, 'IVAN ALEXIS URBINA MELO', 'a', '2023-10-18 16:07:04', '1', '67', 'No hay dirección de envío registrada - Ingresa una direccion', 'iaurbina04@misena.edu.coa', '2147483647', 'comments', '2147483647', '2112.00', '401.28', '2513.28', 'uploads/orders/20/Document_orders_20_20231018110704.pdf', 87, 1);
 
 -- --------------------------------------------------------
 
@@ -498,7 +500,8 @@ CREATE TABLE `order_articles` (
 INSERT INTO `order_articles` (`orderart_id`, `order_id`, `ar_id`, `orderart_quantity`, `orderart_pricenormal`, `orderart_discountPercentajeOrPrice`, `orderart_discountPrice`) VALUES
 (17, 18, 1, 2, 1200, 'No', 1200),
 (18, 18, 2, 2, 1400, 'No', 1400),
-(19, 19, 1, 2, 1200, 'No', 1200);
+(19, 19, 1, 2, 1200, 'No', 1200),
+(20, 20, 1, 2, 1200, '12%', 1056);
 
 -- --------------------------------------------------------
 
@@ -644,7 +647,8 @@ INSERT INTO `purchase_requests` (`pr_id`, `pr_desc`, `pr_quantity`, `pr_date_req
 (1, 'desc', '20000.00', '2023-10-11 17:19:05', NULL, 86, 1, 1, NULL),
 (2, 'desc', '2212312.00', '2023-10-11 17:19:14', NULL, 86, 1, 1, NULL),
 (4, 'comments', '2856.00', '2023-10-11 17:14:23', 'uploads/requestdocs/4/Document_requestdocs_4_20231010235854.pdf', 86, 1, 2, 67),
-(5, '11/10/2023', '5845.28', '2023-10-11 17:14:25', 'uploads/requestdocs/5/Document_requestdocs_5_20231011165629.pdf', 86, 1, 2, 67);
+(5, '11/10/2023', '5845.28', '2023-10-11 17:14:25', 'uploads/requestdocs/5/Document_requestdocs_5_20231011165629.pdf', 86, 1, 2, 67),
+(6, 'aasdas', '1256.64', '2023-10-18 11:28:04', 'uploads/requestdocs/6/Document_requestdocs_6_20231018112804.pdf', 87, 1, 2, 67);
 
 -- --------------------------------------------------------
 
@@ -669,7 +673,8 @@ CREATE TABLE `purchase_request_articles` (
 INSERT INTO `purchase_request_articles` (`reqart_id`, `pr_id`, `ar_id`, `reqart_quantity`, `reqart_pricenormal`, `reqart_discountPercentajeOrPrice`, `reqart_discountPrice`) VALUES
 (1, 4, 1, 2, 1200, 'No', 1200),
 (2, 5, 1, 2, 1200, '12%', 1056),
-(3, 5, 2, 2, 1400, '12%', 1400);
+(3, 5, 2, 2, 1400, '12%', 1400),
+(4, 6, 1, 1, 1200, '12%', 1056);
 
 -- --------------------------------------------------------
 
@@ -745,7 +750,8 @@ CREATE TABLE `quotes` (
 INSERT INTO `quotes` (`quo_id`, `quo_name`, `quo_desc`, `quo_date`, `quo_payment_method`, `quo_company`, `quo_shipping_address`, `quo_email`, `quo_phone`, `quo_comments`, `quo_cedula_nit`, `quo_subtotal`, `quo_iva`, `quo_total`, `quo_url_document`, `u_id`, `quote_state_id`) VALUES
 (79, 'IVAN ALEXIS URBINA MELO', 'a', '2023-08-31 20:41:46', '2', '67', 'CALLE 1 C #76 A 25\r\nAPARTAMENTO E 202', 'iaurbina04@misena.edu.co', 2147483647, 'comments', '1144108606', '6600.00', '1254.00', '7854.00', 'uploads/quotes/79/Document_quotes_79_20230831224146.pdf', 87, 1),
 (80, 'IVAN ALEXIS URBINA MELO', 'a', '2023-09-05 17:13:09', '2', '67', 'No hay dirección de envío registrada - Ingresa una direccion', 'iaurbina04@misena.edu.coa', 2147483647, 'asdfasdf', '2147483647', '2400.00', '456.00', '2856.00', 'uploads/quotes/80/Document_quotes_80_20230905191309.pdf', 86, 1),
-(81, 'IVAN ALEXIS URBINA MELO', 'a', '2023-09-05 23:17:41', '2', '67', 'No hay dirección de envío registrada - Ingresa una direccion', 'iaurbina04@misena.edu.coa', 2147483647, '', '2147483647', '2800.00', '532.00', '3332.00', 'uploads/quotes/81/Document_quotes_81_20230906011741.pdf', 86, 1);
+(81, 'IVAN ALEXIS URBINA MELO', 'a', '2023-09-05 23:17:41', '2', '67', 'No hay dirección de envío registrada - Ingresa una direccion', 'iaurbina04@misena.edu.coa', 2147483647, '', '2147483647', '2800.00', '532.00', '3332.00', 'uploads/quotes/81/Document_quotes_81_20230906011741.pdf', 86, 1),
+(82, 'IVAN ALEXIS URBINA MELO', 'a', '2023-10-18 15:48:39', '1', '67', 'No hay dirección de envío registrada - Ingresa una direccion', 'iaurbina04@misena.edu.coa', 2147483647, 'aaa', '2147483647', '1056.00', '200.64', '1256.64', 'uploads/quotes/82/Document_quotes_82_20231018104839.pdf', 87, 1);
 
 -- --------------------------------------------------------
 
@@ -790,7 +796,8 @@ INSERT INTO `quote_articles` (`quoart_id`, `quo_id`, `ar_id`, `quoart_quantity`,
 (85, 79, 1, 2, 1200, 'No', 1200),
 (86, 79, 2, 3, 1400, 'No', 1400),
 (87, 80, 1, 2, 1200, 'No', 1200),
-(88, 81, 2, 2, 1400, 'No', 1400);
+(88, 81, 2, 2, 1400, 'No', 1400),
+(89, 82, 1, 1, 1200, '12%', 1056);
 
 -- --------------------------------------------------------
 
@@ -2152,10 +2159,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`u_id`, `u_name`, `u_lastname`, `u_phone`, `u_email`, `u_document`, `u_type_document`, `u_country`, `u_city`, `u_pass`, `u_code`, `rol_id`, `c_id`, `status_id`, `u_codeSeller`) VALUES
-(9, 'Ivan Alexis', 'Urbina Melo', 2147483647, 'iurbina@businessandconnection.coma', 12341234, 'Cedula de ciudadanía', 'Colombia', 'Cali', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', 'daa211ccacbeb884', 1, 1, 1, NULL),
-(86, 'Edwin valencia', 'prueba', 2147483647, 'iaurbina04@misena.edu.co', 1144108604, 'Cedula de ciudadanía', 'Colombia', 'RIOSUCIO', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', 'c363ce1abb3eb928', 2, 54, 1, NULL),
-(87, 'Andres Muete', 'Muete', 1144108604, 'iurbina@businessandconnection.com', 1144108606, 'Cedula de ciudadanía', 'Colombia', 'PUERTO RONDÓN', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', '387bc5c30f20b281', 3, 54, 1, 'CodePrueba'),
-(98, 'IVAN ALEXIS', 'URBINA MELO', 2147483647, 'iaurbina04@misena.edu.coa', 2147483647, 'Cedula de ciudadanía', 'Colombia', 'PROVIDENCIA Y SANTA CATALINA', NULL, NULL, 4, 67, 1, NULL);
+(9, 'Ivan Alexis', 'Urbina Melo', 2147483647, 'iurbina@businessandconnection.coma', 12341234, 'Cedula de ciudadanía', 'Colombia', 'Cali', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', '55f0a5a8f3dbfc5a', 1, 1, 1, NULL),
+(86, 'Edwin valencia', 'prueba', 2147483647, 'iaurbina04@misena.edu.co', 1144108604, 'Cedula de ciudadanía', 'Colombia', 'RIOSUCIO', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', '682b1c0a1301f6af', 2, 54, 1, NULL),
+(87, 'Andres Muete', 'Muete', 1144108604, 'iurbina@businessandconnection.com', 1144108606, 'Cedula de ciudadanía', 'Colombia', 'PUERTO RONDÓN', '$2y$10$iAE/0burGF3ZckIwtOj6vu./aDf7QyhLmDjiWrzNhM8No96l6dxmu', '7c5e194934dc6c4d', 3, 54, 1, 'CodePrueba'),
+(98, 'IVAN ALEXIS', 'URBINA MELO', 2147483647, 'iaurbina04@misena.edu.coa', 2147483647, 'Pasaporte', 'Colombia', 'PROVIDENCIA Y SANTA CATALINA', NULL, NULL, 4, 67, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -2580,7 +2587,7 @@ ALTER TABLE `customer_discounts`
 -- AUTO_INCREMENT de la tabla `customer_payment_method`
 --
 ALTER TABLE `customer_payment_method`
-  MODIFY `customer_payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `customer_payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de la tabla `extra_attributes_articles`
@@ -2628,13 +2635,13 @@ ALTER TABLE `modules`
 -- AUTO_INCREMENT de la tabla `order`
 --
 ALTER TABLE `order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `order_articles`
 --
 ALTER TABLE `order_articles`
-  MODIFY `orderart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `orderart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `order_states`
@@ -2670,13 +2677,13 @@ ALTER TABLE `priority_states`
 -- AUTO_INCREMENT de la tabla `purchase_requests`
 --
 ALTER TABLE `purchase_requests`
-  MODIFY `pr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `pr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `purchase_request_articles`
 --
 ALTER TABLE `purchase_request_articles`
-  MODIFY `reqart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `reqart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `purchase_request_states`
@@ -2694,7 +2701,7 @@ ALTER TABLE `purchase_request_types`
 -- AUTO_INCREMENT de la tabla `quotes`
 --
 ALTER TABLE `quotes`
-  MODIFY `quo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `quo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT de la tabla `quotes_states`
@@ -2706,7 +2713,7 @@ ALTER TABLE `quotes_states`
 -- AUTO_INCREMENT de la tabla `quote_articles`
 --
 ALTER TABLE `quote_articles`
-  MODIFY `quoart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `quoart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
