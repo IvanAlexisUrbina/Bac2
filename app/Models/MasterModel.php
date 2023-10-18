@@ -2,7 +2,7 @@
 
 namespace Models;
 require '../vendor/autoload.php';
-
+date_default_timezone_set('America/Bogota');
 use PDOException;
 use Exception;
 use PDO;
