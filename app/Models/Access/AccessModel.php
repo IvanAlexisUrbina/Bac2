@@ -2,6 +2,9 @@
 namespace Models\Access;
 require '../vendor/autoload.php';
 use Models\MasterModel;
+
+use function Helpers\dd;
+
 Class AccessModel extends MasterModel
 {
 
@@ -69,7 +72,6 @@ Class AccessModel extends MasterModel
             }else{
  
                 $data =$this->dataUser($u_email,$u_id);
-
                 foreach ($data as $d) {
                     $sessionData = array(
                         'nameUser' =>$d['u_name'],
@@ -84,6 +86,7 @@ Class AccessModel extends MasterModel
                         'idUser' =>  $d['u_id'],
                         'CompanyName'=>$d['c_name'],
                         'StatusUser'=>$d['status_id'],
+                        'StatusCompany'=>$d['status_id'],
                         'IdCompany'=>$d['c_id']
                     );
                 }
@@ -96,21 +99,22 @@ Class AccessModel extends MasterModel
 
         private function dataUser($u_email,$u_id){
         
-            $sql="SELECT users.u_id, users.u_name, users.u_lastname, users.u_email,users.u_document,
-                  users.u_phone,users.u_city,users.u_country,users.rol_id,
-                  roles.rol_name,company.c_name,company.c_id,status.status_id
+            $sql = "SELECT users.u_id, users.u_name, users.u_lastname, users.u_email, users.u_document,
+            users.u_phone, users.u_city, users.u_country, users.rol_id,
+            roles.rol_name, company.c_name, company.status_id as status_company, company.c_id, status.status_id
             FROM (users 
             INNER JOIN roles 
-            ON users.rol_id=roles.rol_id)
+            ON users.rol_id = roles.rol_id)
             INNER JOIN company
-            ON users.c_id=company.c_id
+            ON users.c_id = company.c_id
             INNER JOIN status
-            ON status.status_id=users.status_id
-            WHERE users.u_email= :email 
-            AND users.u_id=:id";
-            $params = [':email' => $u_email,':id'=> $u_id];
-            $result = $this->select($sql, $params);
-            return $result;
+            ON status.status_id = users.status_id
+            WHERE users.u_email = :email 
+            AND users.u_id = :id";
+        $params = [':email' => $u_email, ':id' => $u_id];
+        $result = $this->select($sql, $params);
+        return $result;
+
         }
 
 
