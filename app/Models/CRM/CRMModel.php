@@ -8,7 +8,10 @@ Class CRMModel extends MasterModel
 
     public function consultCRMActivities(int $userRole, int $userID) {
         try {
-            $sql = "SELECT * FROM crm";
+            $sql = "SELECT crm.*,crm_meeting.* 
+                    FROM crm 
+                    INNER JOIN crm_meeting 
+                    ON crm.crm_id=crm_meeting.crm_id";
             $params = [];
     
             if ($userRole == 3) {

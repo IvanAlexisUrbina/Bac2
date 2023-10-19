@@ -59,7 +59,7 @@ class CRMController {
         $users= new UserModel();
         $objPriority= new Priority_statesModel();
         $companies=$objCompanies->ConsultCompaniesClients();        
-        $usersCompany=$users->consultUsersWithRol();
+        $usersCompany=$users->consultUsersWithRol(4);
         $priority_States=$objPriority->consultPriorityStates();
         include_once '../app/Views/crm/createCRMview.php';
     }
