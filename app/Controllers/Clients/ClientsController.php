@@ -65,6 +65,21 @@ class ClientsController
         include_once '../app/Views/clients/ModalDocumentsCompany.php';
     }
 
+
+    public function updateStatusCompanyAndUser(){
+        $c_id=$_POST['id'];
+    
+        include_once '../app/Views/clients/ModalupdateStatusCompanyAndUser.php';
+
+    }
+    public function UpdateStatusOfClient(){
+        $status_company=$_POST['status_company'];
+        $c_id=$_POST['c_id'];
+        $objCompany= new CompanyModel();
+        $objCompany->updateStatusCompany($status_company,$c_id);
+        redirect(generateUrl("Company","Company","consultCompanies"));
+    }
+
     public function ViewClientPortal(){
         $objUser= new UserModel();
         $users=$objUser->consultUsersWithRol('4');

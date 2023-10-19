@@ -149,7 +149,7 @@ class CompanyController
             //status
             //1 active
             //2 inactive
-        $users=$objUser->consultUsersWithRolAndStatus('4','1');
+        $users=$objUser->consultUsersWithRol('4');
         foreach ($users as $u => $value) {
             $companies = $obj->consultCompany($value['c_id']);
             $users[$u]['user'] = $companies;

@@ -161,6 +161,21 @@ $(document).ready(function() {
     });
 
   })
+  $(document).on('click','.updateStatusClient', function () {
+    let url = $(this).data('url');
+    let id =$(this).data('id');
+
+    $.ajax({
+      type: "POST",
+      url: url,
+      data:{id:id},
+      success: function (response) {
+        $("#ModalContent").html(response); 
+        $("#ModalLarge").modal("show");   
+      }
+    });
+
+  })
   $(document).on('click', '#deleteSellerOfCompany', function () {
     let url = $(this).data('url');
     let $row = $(this).closest('tr');

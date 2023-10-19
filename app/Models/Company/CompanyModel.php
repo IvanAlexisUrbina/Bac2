@@ -192,7 +192,11 @@ Class CompanyModel extends MasterModel
     }
     
     public function ConsultCompany( $IdCompany){
-        $sql="SELECT * FROM company WHERE c_id= :company";
+        $sql="SELECT company.*,status.status_name
+        FROM company
+        INNER JOIN status
+        ON company.status_id=status.status_id
+        WHERE c_id= :company";
         $params = [
             ':company' => $IdCompany
         ];
